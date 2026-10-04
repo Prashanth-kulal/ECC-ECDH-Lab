@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECC ECDH LAB - Elliptic Curve Cryptography Simulator</title>
+  <meta name="description" content="Academic simulator for Elliptic Curve Cryptography (ECC) and Diffie-Hellman Key Exchange (ECDH) over finite fields.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <!-- MathJax 3: Configure BEFORE loading the script -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        packages: {'[+]': ['ams']}
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        ignoreHtmlClass: 'no-mathjax',
+        processHtmlClass: 'math-render'
+      },
+      startup: {
+        typeset: true
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+
+  <!-- Top Mobile Bar -->
+  <header class="mobile-topbar">
+    <div class="brand">
+      <span class="brand-icon">🔐</span>
+      <span class="brand-name">ECC ECDH LAB</span>
+    </div>
+    <button id="mobile-menu-btn" class="hamburger-btn" aria-label="Toggle Navigation Menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </header>
+
+  <div class="app-layout">
+    <!-- Fixed Left Sidebar -->
+    <aside class="sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <div class="logo-badge">
+          <span class="logo-symbol">∿</span>
+        </div>
+        <div class="logo-text">
+          <h2>ECC ECDH LAB</h2>
+          <span class="badge-tag">Academic Edition</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <button class="nav-item active" data-view="dashboard" id="nav-dashboard">
+              <span class="nav-icon">🏠</span>
+              <span class="nav-label">Dashboard</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-item" data-view="concepts" id="nav-concepts">
+              <span class="nav-icon">📖</span>
+              <span class="nav-label">ECC Concepts</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-item" data-view="curve-setup" id="nav-curve-setup">
+              <span class="nav-icon">⚙️</span>
+              <span class="nav-label">Curve Setup</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-item" data-view="ecdh-exchange" id="nav-ecdh-exchange">
+              <span class="nav-icon">🔑</span>
+              <span class="nav-label">ECDH Key Exchange</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-item" data-view="visualization" id="nav-visualization">
+              <span class="nav-icon">📊</span>
+              <span class="nav-label">Visualization</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Status Card -->
+      <div class="sidebar-status-box">
+        <div class="status-header">
+          <span class="status-dot-pulse" id="sidebar-status-dot"></span>
+          <span class="status-title">System Status</span>
+        </div>
+        <p class="status-detail" id="sidebar-status-text">Ready for simulation</p>
+        <div class="curve-quick-indicator" id="sidebar-curve-badge">
+          y² = x³ + 2x + 2 (mod 17)
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <span class="footer-note">College Project & Viva Demo</span>
+      </div>
+    </aside>
+
+    <!-- Main Content Area on Right -->
+    <main class="main-content" id="main-content">
+
+      <!-- Toast Alert Notification Area -->
+      <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+      <!-- ========================================================= -->
+      <!-- VIEW 1: DASHBOARD -->
+      <!-- ========================================================= -->
+      <section class="view-panel active" id="view-dashboard">
+        <div class="view-header">
+          <div class="header-left">
+            <h1 class="page-title">ECC ECDH LAB</h1>
+            <p class="page-subtitle">Elliptic Curve Cryptography & ECDH Key Exchange Simulator</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" id="dash-start-sim-btn">
+              <span>🚀 Start ECDH Simulation</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="intro-banner card">
+          <div class="banner-content">
+            <h3>Interactive Cryptographic Simulator</h3>
+            <p>
+              This laboratory implements genuine <strong>Weierstrass Elliptic Curves</strong> over the finite field 
+              $\mathbb{F}_p$ and demonstrates the <strong>Elliptic Curve Diffie-Hellman (ECDH)</strong> key agreement protocol.
+              Enter custom parameters, inspect finite field point addition and doubling, plot the discrete point group, and trace key exchange step-by-step.
+            </p>
+          </div>
+          <div class="quick-preset-container">
+            <label for="dash-preset-select"><strong>Load Preset:</strong></label>
+            <select id="dash-preset-select" class="form-select">
+              <option value="">-- Choose Sample Curve --</option>
+            </select>
+          </div>
+        </div>
+
+        <h2 class="section-title">Current Simulation Status</h2>
+        
+        <div class="summary-cards-grid">
+          <!-- Card 1: Curve Equation -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-icon">∿</span>
+              <span class="metric-label">Curve Equation</span>
+            </div>
+            <div class="metric-value math-font" id="dash-card-curve">
+              y² = x³ + 2x + 2 (mod 17)
+            </div>
+            <div class="metric-sub" id="dash-card-curve-sub">Discriminant: Non-singular</div>
+          </div>
+
+          <!-- Card 2: Generator Point -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-icon">🎯</span>
+              <span class="metric-label">Generator Point G</span>
+            </div>
+            <div class="metric-value math-font" id="dash-card-generator">
+              (5, 1)
+            </div>
+            <div class="metric-sub text-success" id="dash-card-generator-sub">✓ Valid on curve</div>
+          </div>
+
+          <!-- Card 3: Alice Public Key -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-icon">👩‍💻</span>
+              <span class="metric-label">Alice Public Key (A)</span>
+            </div>
+            <div class="metric-value math-font" id="dash-card-alice-pub">
+              <span class="empty-state">Not calculated</span>
+            </div>
+            <div class="metric-sub" id="dash-card-alice-sub">A = d_A · G</div>
+          </div>
+
+          <!-- Card 4: Bob Public Key -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-icon">👨‍💻</span>
+              <span class="metric-label">Bob Public Key (B)</span>
+            </div>
+            <div class="metric-value math-font" id="dash-card-bob-pub">
+              <span class="empty-state">Not calculated</span>
+            </div>
+            <div class="metric-sub" id="dash-card-bob-sub">B = d_B · G</div>
+          </div>
+
+          <!-- Card 5: Shared Secret -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-icon">🤝</span>
+              <span class="metric-label">ECDH Shared Secret</span>
+            </div>
+            <div class="metric-value math-font" id="dash-card-shared">
+              <span class="empty-state">Not calculated</span>
+            </div>
+            <div class="metric-sub" id="dash-card-shared-sub">K = d_A · B = d_B · A</div>
+          </div>
+
+          <!-- Card 6: Overall Status -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-icon">🛡️</span>
+              <span class="metric-label">Protocol Status</span>
+            </div>
+            <div class="metric-value status-badge-val" id="dash-card-status">
+              <span class="status-pill status-ready">Ready to Start</span>
+            </div>
+            <div class="metric-sub" id="dash-card-status-sub">No calculation performed yet</div>
+          </div>
+        </div>
+
+        <div class="dash-quick-actions card">
+          <h3>Quick Navigation</h3>
+          <p>Follow the standard cryptographic workflow to configure parameters, perform key exchange, and visualize the mathematics:</p>
+          <div class="btn-group-responsive">
+            <button class="btn btn-secondary" onclick="app.navigateTo('curve-setup')">
+              ⚙️ Configure Curve & Generator
+            </button>
+            <button class="btn btn-primary" onclick="app.navigateTo('ecdh-exchange')">
+              🔑 Run Key Exchange
+            </button>
+            <button class="btn btn-accent" onclick="app.navigateTo('visualization')">
+              📊 Open Step-by-Step Visualizer
+            </button>
+            <button class="btn btn-outline" onclick="app.navigateTo('concepts')">
+              📖 Learn ECC Concepts
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- VIEW 2: ECC CONCEPTS -->
+      <!-- ========================================================= -->
+      <section class="view-panel" id="view-concepts">
+        <div class="view-header">
+          <div class="header-left">
+            <h1 class="page-title">📖 ECC & ECDH Concepts</h1>
+            <p class="page-subtitle">Mathematical Foundations of Elliptic Curve Cryptography</p>
+          </div>
+        </div>
+
+        <div class="concepts-grid">
+          <!-- Card 1: What is ECC? -->
+          <div class="concept-card card">
+            <div class="concept-title">
+              <span class="concept-num">01</span>
+              <h3>What is Elliptic Curve Cryptography (ECC)?</h3>
+            </div>
+            <p>
+              ECC is an asymmetric public-key cryptosystem based on the algebraic structure of elliptic curves over finite fields. 
+              Its primary security relies on the <strong>Elliptic Curve Discrete Logarithm Problem (ECDLP)</strong>: given a base point \(G\)
+              and a public point \(P = k \cdot G\), it is computationally infeasible to determine the secret scalar \(k\).
+            </p>
+            <div class="concept-highlight">
+              <strong>Key Advantage:</strong> Equivalent security to RSA with significantly smaller keys (e.g. 256-bit ECC \(\approx\) 3072-bit RSA).
+            </div>
+          </div>
+
+          <!-- Card 2: Elliptic Curve Equation -->
+          <div class="concept-card card">
+            <div class="concept-title">
+              <span class="concept-num">02</span>
+              <h3>The Elliptic Curve Equation</h3>
+            </div>
+            <p>
+              In our simulator, we use the standard <strong>Weierstrass Equation</strong> over a prime finite field \(\mathbb{F}_p\):
+            </p>
+            <div class="formula-box-emerald">
+              \[y^2 \equiv x^3 + ax + b \pmod{p}\]
+            </div>
+            <p>
+              To ensure the curve has no cusps, self-intersections, or singular points, the discriminant must satisfy:
+            </p>
+            <div class="formula-box-light">
+              \[\Delta = 4a^3 + 27b^2 \not\equiv 0 \pmod{p}\]
+            </div>
+          </div>
+
+          <!-- Card 3: Finite Field -->
+          <div class="concept-card card">
+            <div class="concept-title">
+              <span class="concept-num">03</span>
+              <h3>What is a Finite Field (\(\mathbb{F}_p\))?</h3>
+            </div>
+            <p>
+              Instead of smooth, continuous real numbers \(\mathbb{R}\), finite field cryptography uses modular arithmetic over integers modulo a prime \(p\): \(\{0, 1, 2, \dots, p-1\}\).
+            </p>
+            <p>
+              Division in \(\mathbb{F}_p\) is accomplished by computing the <strong>modular multiplicative inverse</strong> using Fermat's Little Theorem or the Extended Euclidean Algorithm:
+            </p>
+            <div class="formula-box-light">
+              \[\frac{1}{d} \equiv d^{-1} \equiv d^{p-2} \pmod{p}\]
+            </div>
+          </div>
+
+          <!-- Card 4: Points on the Curve -->
+          <div class="concept-card card">
+            <div class="concept-title">
+              <span class="concept-num">04</span>
+              <h3>Point on a Curve & Point at Infinity</h3>
+            </div>
+            <p>
+              A point \(P = (x, y)\) is a valid point if its coordinates satisfy \((y^2 - (x^3 + ax + b)) \bmod p = 0\).
+            </p>
+            <p>
+              The curve also includes a special identity element called the <strong>Point at Infinity (\(\mathcal{O}\))</strong>, which acts like zero in regular addition:
+            </p>
+            <div class="formula-box-light">
+              \[P + \mathcal{O} = P \quad \text{and} \quad P + (-P) = \mathcal{O}\]
+            </div>
+          </div>
+
+          <!-- Card 5: Point Addition -->
+          <div class="concept-card card">
+            <div class="concept-title">
+              <span class="concept-num">05</span>
+              <h3>Point Addition (\(P + Q = R\), \(P \ne Q\))</h3>
+            </div>
+            <p>
+              To add two distinct points \(P = (x_1, y_1)\) and \(Q = (x_2, y_2)\) where \(x_1 \ne x_2\):
+            </p>
+            <div class="formula-box-emerald">
+              \[m = \frac{y_2 - y_1}{x_2 - x_1} \pmod{p}\]
+              \[x_3 = (m^2 - x_1 - x_2) \pmod{p}\]
+              \[y_3 = (m(x_1 - x_3) - y_1) \pmod{p}\]
+            </div>
+          </div>
+
+          <!-- Card 6: Point Doubling -->
+          <div class="concept-card card">
+            <div class="concept-title">
+              <span class="concept-num">06</span>
+              <h3>Point Doubling (\(P + P = 2P\))</h3>
+            </div>
+            <p>
+              When adding a point to itself (\(P = Q\)), the slope is the tangent to the curve at \((x_1, y_1)\):
+            </p>
+            <div class="formula-box-orange">
+              \[m = \frac{3x_1^2 + a}{2y_1} \pmod{p}\]
+              \[x_3 = (m^2 - 2x_1) \pmod{p}\]
+              \[y_3 = (m(x_1 - x_3) - y_1) \pmod{p}\]
+            </div>
+          </div>
+
+          <!-- Card 7: Scalar Multiplication -->
+          <div class="concept-card card">
+            <div class="concept-title">
+              <span class="concept-num">07</span>
+              <h3>Scalar Multiplication (\(k \cdot P\))</h3>
+            </div>
+            <p>
+              Scalar multiplication computes \(k \cdot P = \underbrace{P + P + \dots + P}_{k \text{ times}}\).
+            </p>
+            <p>
+              Using the <strong>Double-and-Add Algorithm</strong> (binary method), scalar multiplication runs in logarithmic \(O(\log k)\) steps instead of linear time:
+            </p>
+            <div class="code-preview-box">
+<pre><code>result = None
+while k > 0:
+    if k % 2 == 1:
+        result = point_add(result, P)
+    P = point_add(P, P)  # Point doubling
+    k = k // 2</code></pre>
+            </div>
+          </div>
+
+          <!-- Card 8: ECDH Key Exchange -->
+          <div class="concept-card card full-width-card">
+            <div class="concept-title">
+              <span class="concept-num">08</span>
+              <h3>Elliptic Curve Diffie-Hellman (ECDH) Protocol</h3>
+            </div>
+            <p>
+              ECDH allows two parties (Alice and Bob) to establish a shared cryptographic key over an insecure public channel without transmitting the secret:
+            </p>
+
+            <div class="ecdh-concept-flow">
+              <div class="ecdh-actor-box">
+                <h4>👩‍💻 Alice</h4>
+                <p>Private Key: \(d_A\) (secret)</p>
+                <p>Public Key: \(A = d_A \cdot G\)</p>
+                <div class="action-tag">Sends \(A \to\) Bob</div>
+                <div class="secret-calc-box">
+                  <strong>Calculates:</strong><br>
+                  \[S_{\text{Alice}} = d_A \cdot B = d_A \cdot (d_B \cdot G)\]
+                </div>
+              </div>
+
+              <div class="ecdh-channel-box">
+                <div class="channel-line">
+                  <span>Public Channel</span>
+                  <span class="channel-arrow">⇄</span>
+                  <span>Transmits \(A\) and \(B\)</span>
+                </div>
+                <div class="ecdh-match-badge">
+                  \[d_A \cdot d_B \cdot G = d_B \cdot d_A \cdot G\]
+                  <strong>Shared Secret is Identical!</strong>
+                </div>
+              </div>
+
+              <div class="ecdh-actor-box">
+                <h4>👨‍💻 Bob</h4>
+                <p>Private Key: \(d_B\) (secret)</p>
+                <p>Public Key: \(B = d_B \cdot G\)</p>
+                <div class="action-tag">Sends \(B \to\) Alice</div>
+                <div class="secret-calc-box">
+                  <strong>Calculates:</strong><br>
+                  \[S_{\text{Bob}} = d_B \cdot A = d_B \cdot (d_A \cdot G)\]
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- VIEW 3: CURVE SETUP -->
+      <!-- ========================================================= -->
+      <section class="view-panel" id="view-curve-setup">
+        <div class="view-header">
+          <div class="header-left">
+            <h1 class="page-title">⚙️ Curve Setup & Parameter Validation</h1>
+            <p class="page-subtitle">Configure custom Weierstrass parameters and generator point</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-outline" id="curve-reset-defaults-btn">
+              🔄 Reset Default Values
+            </button>
+          </div>
+        </div>
+
+        <div class="curve-setup-layout">
+          <!-- Form Left -->
+          <div class="card setup-form-card">
+            <div class="card-header">
+              <h3>Weierstrass Curve Parameters</h3>
+              <span class="hint-text">Define \(y^2 \equiv x^3 + ax + b \pmod{p}\)</span>
+            </div>
+
+            <form id="curve-setup-form" onsubmit="return false;">
+              <div class="form-row-3">
+                <div class="form-group">
+                  <label for="param-a">Parameter <strong>a</strong></label>
+                  <input type="number" id="param-a" class="form-control" value="2" required>
+                  <span class="field-hint">Curve coefficient</span>
+                </div>
+                <div class="form-group">
+                  <label for="param-b">Parameter <strong>b</strong></label>
+                  <input type="number" id="param-b" class="form-control" value="2" required>
+                  <span class="field-hint">Curve constant</span>
+                </div>
+                <div class="form-group">
+                  <label for="param-p">Prime Modulus <strong>p</strong></label>
+                  <input type="number" id="param-p" class="form-control" value="17" min="3" required>
+                  <span class="field-hint">Must be odd prime \(p \ge 3\)</span>
+                </div>
+              </div>
+
+              <div class="card-divider"></div>
+
+              <div class="card-header">
+                <h3>Generator Base Point (G)</h3>
+                <span class="hint-text">Coordinates \((G_x, G_y)\) must satisfy the curve</span>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="param-gx">Generator <strong>Gx</strong></label>
+                  <input type="number" id="param-gx" class="form-control" value="5" required>
+                </div>
+                <div class="form-group">
+                  <label for="param-gy">Generator <strong>Gy</strong></label>
+                  <input type="number" id="param-gy" class="form-control" value="1" required>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-primary btn-lg" id="btn-validate-curve">
+                  <span>✓ Validate Curve</span>
+                </button>
+                <button type="button" class="btn btn-secondary" id="btn-proceed-to-ecdh">
+                  <span>Go to ECDH Key Exchange →</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Dynamic Equation & Validation Feedback Right -->
+          <div class="setup-feedback-column">
+            <!-- Dynamic Equation Box -->
+            <div class="card equation-display-card">
+              <span class="badge-tag">Dynamic Curve Equation</span>
+              <div class="active-equation math-font" id="dynamic-equation-text">
+                y² = x³ + 2x + 2 (mod 17)
+              </div>
+              <div class="equation-meta" id="equation-meta-info">
+                Discriminant: \(\Delta = 4(2)^3 + 27(2)^2 = 32 + 108 = 140 \equiv 4 \pmod{17} \ne 0\) (Non-Singular)
+              </div>
+            </div>
+
+            <!-- Validation Result Status Banner -->
+            <div class="card validation-result-card" id="validation-result-box">
+              <div class="validation-status-header" id="validation-status-header">
+                <span class="status-indicator-icon" id="validation-icon">✓</span>
+                <h4 id="validation-title">Curve Validated</h4>
+              </div>
+              <p class="validation-message" id="validation-message">
+                ✓ Generator point (5, 1) is valid and satisfies the selected curve equation.
+              </p>
+            </div>
+
+            <!-- Discovered Points on Curve List -->
+            <div class="card curve-points-card">
+              <div class="points-card-header">
+                <h4>Valid Points in Field \(\mathbb{F}_p\) (<span id="points-count">18</span> points)</h4>
+                <span class="points-tip">Click any point to set as Generator G</span>
+              </div>
+              <div class="points-tag-list" id="curve-points-container">
+                <!-- Dynamically populated points -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- VIEW 4: ECDH KEY EXCHANGE -->
+      <!-- ========================================================= -->
+      <section class="view-panel" id="view-ecdh-exchange">
+        <div class="view-header">
+          <div class="header-left">
+            <h1 class="page-title">🔑 ECDH Key Exchange</h1>
+            <p class="page-subtitle">Alice and Bob generate public keys and derive a shared secret</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" id="btn-run-full-ecdh">
+              <span>⚡ Generate & Complete Exchange</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Current Active Curve Context Bar -->
+        <div class="active-params-bar card">
+          <div class="param-item">
+            <span class="param-label">Active Curve:</span>
+            <strong class="math-font" id="ecdh-active-curve">y² = x³ + 2x + 2 (mod 17)</strong>
+          </div>
+          <div class="param-item">
+            <span class="param-label">Generator Point G:</span>
+            <strong class="math-font" id="ecdh-active-gen">(5, 1)</strong>
+          </div>
+          <div class="param-item">
+            <button class="btn-text-link" onclick="app.navigateTo('curve-setup')">Change Curve</button>
+          </div>
+        </div>
+
+        <!-- Side-by-Side Alice and Bob Cards -->
+        <div class="parties-container">
+          <!-- ALICE CARD -->
+          <div class="card party-card party-alice">
+            <div class="party-badge">
+              <span class="party-avatar">👩‍💻</span>
+              <div class="party-info">
+                <h3>ALICE</h3>
+                <span class="party-role">Party A</span>
+              </div>
+            </div>
+
+            <div class="party-body">
+              <div class="form-group">
+                <label for="alice-private-key">Private Key (\(d_A\))</label>
+                <input type="number" id="alice-private-key" class="form-control" value="3" min="1" required>
+                <span class="field-hint">Alice's secret integer scalar</span>
+              </div>
+
+              <div class="computed-key-box">
+                <div class="computed-key-label">Public Key (\(A = d_A \cdot G\))</div>
+                <div class="computed-key-val math-font" id="alice-public-key-display">
+                  <span class="empty-state">Not generated</span>
+                </div>
+              </div>
+
+              <div class="computed-key-box shared-secret-box">
+                <div class="computed-key-label">Alice's Calculated Shared Secret</div>
+                <div class="computed-key-val math-font text-emerald" id="alice-shared-secret-display">
+                  <span class="empty-state">Not calculated</span>
+                </div>
+                <span class="formula-annotation">\(S_A = d_A \cdot B\)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- EXCHANGE VISUAL FLOW CENTER -->
+          <div class="exchange-center-flow">
+            <div class="flow-transmission top-transmission">
+              <div class="flow-wire"></div>
+              <div class="flow-pill" id="pill-alice-to-bob">
+                <span class="flow-arrow">Alice Public Key (A) ➔</span>
+              </div>
+            </div>
+
+            <div class="exchange-actions-box">
+              <button class="btn btn-primary" id="btn-generate-keys">
+                <span>1. Generate Public Keys</span>
+              </button>
+              <button class="btn btn-accent" id="btn-compute-shared" disabled>
+                <span>2. Compute Shared Secrets</span>
+              </button>
+            </div>
+
+            <div class="flow-transmission bottom-transmission">
+              <div class="flow-wire"></div>
+              <div class="flow-pill" id="pill-bob-to-alice">
+                <span class="flow-arrow">⬅ Bob Public Key (B)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BOB CARD -->
+          <div class="card party-card party-bob">
+            <div class="party-badge">
+              <span class="party-avatar">👨‍💻</span>
+              <div class="party-info">
+                <h3>BOB</h3>
+                <span class="party-role">Party B</span>
+              </div>
+            </div>
+
+            <div class="party-body">
+              <div class="form-group">
+                <label for="bob-private-key">Private Key (\(d_B\))</label>
+                <input type="number" id="bob-private-key" class="form-control" value="7" min="1" required>
+                <span class="field-hint">Bob's secret integer scalar</span>
+              </div>
+
+              <div class="computed-key-box">
+                <div class="computed-key-label">Public Key (\(B = d_B \cdot G\))</div>
+                <div class="computed-key-val math-font" id="bob-public-key-display">
+                  <span class="empty-state">Not generated</span>
+                </div>
+              </div>
+
+              <div class="computed-key-box shared-secret-box">
+                <div class="computed-key-label">Bob's Calculated Shared Secret</div>
+                <div class="computed-key-val math-font text-emerald" id="bob-shared-secret-display">
+                  <span class="empty-state">Not calculated</span>
+                </div>
+                <span class="formula-annotation">\(S_B = d_B \cdot A\)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verification Banner Result -->
+        <div class="card verification-result-banner" id="ecdh-verification-banner">
+          <div class="banner-icon-large" id="ecdh-result-icon">⚖️</div>
+          <div class="banner-details">
+            <h3 id="ecdh-result-title">Awaiting Key Exchange</h3>
+            <p id="ecdh-result-desc">Click "Generate Public Keys" and "Compute Shared Secrets" to execute the real Python ECDH protocol.</p>
+          </div>
+          <div class="banner-action" id="ecdh-viz-cta-container" style="display: none;">
+            <button class="btn btn-accent btn-lg" onclick="app.navigateTo('visualization')">
+              <span>📊 View Complete Visualization & Math →</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- VIEW 5: VISUALIZATION -->
+      <!-- ========================================================= -->
+      <section class="view-panel" id="view-visualization">
+        <div class="view-header">
+          <div class="header-left">
+            <h1 class="page-title">📊 Step-by-Step Visualization & Coordinate Grid</h1>
+            <p class="page-subtitle">Interactive ECDH Laboratory Simulation: 8-Stage Cryptographic Protocol Execution</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" id="viz-run-fresh-btn">
+              <span>⚡ Refresh Calculations</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 8-Stage Stepper Header & Controls -->
+        <div class="card viz-stepper-container">
+          <div class="stepper-header">
+            <div class="stepper-step-label">
+              <span class="step-badge" id="viz-step-counter">Step 1 of 8</span>
+              <h3 id="viz-step-title">Input Parameters</h3>
+            </div>
+            
+            <div class="stepper-controls">
+              <button class="btn btn-outline btn-sm" id="btn-viz-prev" title="Previous Step">
+                ◀ Previous
+              </button>
+              <button class="btn btn-secondary btn-sm" id="btn-viz-play">
+                ▶ Play Simulation
+              </button>
+              <button class="btn btn-outline btn-sm" id="btn-viz-pause" style="display: none;">
+                ⏸ Pause
+              </button>
+              <button class="btn btn-primary btn-sm" id="btn-viz-next" title="Next Step">
+                Next Step ▶
+              </button>
+              <button class="btn btn-outline btn-sm" id="btn-viz-restart" title="Restart to Step 1">
+                ↻ Restart
+              </button>
+            </div>
+          </div>
+
+          <!-- 8-Stage Progress Timeline -->
+          <div class="stepper-timeline">
+            <div class="timeline-step active" data-step="1">
+              <div class="step-bubble">01</div>
+              <span class="step-text">Input</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-step" data-step="2">
+              <div class="step-bubble">02</div>
+              <span class="step-text">Curve Validation</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-step" data-step="3">
+              <div class="step-bubble">03</div>
+              <span class="step-text">Generator</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-step" data-step="4">
+              <div class="step-bubble">04</div>
+              <span class="step-text">Alice Public Key</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-step" data-step="5">
+              <div class="step-bubble">05</div>
+              <span class="step-text">Bob Public Key</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-step" data-step="6">
+              <div class="step-bubble">06</div>
+              <span class="step-text">Public Key Exchange</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-step" data-step="7">
+              <div class="step-bubble">07</div>
+              <span class="step-text">Shared Secret</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-step" data-step="8">
+              <div class="step-bubble">08</div>
+              <span class="step-text">Verification</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Status Message Bar -->
+        <div class="card viz-status-banner" id="viz-status-banner">
+          <div class="status-pulse-dot" id="viz-status-pulse"></div>
+          <div class="status-text-block">
+            <span class="status-prefix">CURRENT ACTIVITY:</span>
+            <span class="status-live-msg" id="viz-live-status-message">Initializing ECDH Laboratory Simulation...</span>
+          </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- MAIN VISUAL: LARGE CENTRAL ECDH SIMULATION AREA -->
+        <!-- ========================================================= -->
+        <div class="card ecdh-simulation-card" id="ecdh-simulation-card">
+          <div class="sim-header">
+            <div class="sim-title-group">
+              <span class="sim-badge">LIVE LABORATORY SIMULATION</span>
+              <h4>ECDH Cryptographic Protocol Flow</h4>
+            </div>
+            <div class="security-rule-pill">
+              <span class="rule-icon">🔒</span>
+              <span class="rule-text"><strong>Security Invariant:</strong> Private keys never leave local devices. Only public points are exchanged.</span>
+            </div>
+          </div>
+
+          <div class="ecdh-stage-workspace">
+            <!-- 1. ALICE PARTICIPANT POD -->
+            <div class="sim-participant-pod alice-pod" id="alice-sim-pod">
+              <div class="pod-header">
+                <div class="avatar-wrapper avatar-alice">
+                  <svg class="participant-avatar" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Alice Avatar">
+                    <circle cx="32" cy="32" r="30" fill="#ecfdf5" stroke="#059669" stroke-width="2.5"/>
+                    <circle cx="32" cy="24" r="10.5" fill="#059669"/>
+                    <path d="M16 52C16 43.1634 23.1634 37 32 37C40.8366 37 48 43.1634 48 52" stroke="#059669" stroke-width="2.5" stroke-linecap="round" fill="#10b981" fill-opacity="0.3"/>
+                    <path d="M21 23C21 16.9249 25.9249 13 32 13C38.0751 13 43 16.9249 43 23V25C43 25 41 27 32 27C23 27 21 25 21 25V23Z" fill="#047857"/>
+                    <circle cx="28" cy="23" r="1.5" fill="#ffffff"/>
+                    <circle cx="36" cy="23" r="1.5" fill="#ffffff"/>
+                  </svg>
+                  <span class="online-indicator" id="alice-online-dot"></span>
+                </div>
+                <div class="pod-info">
+                  <h4 class="pod-name">ALICE</h4>
+                  <span class="pod-role">Participant A (Client)</span>
+                </div>
+              </div>
+
+              <!-- Alice Private Key Vault -->
+              <div class="pod-card vault-card" id="alice-vault-card">
+                <div class="card-inner-header">
+                  <span class="card-icon">🔐</span>
+                  <span class="card-label">Private Key</span>
+                  <span class="badge-vault-secure">LOCAL ONLY</span>
+                </div>
+                <div class="val-display">
+                  <span class="val-label">d_A =</span>
+                  <strong class="val-num text-emerald" id="sim-alice-priv">3</strong>
+                </div>
+                <div class="vault-footnote">
+                  <span>🔒 Strictly confidential</span>
+                </div>
+              </div>
+
+              <!-- Alice Public Key Card -->
+              <div class="pod-card pubkey-card" id="alice-pubkey-card">
+                <div class="card-inner-header">
+                  <span class="card-icon">🔑</span>
+                  <span class="card-label">Public Key A</span>
+                  <span class="pub-status-badge" id="alice-pub-badge">Awaiting Calc</span>
+                </div>
+                <div class="val-formula">
+                  <span>Computation:</span> <code>A = d_A × G</code>
+                </div>
+                <div class="val-display">
+                  <span class="val-label">A =</span>
+                  <strong class="val-num text-blue" id="sim-alice-pub">(10, 6)</strong>
+                </div>
+                <div class="trace-mini-preview" id="alice-trace-mini">
+                  <span class="mini-trace-label">Scalar Trace:</span>
+                  <span class="mini-trace-val" id="alice-trace-val">G → 2G → 3G = A</span>
+                </div>
+              </div>
+
+              <!-- Alice Shared Secret Card -->
+              <div class="pod-card secret-card" id="alice-secret-card">
+                <div class="card-inner-header">
+                  <span class="card-icon">✨</span>
+                  <span class="card-label">Alice Shared Secret</span>
+                  <span class="secret-calc-badge" id="alice-secret-badge">Awaiting Bob Pub</span>
+                </div>
+                <div class="val-formula">
+                  <span>Computation:</span> <code>S_A = d_A × B</code>
+                </div>
+                <div class="val-display">
+                  <span class="val-label">S_A =</span>
+                  <strong class="val-num text-emerald" id="sim-alice-secret">(6, 3)</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. INSECURE PUBLIC CHANNEL & ANIMATED KEY PACKETS -->
+            <div class="sim-channel-pod" id="sim-channel-pod">
+              <div class="channel-header-box">
+                <span class="channel-badge">COMMUNICATION CHANNEL</span>
+                <span class="channel-sub">Insecure Public Transmission Medium</span>
+              </div>
+
+              <div class="channel-wires-container">
+                <!-- Track 1: Alice to Bob -->
+                <div class="channel-track track-alice-to-bob" id="track-alice-to-bob">
+                  <div class="track-header-bar">
+                    <span class="track-tag tag-a">ALICE → BOB</span>
+                    <span class="track-info-text" id="track-a-info">Public Key A Transfer</span>
+                  </div>
+
+                  <div class="wire-track-line">
+                    <div class="wire-guideline"></div>
+                    <div class="wire-pulse" id="wire-pulse-a"></div>
+
+                    <!-- Key Packet A -->
+                    <div class="key-packet packet-a" id="packet-alice">
+                      <div class="packet-shield-icon">🔐</div>
+                      <div class="packet-body">
+                        <div class="packet-title">PUBLIC KEY A</div>
+                        <div class="packet-coords" id="packet-alice-coords">A = (10, 6)</div>
+                      </div>
+                      <div class="packet-arrow-indicator">➔</div>
+                    </div>
+                  </div>
+
+                  <div class="delivery-status-row">
+                    <span class="delivery-pill" id="delivery-pill-bob">Awaiting Dispatch</span>
+                  </div>
+                </div>
+
+                <!-- Track 2: Bob to Alice -->
+                <div class="channel-track track-bob-to-alice" id="track-bob-to-alice">
+                  <div class="track-header-bar">
+                    <span class="track-tag tag-b">BOB → ALICE</span>
+                    <span class="track-info-text" id="track-b-info">Public Key B Transfer</span>
+                  </div>
+
+                  <div class="wire-track-line">
+                    <div class="wire-guideline"></div>
+                    <div class="wire-pulse" id="wire-pulse-b"></div>
+
+                    <!-- Key Packet B -->
+                    <div class="key-packet packet-b" id="packet-bob">
+                      <div class="packet-arrow-indicator">⬅</div>
+                      <div class="packet-body">
+                        <div class="packet-title">PUBLIC KEY B</div>
+                        <div class="packet-coords" id="packet-bob-coords">B = (0, 6)</div>
+                      </div>
+                      <div class="packet-shield-icon">🔐</div>
+                    </div>
+                  </div>
+
+                  <div class="delivery-status-row">
+                    <span class="delivery-pill" id="delivery-pill-alice">Awaiting Dispatch</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Shared Secret Convergence & Verification Area -->
+              <div class="shared-secret-hub" id="shared-secret-hub">
+                <div class="hub-flow-header">
+                  <span class="hub-flow-title">SHARED SECRET CONVERGENCE</span>
+                </div>
+
+                <div class="hub-wings-grid">
+                  <div class="hub-wing wing-alice" id="wing-alice">
+                    <span class="wing-tag">Alice Derived:</span>
+                    <div class="wing-formula">S_A = d_A × B</div>
+                    <strong class="wing-val text-emerald" id="hub-alice-val">(6, 3)</strong>
+                  </div>
+
+                  <div class="hub-center-operator">
+                    <span class="operator-badge" id="hub-op-badge">COMPARE</span>
+                    <span class="operator-symbol" id="hub-op-symbol">≟</span>
+                  </div>
+
+                  <div class="hub-wing wing-bob" id="wing-bob">
+                    <span class="wing-tag">Bob Derived:</span>
+                    <div class="wing-formula">S_B = d_B × A</div>
+                    <strong class="wing-val text-orange" id="hub-bob-val">(6, 3)</strong>
+                  </div>
+                </div>
+
+                <!-- Final Verification Result Box -->
+                <div class="hub-verification-box" id="hub-verification-box">
+                  <div class="hub-result-icon-circle" id="hub-result-circle">✓</div>
+                  <div class="hub-result-content">
+                    <h5 id="hub-result-headline">SHARED SECRET MATCHED</h5>
+                    <p id="hub-result-subtext">Both parties derived the exact same point on the curve: S_A = S_B.</p>
+                    <div class="hub-final-point-display">
+                      <span>Established Shared Secret Point:</span>
+                      <strong class="text-emerald" id="hub-final-point-coord">S = (6, 3)</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Security Invariant Notice -->
+              <div class="security-bottom-notice">
+                <span class="notice-icon">🛡️</span>
+                <span class="notice-text">
+                  <strong>Zero Knowledge of Secrets:</strong> An eavesdropper intercepting A and B cannot deduce d_A or d_B due to the Elliptic Curve Discrete Logarithm Problem (ECDLP).
+                </span>
+              </div>
+            </div>
+
+            <!-- 3. BOB PARTICIPANT POD -->
+            <div class="sim-participant-pod bob-pod" id="bob-sim-pod">
+              <div class="pod-header">
+                <div class="avatar-wrapper avatar-bob">
+                  <svg class="participant-avatar" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Bob Avatar">
+                    <circle cx="32" cy="32" r="30" fill="#fff7ed" stroke="#ea580c" stroke-width="2.5"/>
+                    <circle cx="32" cy="24" r="10.5" fill="#ea580c"/>
+                    <path d="M16 52C16 43.1634 23.1634 37 32 37C40.8366 37 48 43.1634 48 52" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" fill="#f97316" fill-opacity="0.3"/>
+                    <path d="M22 20C22 15 26 12 32 12C38 12 42 15 42 20C42 22 40 23 32 23C24 23 22 22 22 20Z" fill="#c2410c"/>
+                    <circle cx="28" cy="23" r="1.5" fill="#ffffff"/>
+                    <circle cx="36" cy="23" r="1.5" fill="#ffffff"/>
+                  </svg>
+                  <span class="online-indicator" id="bob-online-dot"></span>
+                </div>
+                <div class="pod-info">
+                  <h4 class="pod-name">BOB</h4>
+                  <span class="pod-role">Participant B (Peer)</span>
+                </div>
+              </div>
+
+              <!-- Bob Private Key Vault -->
+              <div class="pod-card vault-card" id="bob-vault-card">
+                <div class="card-inner-header">
+                  <span class="card-icon">🔐</span>
+                  <span class="card-label">Private Key</span>
+                  <span class="badge-vault-secure">LOCAL ONLY</span>
+                </div>
+                <div class="val-display">
+                  <span class="val-label">d_B =</span>
+                  <strong class="val-num text-orange" id="sim-bob-priv">7</strong>
+                </div>
+                <div class="vault-footnote">
+                  <span>🔒 Strictly confidential</span>
+                </div>
+              </div>
+
+              <!-- Bob Public Key Card -->
+              <div class="pod-card pubkey-card" id="bob-pubkey-card">
+                <div class="card-inner-header">
+                  <span class="card-icon">🔑</span>
+                  <span class="card-label">Public Key B</span>
+                  <span class="pub-status-badge" id="bob-pub-badge">Awaiting Calc</span>
+                </div>
+                <div class="val-formula">
+                  <span>Computation:</span> <code>B = d_B × G</code>
+                </div>
+                <div class="val-display">
+                  <span class="val-label">B =</span>
+                  <strong class="val-num text-orange" id="sim-bob-pub">(0, 6)</strong>
+                </div>
+                <div class="trace-mini-preview" id="bob-trace-mini">
+                  <span class="mini-trace-label">Scalar Trace:</span>
+                  <span class="mini-trace-val" id="bob-trace-val">G → 2G → 4G → 7G = B</span>
+                </div>
+              </div>
+
+              <!-- Bob Shared Secret Card -->
+              <div class="pod-card secret-card" id="bob-secret-card">
+                <div class="card-inner-header">
+                  <span class="card-icon">✨</span>
+                  <span class="card-label">Bob Shared Secret</span>
+                  <span class="secret-calc-badge" id="bob-secret-badge">Awaiting Alice Pub</span>
+                </div>
+                <div class="val-formula">
+                  <span>Computation:</span> <code>S_B = d_B × A</code>
+                </div>
+                <div class="val-display">
+                  <span class="val-label">S_B =</span>
+                  <strong class="val-num text-orange" id="sim-bob-secret">(6, 3)</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- 8-STAGE DETAILED EXPLANATION SLIDES -->
+        <!-- ========================================================= -->
+        <div class="viz-step-display card" id="viz-active-stage-card">
+          <!-- Slide 1: Input -->
+          <div class="stage-slide" id="stage-slide-1">
+            <div class="stage-header">
+              <h4>Stage 01: Initial Parameter Configuration</h4>
+              <p>The active elliptic curve, prime field, base generator point, and local private keys loaded from current application state.</p>
+            </div>
+            <div class="stage-grid-2">
+              <div class="stage-info-box">
+                <h5>Finite Field & Curve Equation</h5>
+                <ul class="clean-list">
+                  <li>Parameter <strong>a</strong> = <span class="math-val" id="stage1-a">2</span></li>
+                  <li>Parameter <strong>b</strong> = <span class="math-val" id="stage1-b">2</span></li>
+                  <li>Prime Modulus <strong>p</strong> = <span class="math-val" id="stage1-p">17</span></li>
+                  <li>Active Equation: <strong class="math-font text-emerald" id="stage1-eq">y² ≡ x³ + 2x + 2 (mod 17)</strong></li>
+                </ul>
+              </div>
+              <div class="stage-info-box">
+                <h5>Generator Point & Private Keys</h5>
+                <ul class="clean-list">
+                  <li>Base Generator <strong>G</strong> = <span class="math-val" id="stage1-g">(5, 1)</span></li>
+                  <li>Alice Private Key <strong>d_A</strong> = <span class="math-val text-emerald" id="stage1-da">3</span> (kept strictly secret)</li>
+                  <li>Bob Private Key <strong>d_B</strong> = <span class="math-val text-orange" id="stage1-db">7</span> (kept strictly secret)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Curve Validation -->
+          <div class="stage-slide" id="stage-slide-2" style="display: none;">
+            <div class="stage-header">
+              <h4>Stage 02: Curve Validation & Non-Singularity Check</h4>
+              <p>Validating prime modulus \(p\) and guaranteeing non-singularity condition \(\Delta = (4a^3 + 27b^2) \bmod p \ne 0\).</p>
+            </div>
+            <div class="stage-callout stage-success" id="stage2-callout">
+              <div class="callout-icon">✓</div>
+              <div class="callout-body">
+                <h5 id="stage2-status-title">Prime Field & Non-Singular Curve Confirmed</h5>
+                <p id="stage2-status-desc">
+                  The discriminant satisfies \(\Delta \ne 0\). The curve has no self-intersections or cusps, ensuring well-defined group law addition everywhere.
+                </p>
+                <div class="formula-box-light" id="stage2-formula-detail">
+                  4a³ + 27b² ≡ 4(2)³ + 27(2)² = 32 + 108 = 140 ≡ 4 (mod 17) ≠ 0
+                </div>
+                <div class="validation-checklist">
+                  <span class="check-item">✓ <strong>Prime field:</strong> \(p = \text{prime}\)</span>
+                  <span class="check-item">✓ <strong>Valid curve:</strong> Weierstrass form</span>
+                  <span class="check-item">✓ <strong>Non-singular curve:</strong> \(\Delta \not\equiv 0 \pmod p\)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Generator -->
+          <div class="stage-slide" id="stage-slide-3" style="display: none;">
+            <div class="stage-header">
+              <h4>Stage 03: Base Generator Point Verification</h4>
+              <p>Verifying that generator point \(G = (G_x, G_y)\) satisfies \(y^2 \equiv x^3 + ax + b \pmod{p}\) on the curve.</p>
+            </div>
+            <div class="stage-callout stage-success" id="stage3-callout">
+              <div class="callout-icon">🎯</div>
+              <div class="callout-body">
+                <h5 id="stage3-title">Generator Point G Verified on Curve</h5>
+                <div class="formula-box-light" id="stage3-substitution">
+                  LHS: 1² = 1 mod 17<br>
+                  RHS: 5³ + 2(5) + 2 = 125 + 10 + 2 = 137 ≡ 1 mod 17<br>
+                  <strong>LHS ≡ RHS (1 ≡ 1 mod 17) — Generator Point is VALID!</strong>
+                </div>
+                <p class="stage-sub-note">
+                  Point \(G\) is highlighted with an emerald pulse on the finite field coordinate grid below.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 4: Alice Public Key -->
+          <div class="stage-slide" id="stage-slide-4" style="display: none;">
+            <div class="stage-header">
+              <h4>Stage 04: Alice Computes Public Key (\(A = d_A \times G\))</h4>
+              <p>Alice performs scalar multiplication using the Double-and-Add algorithm starting from base point \(G\).</p>
+            </div>
+            <div class="scalar-calc-summary">
+              <div class="calc-highlight-card">
+                <span>Alice Private Scalar:</span> <strong>d_A = <span id="stage4-da">3</span></strong>
+                <span class="separator">|</span>
+                <span>Base Point:</span> <strong>G = <span id="stage4-g">(5, 1)</span></strong>
+                <span class="separator">|</span>
+                <span>Calculated Public Key:</span> <strong class="text-blue">A = <span id="stage4-pub">(10, 6)</span></strong>
+              </div>
+            </div>
+            <div class="trace-steps-container" id="stage4-trace-container">
+              <!-- Rendered via JS from real backend trace -->
+            </div>
+          </div>
+
+          <!-- Slide 5: Bob Public Key -->
+          <div class="stage-slide" id="stage-slide-5" style="display: none;">
+            <div class="stage-header">
+              <h4>Stage 05: Bob Computes Public Key (\(B = d_B \times G\))</h4>
+              <p>Bob independently executes scalar multiplication using the Double-and-Add algorithm starting from base point \(G\).</p>
+            </div>
+            <div class="scalar-calc-summary">
+              <div class="calc-highlight-card">
+                <span>Bob Private Scalar:</span> <strong>d_B = <span id="stage5-db">7</span></strong>
+                <span class="separator">|</span>
+                <span>Base Point:</span> <strong>G = <span id="stage5-g">(5, 1)</span></strong>
+                <span class="separator">|</span>
+                <span>Calculated Public Key:</span> <strong class="text-orange">B = <span id="stage5-pub">(0, 6)</span></strong>
+              </div>
+            </div>
+            <div class="trace-steps-container" id="stage5-trace-container">
+              <!-- Rendered via JS from real backend trace -->
+            </div>
+          </div>
+
+          <!-- Slide 6: Public Key Exchange -->
+          <div class="stage-slide" id="stage-slide-6" style="display: none;">
+            <div class="stage-header">
+              <h4>Stage 06: Public Key Transmission Over Insecure Channel</h4>
+              <p>Alice and Bob transmit only their derived public coordinates. Private keys remain strictly on local machines.</p>
+            </div>
+            <div class="exchange-explanation-grid">
+              <div class="exchange-direction-card card-alice-send">
+                <h5>1. Alice Dispatches Key A to Bob</h5>
+                <p>Packet: <code>🔐 PUBLIC KEY A = <span id="stage6-packet-a">(10, 6)</span></code></p>
+                <span class="badge-packet-status" id="stage6-status-a">Delivered to Bob's device</span>
+              </div>
+              <div class="exchange-direction-card card-bob-send">
+                <h5>2. Bob Dispatches Key B to Alice</h5>
+                <p>Packet: <code>🔐 PUBLIC KEY B = <span id="stage6-packet-b">(0, 6)</span></code></p>
+                <span class="badge-packet-status" id="stage6-status-b">Delivered to Alice's device</span>
+              </div>
+            </div>
+            <div class="security-visual-banner">
+              <div class="sec-banner-icon">🔒</div>
+              <div class="sec-banner-text">
+                <strong>CRITICAL SECURITY PROPERTY:</strong> Private keys \(d_A\) and \(d_B\) NEVER travel over the wire. An adversary intercepting \(A\) and \(B\) cannot derive \(d_A\) or \(d_B\) due to the intractability of the Elliptic Curve Discrete Logarithm Problem.
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 7: Shared Secret -->
+          <div class="stage-slide" id="stage-slide-7" style="display: none;">
+            <div class="stage-header">
+              <h4>Stage 07: Independent Derivation of Shared Secret</h4>
+              <p>Each party multiplies their private scalar by the received peer public point: \(S_A = d_A \times B\) and \(S_B = d_B \times A\).</p>
+            </div>
+            <div class="parallel-derivation-grid">
+              <div class="derivation-box alice-derivation">
+                <h5>👩‍💻 Alice's Computation</h5>
+                <p>Local Private Scalar: \(d_A\) = <span id="stage7-alice-priv">3</span></p>
+                <p>Received Bob Public Point: \(B\) = <span id="stage7-bob-pub">(0, 6)</span></p>
+                <div class="derivation-math" id="stage7-alice-formula">
+                  \(S_A = d_A \times B = 3 \times (0, 6)\)
+                </div>
+                <div class="secret-output text-emerald">
+                  Alice Derived Point: <strong id="stage7-alice-res">(6, 3)</strong>
+                </div>
+              </div>
+
+              <div class="derivation-box bob-derivation">
+                <h5>👨‍💻 Bob's Computation</h5>
+                <p>Local Private Scalar: \(d_B\) = <span id="stage7-bob-priv">7</span></p>
+                <p>Received Alice Public Point: \(A\) = <span id="stage7-alice-pub">(10, 6)</span></p>
+                <div class="derivation-math" id="stage7-bob-formula">
+                  \(S_B = d_B \times A = 7 \times (10, 6)\)
+                </div>
+                <div class="secret-output text-orange">
+                  Bob Derived Point: <strong id="stage7-bob-res">(6, 3)</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 8: Verification -->
+          <div class="stage-slide" id="stage-slide-8" style="display: none;">
+            <div class="stage-header">
+              <h4>Stage 08: Cryptographic Verification & Agreement</h4>
+              <p>Confirming that both independently derived points coincide: \(S_A \equiv S_B\).</p>
+            </div>
+            <div class="stage-callout stage-match" id="stage8-match-callout">
+              <div class="callout-icon" id="stage8-icon">✓</div>
+              <div class="callout-body">
+                <h3 id="stage8-match-title">KEY EXCHANGE SUCCESSFUL</h3>
+                <p id="stage8-match-desc">
+                  Both parties arrived at the exact same shared secret point on the curve.
+                </p>
+                <div class="shared-match-comparison">
+                  <div class="match-item">
+                    <span>Alice's Secret (S_A):</span>
+                    <strong class="math-font text-emerald" id="stage8-alice-val">(6, 3)</strong>
+                  </div>
+                  <div class="match-operator">==</div>
+                  <div class="match-item">
+                    <span>Bob's Secret (S_B):</span>
+                    <strong class="math-font text-orange" id="stage8-bob-val">(6, 3)</strong>
+                  </div>
+                </div>
+                <div class="shared-point-final" id="stage8-final-point-box">
+                  Agreed Shared Secret Point: <strong>(6, 3)</strong>
+                </div>
+                <div class="math-proof-box">
+                  <span>Mathematical Guarantee:</span>
+                  <code>S_A = d_A × (d_B × G) = (d_A · d_B) × G = (d_B · d_A) × G = d_B × (d_A × G) = S_B</code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- BOTTOM STEPPER CONTROLS & NAVIGATION -->
+        <!-- ========================================================= -->
+        <div class="card viz-bottom-controls-card">
+          <div class="bottom-stage-info">
+            <span class="bottom-step-badge" id="viz-bottom-step-badge">Step 1 of 8</span>
+            <span class="bottom-step-title" id="viz-bottom-step-title">Input Parameters</span>
+          </div>
+          <div class="stepper-controls bottom-stepper-buttons">
+            <button class="btn btn-outline btn-sm" id="btn-viz-prev-bottom" title="Previous Step">
+              ◀ Previous
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btn-viz-play-bottom">
+              ▶ Play Simulation
+            </button>
+            <button class="btn btn-outline btn-sm" id="btn-viz-pause-bottom" style="display: none;">
+              ⏸ Pause
+            </button>
+            <button class="btn btn-primary btn-sm" id="btn-viz-next-bottom" title="Next Step">
+              Next Step ▶
+            </button>
+            <button class="btn btn-outline btn-sm" id="btn-viz-restart-bottom" title="Restart to Step 1">
+              ↻ Restart
+            </button>
+          </div>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- 2-COLUMN: COORDINATE GRID VISUALIZATION & MATHEMATICAL TRACE -->
+        <!-- ========================================================= -->
+        <div class="viz-dual-column">
+          <!-- LEFT: ECC Point Visualization on Coordinate Grid -->
+          <div class="card grid-viz-card">
+            <div class="card-header">
+              <div>
+                <h3>ECC Finite Field Coordinate Grid (\(\mathbb{F}_p \times \mathbb{F}_p\))</h3>
+                <span class="hint-text">Discrete points \((x, y)\) satisfying \(y^2 \equiv x^3 + ax + b \pmod{p}\)</span>
+              </div>
+            </div>
+
+            <!-- Canvas Container -->
+            <div class="canvas-wrapper">
+              <canvas id="ecc-canvas" width="600" height="600"></canvas>
+              <div id="canvas-tooltip" class="canvas-tooltip"></div>
+            </div>
+
+            <!-- Coordinate Grid Legend -->
+            <div class="grid-legend">
+              <div class="legend-item">
+                <span class="legend-dot dot-curve-point"></span>
+                <span>Curve Point \((x, y)\)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot dot-generator"></span>
+                <span id="legend-gen-text">Generator G (5, 1)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot dot-alice"></span>
+                <span id="legend-alice-text">Alice Public (10, 6)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot dot-bob"></span>
+                <span id="legend-bob-text">Bob Public (0, 6)</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot dot-shared"></span>
+                <span id="legend-shared-text">Shared Secret (6, 3)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Concrete Mathematical Calculations with Substituted Values -->
+          <div class="card math-calc-card">
+            <div class="card-header">
+              <div>
+                <h3>WHAT'S HAPPENING MATHEMATICALLY?</h3>
+                <span class="hint-text">Real arithmetic execution & intermediate operations from backend</span>
+              </div>
+            </div>
+
+            <div class="math-tabs">
+              <button class="tab-btn active" data-tab="stage-math-tab">Current Stage Math</button>
+              <button class="tab-btn" data-tab="point-add-tab">Point Addition</button>
+              <button class="tab-btn" data-tab="point-double-tab">Point Doubling</button>
+              <button class="tab-btn" data-tab="scalar-tab">Scalar Multiplication</button>
+            </div>
+
+            <!-- Tab 0: Current Stage Math (Live dynamic breakdown) -->
+            <div class="math-tab-content active" id="stage-math-tab">
+              <div class="stage-math-live-card" id="stage-math-live-card">
+                <!-- Dynamically populated per stage with substituted real numbers -->
+              </div>
+            </div>
+
+            <!-- Tab 1: Point Addition Example with Actual Values -->
+            <div class="math-tab-content" id="point-add-tab">
+              <div class="formula-general-box">
+                <h5>Theoretical Formulas (\(P \ne Q\)):</h5>
+                \[m = \frac{y_2 - y_1}{x_2 - x_1} \pmod{p}\]
+                \[x_3 = (m^2 - x_1 - x_2) \pmod{p}\]
+                \[y_3 = (m(x_1 - x_3) - y_1) \pmod{p}\]
+              </div>
+
+              <div class="concrete-calc-box" id="concrete-addition-details">
+                <!-- Populated dynamically with actual numbers -->
+              </div>
+            </div>
+
+            <!-- Tab 2: Point Doubling Example with Actual Values -->
+            <div class="math-tab-content" id="point-double-tab">
+              <div class="formula-general-box">
+                <h5>Theoretical Formulas (\(P = Q\)):</h5>
+                \[m = \frac{3x_1^2 + a}{2y_1} \pmod{p}\]
+                \[x_3 = (m^2 - 2x_1) \pmod{p}\]
+                \[y_3 = (m(x_1 - x_3) - y_1) \pmod{p}\]
+              </div>
+
+              <div class="concrete-calc-box" id="concrete-doubling-details">
+                <!-- Populated dynamically with actual numbers -->
+              </div>
+            </div>
+
+            <!-- Tab 3: Scalar Multiplication Trace -->
+            <div class="math-tab-content" id="scalar-tab">
+              <div class="formula-general-box">
+                <h5>Double-and-Add Algorithm Logic:</h5>
+                <p>Computes \(k \cdot P\) in \(\approx \log_2(k)\) iterations by scanning each bit of \(k\).</p>
+              </div>
+
+              <div class="concrete-calc-box" id="concrete-scalar-details">
+                <!-- Populated dynamically with actual numbers -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="/static/js/app.js"></script>
+  <!-- MathJax re-typeset helper: exposed globally for app.js -->
+  <script>
+    // Called by app.js after dynamic DOM mutations containing math
+    window.retypesetMath = function(element) {
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        if (element) {
+          MathJax.typesetPromise([element]).catch(function(err) {
+            console.warn('MathJax typeset error:', err);
+          });
+        } else {
+          MathJax.typesetPromise().catch(function(err) {
+            console.warn('MathJax typeset error:', err);
+          });
+        }
+      }
+    };
+  </script>
+</body>
+</html>
