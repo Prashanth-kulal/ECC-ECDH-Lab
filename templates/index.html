@@ -59,38 +59,112 @@
       </div>
 
       <nav class="sidebar-nav">
-        <ul>
+        <!-- 8 Faculty-Required Academic Sections (Primary Navigation) -->
+        <div class="nav-group-title">ACADEMIC SECTIONS</div>
+        <ul class="primary-nav-list">
           <li>
-            <button class="nav-item active" data-view="dashboard" id="nav-dashboard">
-              <span class="nav-icon">🏠</span>
-              <span class="nav-label">Dashboard</span>
+            <button class="nav-item active" data-view="aim" id="nav-aim">
+              <span class="nav-num">01</span>
+              <span class="nav-icon">🎯</span>
+              <span class="nav-label">Aim</span>
             </button>
           </li>
           <li>
-            <button class="nav-item" data-view="concepts" id="nav-concepts">
+            <button class="nav-item" data-view="theory" id="nav-theory">
+              <span class="nav-num">02</span>
               <span class="nav-icon">📖</span>
-              <span class="nav-label">ECC Concepts</span>
+              <span class="nav-label">Theory</span>
             </button>
           </li>
           <li>
-            <button class="nav-item" data-view="curve-setup" id="nav-curve-setup">
-              <span class="nav-icon">⚙️</span>
-              <span class="nav-label">Curve Setup</span>
+            <button class="nav-item" data-view="objective" id="nav-objective">
+              <span class="nav-num">03</span>
+              <span class="nav-icon">📌</span>
+              <span class="nav-label">Objective</span>
             </button>
           </li>
           <li>
-            <button class="nav-item" data-view="ecdh-exchange" id="nav-ecdh-exchange">
-              <span class="nav-icon">🔑</span>
-              <span class="nav-label">ECDH Key Exchange</span>
+            <button class="nav-item" data-view="procedure" id="nav-procedure">
+              <span class="nav-num">04</span>
+              <span class="nav-icon">🔬</span>
+              <span class="nav-label">Procedure</span>
             </button>
           </li>
           <li>
-            <button class="nav-item" data-view="visualization" id="nav-visualization">
-              <span class="nav-icon">📊</span>
-              <span class="nav-label">Visualization</span>
+            <button class="nav-item" data-view="simulation" id="nav-simulation">
+              <span class="nav-num">05</span>
+              <span class="nav-icon">⚡</span>
+              <span class="nav-label">Simulation</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-item" data-view="assignment" id="nav-assignment">
+              <span class="nav-num">06</span>
+              <span class="nav-icon">📝</span>
+              <span class="nav-label">Assignment</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-item" data-view="references" id="nav-references">
+              <span class="nav-num">07</span>
+              <span class="nav-icon">📑</span>
+              <span class="nav-label">References</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-item" data-view="feedback" id="nav-feedback">
+              <span class="nav-num">08</span>
+              <span class="nav-icon">⭐</span>
+              <span class="nav-label">Feedback</span>
             </button>
           </li>
         </ul>
+
+        <!-- Collapsible Lab Tools Section (Preserved Original Features) -->
+        <div class="sidebar-section-divider"></div>
+        <div class="sidebar-collapsible-wrapper">
+          <button class="sidebar-collapsible-toggle" id="lab-tools-toggle" aria-expanded="false" aria-controls="lab-tools-content">
+            <div class="toggle-left">
+              <span class="toggle-icon">🛠️</span>
+              <span class="toggle-title">Lab Tools</span>
+            </div>
+            <span class="toggle-chevron" id="lab-tools-chevron">▾</span>
+          </button>
+          <div class="sidebar-collapsible-content" id="lab-tools-content" style="display: none;">
+            <ul class="sub-nav-list">
+              <li>
+                <button class="nav-item sub-nav-item" data-view="dashboard" id="nav-dashboard">
+                  <span class="nav-icon">🏠</span>
+                  <span class="nav-label">Dashboard</span>
+                </button>
+              </li>
+              <li>
+                <button class="nav-item sub-nav-item" data-view="concepts" id="nav-concepts">
+                  <span class="nav-icon">📖</span>
+                  <span class="nav-label">ECC Concepts</span>
+                </button>
+              </li>
+              <li>
+                <button class="nav-item sub-nav-item" data-view="curve-setup" id="nav-curve-setup">
+                  <span class="nav-icon">⚙️</span>
+                  <span class="nav-label">Curve Setup</span>
+                </button>
+              </li>
+              <li>
+                <button class="nav-item sub-nav-item" data-view="ecdh-exchange" id="nav-ecdh-exchange">
+                  <span class="nav-icon">🔑</span>
+                  <span class="nav-label">ECDH Key Exchange</span>
+                </button>
+              </li>
+              <li>
+                <button class="nav-item sub-nav-item" data-view="visualization" id="nav-visualization">
+                  <span class="nav-icon">📊</span>
+                  <span class="nav-label">Visualization</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
       </nav>
 
       <!-- Sidebar Status Card -->
@@ -117,9 +191,643 @@
       <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
       <!-- ========================================================= -->
-      <!-- VIEW 1: DASHBOARD -->
+      <!-- ACADEMIC SECTION 01: AIM -->
       <!-- ========================================================= -->
-      <section class="view-panel active" id="view-dashboard">
+      <section class="view-panel active" id="view-aim">
+        <div class="view-header">
+          <div class="header-left">
+            <div class="section-tag-pill">Academic Section 01</div>
+            <h1 class="page-title">🎯 Aim</h1>
+            <p class="page-subtitle">Laboratory Purpose and Scope of Experiment</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" onclick="app.navigateTo('simulation')">
+              <span>🚀 Launch Simulation</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Academic Aim Statement Hero Card -->
+        <div class="card aim-hero-card">
+          <div class="aim-statement-header">
+            <span class="aim-badge">PRIMARY LABORATORY AIM</span>
+            <span class="aim-subject">Cryptography & Network Security Lab</span>
+          </div>
+          <blockquote class="aim-quote-text">
+            "To study and demonstrate Elliptic Curve Cryptography (ECC) and the Elliptic Curve Diffie-Hellman (ECDH) key exchange mechanism through an interactive web-based simulation."
+          </blockquote>
+          <div class="aim-supporting-box">
+            <span class="supporting-icon">💡</span>
+            <p class="supporting-text">
+              The laboratory demonstrates how elliptic-curve point operations are used to generate public keys and establish a common shared secret between two communicating parties.
+            </p>
+          </div>
+        </div>
+
+        <!-- Academic Context & Capabilities Grid -->
+        <div class="academic-metadata-grid">
+          <div class="card academic-meta-card">
+            <div class="meta-card-header">
+              <span class="meta-icon">📚</span>
+              <h4>Experiment Information</h4>
+            </div>
+            <ul class="academic-feature-list">
+              <li><strong>Subject:</strong> Cryptography and Network Security (CNS)</li>
+              <li><strong>Experiment Title:</strong> Elliptic Curve Diffie-Hellman (ECDH) Protocol Simulation</li>
+              <li><strong>Domain:</strong> Public-Key Asymmetric Cryptography</li>
+              <li><strong>Algebraic Framework:</strong> Prime Finite Fields \(\mathbb{F}_p\) and Weierstrass Curves</li>
+              <li><strong>Core Security Assumption:</strong> Intractability of the Elliptic Curve Discrete Logarithm Problem (ECDLP)</li>
+            </ul>
+          </div>
+
+          <div class="card academic-meta-card">
+            <div class="meta-card-header">
+              <span class="meta-icon">🔬</span>
+              <h4>Laboratory Capabilities</h4>
+            </div>
+            <ul class="academic-feature-list">
+              <li><strong>Live Python Mathematical Backend:</strong> Real modular arithmetic for point addition, doubling, and scalar multiplication.</li>
+              <li><strong>Zero-Leakage Security Verification:</strong> Visual channel demonstrates that only public keys \(A\) and \(B\) cross the wire, while private scalars \(d_A\) and \(d_B\) never leave local storage.</li>
+              <li><strong>Dynamic Finite Field Visualization:</strong> High-resolution 2D discrete coordinate grid mapping curve points in \(\mathbb{F}_p \times \mathbb{F}_p\).</li>
+              <li><strong>Step-by-Step Educational Stepper:</strong> 8 guided stages illustrating curve non-singularity, key derivation, and agreement.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quick Navigation Banner -->
+        <div class="card aim-quick-nav-card">
+          <h3>Experiment Workflow Navigation</h3>
+          <p>Explore the laboratory in chronological academic order or jump directly to the interactive simulation:</p>
+          <div class="btn-group-responsive">
+            <button class="btn btn-secondary" onclick="app.navigateTo('theory')">
+              📖 02. Theory
+            </button>
+            <button class="btn btn-secondary" onclick="app.navigateTo('objective')">
+              📌 03. Objective
+            </button>
+            <button class="btn btn-secondary" onclick="app.navigateTo('procedure')">
+              🔬 04. Procedure
+            </button>
+            <button class="btn btn-primary" onclick="app.navigateTo('simulation')">
+              ⚡ 05. Simulation
+            </button>
+            <button class="btn btn-secondary" onclick="app.navigateTo('assignment')">
+              📝 06. Assignment
+            </button>
+            <button class="btn btn-secondary" onclick="app.navigateTo('references')">
+              📑 07. References
+            </button>
+            <button class="btn btn-outline" onclick="app.navigateTo('feedback')">
+              ⭐ 08. Feedback
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- ACADEMIC SECTION 02: THEORY -->
+      <!-- ========================================================= -->
+      <section class="view-panel" id="view-theory">
+        <div class="view-header">
+          <div class="header-left">
+            <div class="section-tag-pill">Academic Section 02</div>
+            <h1 class="page-title">📖 Theory</h1>
+            <p class="page-subtitle">Mathematical Foundations of Elliptic Curve Cryptography & ECDH Protocol</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" onclick="app.navigateTo('simulation')">
+              <span>⚡ Open Interactive Simulation</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="theory-sections-container">
+          <!-- Subsection A: Elliptic Curve Cryptography -->
+          <div class="card theory-card">
+            <div class="theory-header">
+              <span class="theory-badge">SUBSECTION A</span>
+              <h3>A. Elliptic Curve Cryptography</h3>
+            </div>
+            <div class="theory-body">
+              <p>
+                <strong>Elliptic Curve Cryptography (ECC)</strong> is a public-key cryptographic technique based on mathematical operations over points on an elliptic curve defined over a finite field.
+              </p>
+              
+              <div class="formula-callout-box">
+                <span class="formula-label">General Weierstrass Equation over Prime Finite Field \(\mathbb{F}_p\):</span>
+                <div class="formula-display-large">
+                  \[y^2 \equiv x^3 + ax + b \pmod{p}\]
+                </div>
+              </div>
+
+              <div class="theory-key-points">
+                <h4>Curve Parameters & Components:</h4>
+                <ul class="clean-bullet-list">
+                  <li><strong>\(a\) and \(b\):</strong> Curve parameters (coefficients) that define the specific elliptic curve equation.</li>
+                  <li><strong>\(p\):</strong> The prime integer defining the finite field \(\mathbb{F}_p = \{0, 1, 2, \dots, p-1\}\) over which all arithmetic is performed modulo \(p\).</li>
+                  <li><strong>Points on the Curve:</strong> Pairs of coordinates \((x, y)\) satisfying the modular equation belong to the curve, along with the special identity element known as the <em>Point at Infinity</em> (\(\mathcal{O}\)).</li>
+                  <li><strong>Generator / Base Point (\(G\)):</strong> A publicly known generator/base point \(G = (G_x, G_y)\) selected on the curve to generate a large cyclic subgroup of points for cryptographic operations.</li>
+                  <li><strong>Non-Singularity Condition:</strong> To ensure the curve is smooth with well-defined tangent lines at every point, the discriminant must satisfy:
+                    \[\Delta = 4a^3 + 27b^2 \not\equiv 0 \pmod{p}\]
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subsection B: Point Addition -->
+          <div class="card theory-card">
+            <div class="theory-header">
+              <span class="theory-badge">SUBSECTION B</span>
+              <h3>B. Point Addition & Point Doubling</h3>
+            </div>
+            <div class="theory-body">
+              <p>
+                Two points on an elliptic curve can be combined algebraically to produce another point on the curve. This forms an abelian group structure:
+              </p>
+              <div class="formula-box-emerald">
+                \[P + Q = R\]
+              </div>
+              
+              <div class="theory-subgrid-2">
+                <!-- Point Addition -->
+                <div class="theory-subcard">
+                  <h4>1. Point Addition (\(P \ne Q\))</h4>
+                  <p>When adding two distinct points \(P = (x_1, y_1)\) and \(Q = (x_2, y_2)\) where \(x_1 \ne x_2\), the slope \(m\) of the line through \(P\) and \(Q\) is:</p>
+                  <div class="formula-box-light">
+                    \[m = \frac{y_2 - y_1}{x_2 - x_1} \pmod{p}\]
+                  </div>
+                  <p>The resulting point coordinates \(R = (x_3, y_3)\) are computed as:</p>
+                  <div class="formula-box-light">
+                    \[x_3 = (m^2 - x_1 - x_2) \pmod{p}\]
+                    \[y_3 = (m(x_1 - x_3) - y_1) \pmod{p}\]
+                  </div>
+                </div>
+
+                <!-- Point Doubling -->
+                <div class="theory-subcard">
+                  <h4>2. Point Doubling (\(P + P = 2P\))</h4>
+                  <p>When adding a point to itself (\(P = Q\)), the slope \(m\) is the tangent to the curve at \((x_1, y_1)\):</p>
+                  <div class="formula-box-orange">
+                    \[m = \frac{3x_1^2 + a}{2y_1} \pmod{p}\]
+                  </div>
+                  <p>The resulting doubled point coordinates \(2P = (x_3, y_3)\) are:</p>
+                  <div class="formula-box-orange">
+                    \[x_3 = (m^2 - 2x_1) \pmod{p}\]
+                    \[y_3 = (m(x_1 - x_3) - y_1) \pmod{p}\]
+                  </div>
+                </div>
+              </div>
+
+              <div class="theory-note-box">
+                <strong>Point at Infinity (\(\mathcal{O}\)):</strong> The additive identity element satisfying \(P + \mathcal{O} = P\) and \(P + (-P) = \mathcal{O}\) for all curve points \(P\).
+              </div>
+            </div>
+          </div>
+
+          <!-- Subsection C: Scalar Multiplication -->
+          <div class="card theory-card">
+            <div class="theory-header">
+              <span class="theory-badge">SUBSECTION C</span>
+              <h3>C. Scalar Multiplication & Discrete Logarithm Problem</h3>
+            </div>
+            <div class="theory-body">
+              <p>
+                Scalar multiplication combines a point \(G\) with an integer scalar \(k\) by repeated addition:
+              </p>
+              <div class="formula-box-emerald">
+                \[kG = \underbrace{G + G + G + \dots + G}_{k \text{ times}}\]
+              </div>
+
+              <div class="theory-split-layout">
+                <div class="split-col">
+                  <h4>Efficiency of Computation</h4>
+                  <p>
+                    Scalar multiplication is computed in \(\mathcal{O}(\log_2 k)\) operations using the <strong>Double-and-Add Algorithm</strong> (the binary expansion of \(k\)). This makes computing public keys \(kG\) extremely fast even for large private keys.
+                  </p>
+                </div>
+
+                <div class="split-col">
+                  <h4>Elliptic Curve Discrete Logarithm Problem (ECDLP)</h4>
+                  <p>
+                    While scalar multiplication \(kG\) is easy to compute, reversing it—determining the scalar \(k\) given base point \(G\) and public point \(P = kG\)—is computationally infeasible for appropriately chosen parameters. This one-way asymmetry is the <strong>Elliptic Curve Discrete Logarithm Problem (ECDLP)</strong> and serves as the security foundation of ECC.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subsection D: ECDH -->
+          <div class="card theory-card">
+            <div class="theory-header">
+              <span class="theory-badge">SUBSECTION D</span>
+              <h3>D. Elliptic Curve Diffie-Hellman (ECDH) Key Exchange</h3>
+            </div>
+            <div class="theory-body">
+              <p>
+                The ECDH protocol allows two communicating parties (Alice and Bob) to independently compute a shared cryptographic secret:
+              </p>
+
+              <div class="ecdh-protocol-grid">
+                <div class="ecdh-party-box party-alice-box">
+                  <div class="party-box-header">
+                    <span class="party-icon">👩‍💻</span>
+                    <h4>Alice</h4>
+                  </div>
+                  <p>Alice selects private key <strong>\(a\)</strong> (secret).</p>
+                  <p>Alice calculates public key:</p>
+                  <div class="formula-box-emerald">
+                    \[A = aG\]
+                  </div>
+                  <p>Alice receives Bob's public key \(B\) and computes:</p>
+                  <div class="formula-box-emerald">
+                    \[S = aB\]
+                  </div>
+                </div>
+
+                <div class="ecdh-channel-center">
+                  <div class="channel-arrow-box">
+                    <span class="channel-badge">PUBLIC NETWORK CHANNEL</span>
+                    <div class="channel-vector">
+                      <span>Alice transmits Public Key \(A \longrightarrow\) Bob</span>
+                    </div>
+                    <div class="channel-vector">
+                      <span>Alice \(\longleftarrow\) Bob transmits Public Key \(B\)</span>
+                    </div>
+                    <div class="channel-safe-tag">
+                      Only Public Keys \(A\) and \(B\) cross the channel!
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ecdh-party-box party-bob-box">
+                  <div class="party-box-header">
+                    <span class="party-icon">👨‍💻</span>
+                    <h4>Bob</h4>
+                  </div>
+                  <p>Bob selects private key <strong>\(b\)</strong> (secret).</p>
+                  <p>Bob calculates public key:</p>
+                  <div class="formula-box-orange">
+                    \[B = bG\]
+                  </div>
+                  <p>Bob receives Alice's public key \(A\) and computes:</p>
+                  <div class="formula-box-orange">
+                    \[S = bA\]
+                  </div>
+                </div>
+              </div>
+
+              <!-- Shared Secret Identity Proof -->
+              <div class="math-proof-banner">
+                <h4>Derivation of the Shared Secret:</h4>
+                <div class="proof-equation">
+                  \[S = aB = a(bG) = b(aG) = bA = abG\]
+                </div>
+                <p>
+                  Thus both parties obtain the same shared secret point \(S\) independently on their local machines.
+                </p>
+              </div>
+
+              <!-- Critical Security Rule -->
+              <div class="security-card-highlight">
+                <div class="sec-highlight-icon">🛡️</div>
+                <div class="sec-highlight-body">
+                  <h4>CRITICAL SECURITY INVARIANT:</h4>
+                  <p class="sec-highlight-text">
+                    <strong>PRIVATE KEYS NEVER TRAVEL THROUGH THE NETWORK.</strong>
+                  </p>
+                  <p>
+                    Only public keys \(A\) and \(B\) are exchanged. An eavesdropper intercepting the transmission cannot determine \(a\) or \(b\) due to the discrete logarithm problem, and therefore cannot derive the shared secret \(S = abG\).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- ACADEMIC SECTION 03: OBJECTIVE -->
+      <!-- ========================================================= -->
+      <section class="view-panel" id="view-objective">
+        <div class="view-header">
+          <div class="header-left">
+            <div class="section-tag-pill">Academic Section 03</div>
+            <h1 class="page-title">📌 Objective</h1>
+            <p class="page-subtitle">Laboratory Learning Objectives & Educational Outcomes</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" onclick="app.navigateTo('procedure')">
+              <span>🔬 View Procedure →</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="objective-intro card">
+          <p>
+            The objective of this laboratory experiment is to provide an in-depth understanding of elliptic curve point operations and the Diffie-Hellman key agreement mechanism over finite fields:
+          </p>
+        </div>
+
+        <!-- 8 Objectives in Numbered Cards -->
+        <div class="objectives-list-container">
+          <!-- 1 -->
+          <div class="card objective-card">
+            <div class="obj-badge-col">
+              <span class="obj-num">01</span>
+            </div>
+            <div class="obj-content-col">
+              <h4>Elliptic Curves over Finite Fields</h4>
+              <p>To understand the basic mathematical concept of elliptic curves over finite fields.</p>
+              <span class="obj-category-tag">Field Arithmetic</span>
+            </div>
+          </div>
+
+          <!-- 2 -->
+          <div class="card objective-card">
+            <div class="obj-badge-col">
+              <span class="obj-num">02</span>
+            </div>
+            <div class="obj-content-col">
+              <h4>Point Addition and Point Doubling</h4>
+              <p>To study elliptic-curve point addition and point doubling.</p>
+              <span class="obj-category-tag">Point Operations</span>
+            </div>
+          </div>
+
+          <!-- 3 -->
+          <div class="card objective-card">
+            <div class="obj-badge-col">
+              <span class="obj-num">03</span>
+            </div>
+            <div class="obj-content-col">
+              <h4>Scalar Multiplication</h4>
+              <p>To understand scalar multiplication of elliptic-curve points.</p>
+              <span class="obj-category-tag">Scalar Multiplication</span>
+            </div>
+          </div>
+
+          <!-- 4 -->
+          <div class="card objective-card">
+            <div class="obj-badge-col">
+              <span class="obj-num">04</span>
+            </div>
+            <div class="obj-content-col">
+              <h4>Public Key Generation</h4>
+              <p>To understand the generation of public keys from private keys.</p>
+              <span class="obj-category-tag">Asymmetric Keys</span>
+            </div>
+          </div>
+
+          <!-- 5 -->
+          <div class="card objective-card">
+            <div class="obj-badge-col">
+              <span class="obj-num">05</span>
+            </div>
+            <div class="obj-content-col">
+              <h4>ECDH Key Exchange Demonstration</h4>
+              <p>To demonstrate the ECDH key exchange process.</p>
+              <span class="obj-category-tag">Key Agreement</span>
+            </div>
+          </div>
+
+          <!-- 6 -->
+          <div class="card objective-card">
+            <div class="obj-badge-col">
+              <span class="obj-num">06</span>
+            </div>
+            <div class="obj-content-col">
+              <h4>Shared Secret Verification</h4>
+              <p>To verify that Alice and Bob independently derive the same shared secret.</p>
+              <span class="obj-category-tag">Verification</span>
+            </div>
+          </div>
+
+          <!-- 7 -->
+          <div class="card objective-card">
+            <div class="obj-badge-col">
+              <span class="obj-num">07</span>
+            </div>
+            <div class="obj-content-col">
+              <h4>Interactive Process Visualization</h4>
+              <p>To visualize the complete key-exchange process using an interactive simulation.</p>
+              <span class="obj-category-tag">Visualization</span>
+            </div>
+          </div>
+
+          <!-- 8 -->
+          <div class="card objective-card highlight-obj-card">
+            <div class="obj-badge-col">
+              <span class="obj-num">08</span>
+            </div>
+            <div class="obj-content-col">
+              <h4>Zero-Transmission Security Rule</h4>
+              <p>To understand why private keys must never be transmitted during ECDH.</p>
+              <span class="obj-category-tag tag-security">Security Principle</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- ACADEMIC SECTION 04: PROCEDURE -->
+      <!-- ========================================================= -->
+      <section class="view-panel" id="view-procedure">
+        <div class="view-header">
+          <div class="header-left">
+            <div class="section-tag-pill">Academic Section 04</div>
+            <h1 class="page-title">🔬 Procedure</h1>
+            <p class="page-subtitle">Laboratory Step-by-Step Experimental Protocol</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" onclick="app.navigateTo('simulation')">
+              <span>⚡ Execute in Simulation →</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="procedure-timeline-container">
+          <!-- Step 1 -->
+          <div class="procedure-step-card card">
+            <div class="step-num-badge">STEP 01</div>
+            <div class="step-body">
+              <h4>Select or enter curve parameters</h4>
+              <p>Select or enter the elliptic curve parameters \(a\), \(b\) and prime \(p\).</p>
+            </div>
+          </div>
+
+          <div class="step-arrow-divider">↓</div>
+
+          <!-- Step 2 -->
+          <div class="procedure-step-card card">
+            <div class="step-num-badge">STEP 02</div>
+            <div class="step-body">
+              <h4>Define the generator point</h4>
+              <p>Define the generator/base point \(G = (G_x, G_y)\).</p>
+            </div>
+          </div>
+
+          <div class="step-arrow-divider">↓</div>
+
+          <!-- Step 3 -->
+          <div class="procedure-step-card card">
+            <div class="step-num-badge">STEP 03</div>
+            <div class="step-body">
+              <h4>Validate curve non-singularity</h4>
+              <p>Validate whether the selected curve is mathematically valid.</p>
+              <div class="formula-box-light">
+                \(\Delta = 4a^3 + 27b^2 \not\equiv 0 \pmod{p}\)
+              </div>
+            </div>
+          </div>
+
+          <div class="step-arrow-divider">↓</div>
+
+          <!-- Step 4 -->
+          <div class="procedure-step-card card">
+            <div class="step-num-badge">STEP 04</div>
+            <div class="step-body">
+              <h4>Validate generator point on curve</h4>
+              <p>Validate that the generator point lies on the selected curve.</p>
+              <div class="formula-box-light">
+                \(G_y^2 \equiv G_x^3 + aG_x + b \pmod{p}\)
+              </div>
+            </div>
+          </div>
+
+          <div class="step-arrow-divider">↓</div>
+
+          <!-- Step 5 -->
+          <div class="procedure-step-card card">
+            <div class="step-num-badge">STEP 05</div>
+            <div class="step-body">
+              <h4>Enter or generate Alice's private key</h4>
+              <p>Enter or generate Alice's private key \(a\) (kept secret by Alice).</p>
+            </div>
+          </div>
+
+          <div class="step-arrow-divider">↓</div>
+
+          <!-- Step 6 -->
+          <div class="procedure-step-card card">
+            <div class="step-num-badge">STEP 06</div>
+            <div class="step-body">
+              <h4>Enter or generate Bob's private key</h4>
+              <p>Enter or generate Bob's private key \(b\) (kept secret by Bob).</p>
+            </div>
+          </div>
+
+          <div class="step-arrow-divider">↓</div>
+
+          <!-- Step 7 -->
+          <div class="procedure-step-card card">
+            <div class="step-num-badge">STEP 07</div>
+            <div class="step-body">
+              <h4>Calculate Alice's public key</h4>
+              <p>Calculate Alice's public key:</p>
+              <div class="formula-box-emerald">
+                \[A = aG\]
+              </div>
+            </div>
+          </div>
+
+          <div class="step-arrow-divider">↓</div>
+
+          <!-- Step 8 -->
+          <div class="procedure-step-card card">
+            <div class="step-num-badge">STEP 08</div>
+            <div class="step-body">
+              <h4>Calculate Bob's public key</h4>
+              <p>Calculate Bob's public key:</p>
+              <div class="formula-box-orange">
+                \[B = bG\]
+              </div>
+            </div>
+          </div>
+
+          <div class="step-arrow-divider">↓</div>
+
+          <!-- Step 9 -->
+          <div class="procedure-step-card card procedure-critical-step">
+            <div class="step-num-badge badge-warning">STEP 09</div>
+            <div class="step-body">
+              <h4>Exchange the public keys</h4>
+              <p>Alice and Bob transmit their public keys \(A\) and \(B\) across the communication channel.</p>
+              <div class="critical-notice-box">
+                <span class="crit-icon">⚠️</span>
+                <strong>IMPORTANT:</strong> Only public keys are exchanged. Private keys remain with their respective users.
+              </div>
+            </div>
+          </div>
+
+          <div class="step-arrow-divider">↓</div>
+
+          <!-- Step 10 -->
+          <div class="procedure-step-card card">
+            <div class="step-num-badge">STEP 10</div>
+            <div class="step-body">
+              <h4>Alice calculates shared secret</h4>
+              <p>Alice calculates:</p>
+              <div class="formula-box-emerald">
+                \[S_A = aB\]
+              </div>
+            </div>
+          </div>
+
+          <div class="step-arrow-divider">↓</div>
+
+          <!-- Step 11 -->
+          <div class="procedure-step-card card">
+            <div class="step-num-badge">STEP 11</div>
+            <div class="step-body">
+              <h4>Bob calculates shared secret</h4>
+              <p>Bob calculates:</p>
+              <div class="formula-box-orange">
+                \[S_B = bA\]
+              </div>
+            </div>
+          </div>
+
+          <div class="step-arrow-divider">↓</div>
+
+          <!-- Step 12 -->
+          <div class="procedure-step-card card">
+            <div class="step-num-badge">STEP 12</div>
+            <div class="step-body">
+              <h4>Compare shared secrets</h4>
+              <p>Compare \(S_A\) and \(S_B\).</p>
+            </div>
+          </div>
+
+          <div class="step-arrow-divider">↓</div>
+
+          <!-- Step 13 -->
+          <div class="procedure-step-card card procedure-success-step">
+            <div class="step-num-badge badge-success">STEP 13</div>
+            <div class="step-body">
+              <h4>Verify key exchange agreement</h4>
+              <p>If:</p>
+              <div class="formula-box-emerald">
+                \[S_A = S_B\]
+              </div>
+              <p>the ECDH key exchange is successful.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card procedure-cta-card">
+          <h3>Execute this Procedure in the Simulation</h3>
+          <p>Follow every step in the 8-stage interactive laboratory simulator with animated packet dispatch and live mathematical traces:</p>
+          <button class="btn btn-primary btn-lg" onclick="app.navigateTo('simulation')">
+            <span>🚀 Open Interactive Simulation →</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- VIEW: DASHBOARD (PRESERVED IN LAB TOOLS) -->
+      <!-- ========================================================= -->
+      <section class="view-panel" id="view-dashboard">
         <div class="view-header">
           <div class="header-left">
             <h1 class="page-title">ECC ECDH LAB</h1>
@@ -684,18 +1392,50 @@ while k > 0:
       </section>
 
       <!-- ========================================================= -->
-      <!-- VIEW 5: VISUALIZATION -->
+      <!-- ACADEMIC SECTION 05: SIMULATION (INCORPORATES VISUALIZATION) -->
       <!-- ========================================================= -->
-      <section class="view-panel" id="view-visualization">
+      <section class="view-panel" id="view-simulation">
         <div class="view-header">
           <div class="header-left">
-            <h1 class="page-title">📊 Step-by-Step Visualization & Coordinate Grid</h1>
-            <p class="page-subtitle">Interactive ECDH Laboratory Simulation: 8-Stage Cryptographic Protocol Execution</p>
+            <div class="section-tag-pill">Academic Section 05</div>
+            <h1 class="page-title">⚡ Interactive ECDH Simulation</h1>
+            <p class="page-subtitle">Full 8-Stage Cryptographic Protocol Execution, Communication Channel & Finite Field Coordinate Grid</p>
           </div>
           <div class="header-actions">
+            <button class="btn btn-outline" onclick="app.navigateTo('procedure')">
+              <span>🔬 View Procedure</span>
+            </button>
             <button class="btn btn-primary" id="viz-run-fresh-btn">
               <span>⚡ Refresh Calculations</span>
             </button>
+          </div>
+        </div>
+
+        <!-- Quick Parameter & Preset Bar -->
+        <div class="card sim-quick-config-bar">
+          <div class="config-bar-header">
+            <div class="config-title-group">
+              <span class="config-icon">⚙️</span>
+              <span class="config-label">Active Curve:</span>
+              <strong class="math-font text-emerald" id="sim-active-curve-text">y² = x³ + 2x + 2 (mod 17)</strong>
+              <span class="config-divider">|</span>
+              <span class="config-label">Generator G:</span>
+              <strong class="math-font text-emerald" id="sim-active-gen-text">(5, 1)</strong>
+            </div>
+            <div class="config-bar-actions">
+              <div class="preset-inline-select">
+                <label for="sim-preset-select"><strong>Preset:</strong></label>
+                <select id="sim-preset-select" class="form-select form-select-sm">
+                  <option value="">-- Choose Sample Curve --</option>
+                </select>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="app.navigateTo('curve-setup')">
+                <span>⚙️ Configure Curve</span>
+              </button>
+              <button class="btn btn-primary btn-sm" id="sim-recalc-btn">
+                <span>🚀 Run Full Simulation</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -1398,6 +2138,683 @@ while k > 0:
 
               <div class="concrete-calc-box" id="concrete-scalar-details">
                 <!-- Populated dynamically with actual numbers -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- ACADEMIC SECTION 06: ASSIGNMENT -->
+      <!-- ========================================================= -->
+      <section class="view-panel" id="view-assignment">
+        <div class="view-header">
+          <div class="header-left">
+            <div class="section-tag-pill">Academic Section 06</div>
+            <h1 class="page-title">📝 Assignment & Viva Questions</h1>
+            <p class="page-subtitle">Laboratory Self-Assessment, Technical Comprehension & Viva Voce Exercises</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-outline" onclick="window.print()">
+              <span>🖨️ Print Assignment Sheet</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="assignment-intro card">
+          <div class="intro-icon">📋</div>
+          <div class="intro-text">
+            <h4>College Laboratory Assignment Guidelines</h4>
+            <p>
+              Complete the following 10 laboratory questions based on your study of the theory, procedure, and simulation. You can expand the <strong>Model Answer & Viva Hint</strong> for each question to review verified mathematical solutions, and record your own findings in the student notes workspace.
+            </p>
+          </div>
+        </div>
+
+        <div class="assignment-grid">
+          <!-- Question 1 -->
+          <div class="card assignment-card" id="q-card-1">
+            <div class="assignment-card-header">
+              <span class="assignment-q-badge">Q01</span>
+              <span class="assignment-category-tag">Theory & Overview</span>
+            </div>
+            <h4 class="assignment-question">What is Elliptic Curve Cryptography?</h4>
+            <div class="assignment-actions-row">
+              <button class="btn btn-outline btn-sm assignment-toggle-btn" onclick="app.toggleAssignmentHint(1)">
+                <span>💡 View Model Answer & Viva Hint</span>
+              </button>
+            </div>
+            <div class="assignment-hint-drawer" id="assignment-hint-1" style="display: none;">
+              <div class="hint-content">
+                <strong>Model Answer:</strong>
+                <p>
+                  <strong>Elliptic Curve Cryptography (ECC)</strong> is an asymmetric public-key cryptosystem based on the algebraic structure of elliptic curves defined over finite fields (such as \(\mathbb{F}_p\) for prime \(p\)). Unlike traditional public-key schemes such as RSA which rely on large prime factorization, ECC bases its security on the hardness of the <strong>Elliptic Curve Discrete Logarithm Problem (ECDLP)</strong>.
+                </p>
+                <p>
+                  <strong>Key Advantage:</strong> ECC achieves equivalent cryptographic strength with substantially smaller key sizes (e.g., a 256-bit ECC key offers approximately the same security as a 3072-bit RSA key), leading to faster computation, reduced memory footprint, and lower network transmission energy.
+                </p>
+              </div>
+            </div>
+            <div class="assignment-workspace">
+              <label for="assign-note-1"><strong>Your Response / Observation:</strong></label>
+              <textarea class="form-control" id="assign-note-1" rows="2" placeholder="Record your notes or answer here..."></textarea>
+              <div class="workspace-footer">
+                <button class="btn btn-secondary btn-sm" onclick="app.saveAssignmentNote(1)">💾 Save Note</button>
+                <span class="save-indicator" id="save-status-1"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="card assignment-card" id="q-card-2">
+            <div class="assignment-card-header">
+              <span class="assignment-q-badge">Q02</span>
+              <span class="assignment-category-tag">Curve Parameters</span>
+            </div>
+            <h4 class="assignment-question">What is the role of a generator point in ECC?</h4>
+            <div class="assignment-actions-row">
+              <button class="btn btn-outline btn-sm assignment-toggle-btn" onclick="app.toggleAssignmentHint(2)">
+                <span>💡 View Model Answer & Viva Hint</span>
+              </button>
+            </div>
+            <div class="assignment-hint-drawer" id="assignment-hint-2" style="display: none;">
+              <div class="hint-content">
+                <strong>Model Answer:</strong>
+                <p>
+                  A <strong>generator point</strong> (or base point) \(G = (G_x, G_y)\) is a publicly known fixed point on the elliptic curve that generates a large cyclic subgroup of curve points through repeated scalar multiplication: \(\{G, 2G, 3G, \dots, nG = \mathcal{O}\}\), where \(n\) is the order of the subgroup.
+                </p>
+                <p>
+                  In cryptographic protocols like ECDH, all public keys are computed as scalar multiples of this common base point: \(P = d \cdot G\). Because \(G\) is fixed and standardized (e.g., in NIST or SECG standards), both communicating parties and any third-party verifier can perform calculations in the identical mathematical subgroup.
+                </p>
+              </div>
+            </div>
+            <div class="assignment-workspace">
+              <label for="assign-note-2"><strong>Your Response / Observation:</strong></label>
+              <textarea class="form-control" id="assign-note-2" rows="2" placeholder="Record your notes or answer here..."></textarea>
+              <div class="workspace-footer">
+                <button class="btn btn-secondary btn-sm" onclick="app.saveAssignmentNote(2)">💾 Save Note</button>
+                <span class="save-indicator" id="save-status-2"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="card assignment-card" id="q-card-3">
+            <div class="assignment-card-header">
+              <span class="assignment-q-badge">Q03</span>
+              <span class="assignment-category-tag">Point Operations</span>
+            </div>
+            <h4 class="assignment-question">Explain elliptic-curve point addition.</h4>
+            <div class="assignment-actions-row">
+              <button class="btn btn-outline btn-sm assignment-toggle-btn" onclick="app.toggleAssignmentHint(3)">
+                <span>💡 View Model Answer & Viva Hint</span>
+              </button>
+            </div>
+            <div class="assignment-hint-drawer" id="assignment-hint-3" style="display: none;">
+              <div class="hint-content">
+                <strong>Model Answer:</strong>
+                <p>
+                  Given two distinct points \(P = (x_1, y_1)\) and \(Q = (x_2, y_2)\) on an elliptic curve over \(\mathbb{F}_p\) with \(x_1 \ne x_2\), their sum \(R = P + Q = (x_3, y_3)\) is computed by drawing a secant line through \(P\) and \(Q\), finding the third point of intersection with the curve, and reflecting that point across the x-axis:
+                </p>
+                <p>
+                  <strong>Slope \(m\):</strong> \(m \equiv \frac{y_2 - y_1}{x_2 - x_1} \pmod{p}\)<br>
+                  <strong>Coordinates:</strong><br>
+                  \(x_3 \equiv (m^2 - x_1 - x_2) \pmod{p}\)<br>
+                  \(y_3 \equiv (m(x_1 - x_3) - y_1) \pmod{p}\)
+                </p>
+                <p>
+                  Division modulo \(p\) is accomplished by multiplying with the modular multiplicative inverse: \((x_2 - x_1)^{-1} \pmod{p}\). If \(P = Q\), point doubling is used instead with the tangent slope.
+                </p>
+              </div>
+            </div>
+            <div class="assignment-workspace">
+              <label for="assign-note-3"><strong>Your Response / Observation:</strong></label>
+              <textarea class="form-control" id="assign-note-3" rows="2" placeholder="Record your notes or answer here..."></textarea>
+              <div class="workspace-footer">
+                <button class="btn btn-secondary btn-sm" onclick="app.saveAssignmentNote(3)">💾 Save Note</button>
+                <span class="save-indicator" id="save-status-3"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="card assignment-card" id="q-card-4">
+            <div class="assignment-card-header">
+              <span class="assignment-q-badge">Q04</span>
+              <span class="assignment-category-tag">Scalar Multiplication</span>
+            </div>
+            <h4 class="assignment-question">What is scalar multiplication in ECC?</h4>
+            <div class="assignment-actions-row">
+              <button class="btn btn-outline btn-sm assignment-toggle-btn" onclick="app.toggleAssignmentHint(4)">
+                <span>💡 View Model Answer & Viva Hint</span>
+              </button>
+            </div>
+            <div class="assignment-hint-drawer" id="assignment-hint-4" style="display: none;">
+              <div class="hint-content">
+                <strong>Model Answer:</strong>
+                <p>
+                  Scalar multiplication in ECC is the operation of adding a curve point \(P\) to itself \(k\) times, denoted as:
+                  \[kP = \underbrace{P + P + \dots + P}_{k \text{ times}}\]
+                  where \(k\) is an integer scalar.
+                </p>
+                <p>
+                  To compute this efficiently without performing \(k-1\) sequential additions, the <strong>Double-and-Add Algorithm</strong> is used. It scans the binary representation of \(k\) from most significant to least significant bit, doubling the accumulator point at each bit position and adding \(P\) whenever a bit is '1'. This reduces the computational complexity from linear \(\mathcal{O}(k)\) to logarithmic \(\mathcal{O}(\log_2 k)\).
+                </p>
+              </div>
+            </div>
+            <div class="assignment-workspace">
+              <label for="assign-note-4"><strong>Your Response / Observation:</strong></label>
+              <textarea class="form-control" id="assign-note-4" rows="2" placeholder="Record your notes or answer here..."></textarea>
+              <div class="workspace-footer">
+                <button class="btn btn-secondary btn-sm" onclick="app.saveAssignmentNote(4)">💾 Save Note</button>
+                <span class="save-indicator" id="save-status-4"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 5 -->
+          <div class="card assignment-card" id="q-card-5">
+            <div class="assignment-card-header">
+              <span class="assignment-q-badge">Q05</span>
+              <span class="assignment-category-tag">Protocol Execution</span>
+            </div>
+            <h4 class="assignment-question">Explain the ECDH key exchange process.</h4>
+            <div class="assignment-actions-row">
+              <button class="btn btn-outline btn-sm assignment-toggle-btn" onclick="app.toggleAssignmentHint(5)">
+                <span>💡 View Model Answer & Viva Hint</span>
+              </button>
+            </div>
+            <div class="assignment-hint-drawer" id="assignment-hint-5" style="display: none;">
+              <div class="hint-content">
+                <strong>Model Answer:</strong>
+                <p>
+                  The <strong>Elliptic Curve Diffie-Hellman (ECDH)</strong> protocol executes as follows:
+                </p>
+                <ol class="clean-bullet-list">
+                  <li><strong>Setup:</strong> Alice and Bob agree on public domain parameters: curve equation \(y^2 \equiv x^3 + ax + b \pmod p\) and base generator point \(G\).</li>
+                  <li><strong>Alice Keygen:</strong> Alice chooses private scalar \(a\) and calculates public point \(A = aG\).</li>
+                  <li><strong>Bob Keygen:</strong> Bob chooses private scalar \(b\) and calculates public point \(B = bG\).</li>
+                  <li><strong>Key Exchange:</strong> Alice and Bob send public points \(A\) and \(B\) to each other over the public network.</li>
+                  <li><strong>Shared Secret Derivation:</strong> Alice calculates \(S = aB\). Bob calculates \(S = bA\).</li>
+                  <li><strong>Agreement:</strong> Both obtain \(S = a(bG) = b(aG) = abG\), which is used as a symmetric encryption key.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="assignment-workspace">
+              <label for="assign-note-5"><strong>Your Response / Observation:</strong></label>
+              <textarea class="form-control" id="assign-note-5" rows="2" placeholder="Record your notes or answer here..."></textarea>
+              <div class="workspace-footer">
+                <button class="btn btn-secondary btn-sm" onclick="app.saveAssignmentNote(5)">💾 Save Note</button>
+                <span class="save-indicator" id="save-status-5"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 6 -->
+          <div class="card assignment-card" id="q-card-6">
+            <div class="assignment-card-header">
+              <span class="assignment-q-badge">Q06</span>
+              <span class="assignment-category-tag">Security & Confidentiality</span>
+            </div>
+            <h4 class="assignment-question">Why are private keys not transmitted during ECDH?</h4>
+            <div class="assignment-actions-row">
+              <button class="btn btn-outline btn-sm assignment-toggle-btn" onclick="app.toggleAssignmentHint(6)">
+                <span>💡 View Model Answer & Viva Hint</span>
+              </button>
+            </div>
+            <div class="assignment-hint-drawer" id="assignment-hint-6" style="display: none;">
+              <div class="hint-content">
+                <strong>Model Answer:</strong>
+                <p>
+                  The foundational premise of asymmetric key agreement is that the communication medium is insecure and subject to eavesdropping. If private scalars \(a\) or \(b\) were transmitted across the channel, an adversary intercepting the traffic could immediately compute the shared secret \(S = abG\) and decrypt all subsequent confidential communications.
+                </p>
+                <p>
+                  By transmitting <em>only public points</em> \(A = aG\) and \(B = bG\), the private keys remain strictly confined to the local memory of the participants. The adversary is faced with the <strong>Computational Diffie-Hellman Problem (CDHP)</strong> and ECDLP, which cannot be solved in polynomial time for cryptographically secure curves.
+                </p>
+              </div>
+            </div>
+            <div class="assignment-workspace">
+              <label for="assign-note-6"><strong>Your Response / Observation:</strong></label>
+              <textarea class="form-control" id="assign-note-6" rows="2" placeholder="Record your notes or answer here..."></textarea>
+              <div class="workspace-footer">
+                <button class="btn btn-secondary btn-sm" onclick="app.saveAssignmentNote(6)">💾 Save Note</button>
+                <span class="save-indicator" id="save-status-6"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 7 -->
+          <div class="card assignment-card" id="q-card-7">
+            <div class="assignment-card-header">
+              <span class="assignment-q-badge">Q07</span>
+              <span class="assignment-category-tag">Mathematical Identity</span>
+            </div>
+            <h4 class="assignment-question">How are Alice and Bob able to derive the same shared secret?</h4>
+            <div class="assignment-actions-row">
+              <button class="btn btn-outline btn-sm assignment-toggle-btn" onclick="app.toggleAssignmentHint(7)">
+                <span>💡 View Model Answer & Viva Hint</span>
+              </button>
+            </div>
+            <div class="assignment-hint-drawer" id="assignment-hint-7" style="display: none;">
+              <div class="hint-content">
+                <strong>Model Answer:</strong>
+                <p>
+                  Alice and Bob derive identical shared secrets due to the <strong>associative</strong> and <strong>commutative</strong> properties of scalar multiplication in the elliptic curve abelian point group:
+                </p>
+                <p>
+                  \[S_{\text{Alice}} = a \cdot B = a \cdot (b \cdot G) = (a \cdot b) \cdot G\]
+                  \[S_{\text{Bob}} = b \cdot A = b \cdot (a \cdot G) = (b \cdot a) \cdot G\]
+                </p>
+                <p>
+                  Since integer scalar multiplication is commutative (\(a \cdot b = b \cdot a\)), both computations yield the exact same point:
+                  \[(a \cdot b) \cdot G = (b \cdot a) \cdot G = abG = S\]
+                </p>
+              </div>
+            </div>
+            <div class="assignment-workspace">
+              <label for="assign-note-7"><strong>Your Response / Observation:</strong></label>
+              <textarea class="form-control" id="assign-note-7" rows="2" placeholder="Record your notes or answer here..."></textarea>
+              <div class="workspace-footer">
+                <button class="btn btn-secondary btn-sm" onclick="app.saveAssignmentNote(7)">💾 Save Note</button>
+                <span class="save-indicator" id="save-status-7"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 8 -->
+          <div class="card assignment-card" id="q-card-8">
+            <div class="assignment-card-header">
+              <span class="assignment-q-badge">Q08</span>
+              <span class="assignment-category-tag">Computational Hardness</span>
+            </div>
+            <h4 class="assignment-question">What is the elliptic curve discrete logarithm problem?</h4>
+            <div class="assignment-actions-row">
+              <button class="btn btn-outline btn-sm assignment-toggle-btn" onclick="app.toggleAssignmentHint(8)">
+                <span>💡 View Model Answer & Viva Hint</span>
+              </button>
+            </div>
+            <div class="assignment-hint-drawer" id="assignment-hint-8" style="display: none;">
+              <div class="hint-content">
+                <strong>Model Answer:</strong>
+                <p>
+                  The <strong>Elliptic Curve Discrete Logarithm Problem (ECDLP)</strong> is stated as:
+                </p>
+                <p>
+                  <em>Given an elliptic curve over a finite field \(\mathbb{F}_p\), a generator point \(G\) of order \(n\), and a point \(Q\) in the subgroup generated by \(G\), find the unique integer scalar \(k \in [1, n-1]\) such that:</em>
+                  \[Q = k \cdot G\]
+                </p>
+                <p>
+                  While forward scalar multiplication is easily computable in \(\mathcal{O}(\log k)\) operations, solving for \(k\) requires exponential time using generic algorithms like Pollard's rho method (\(\mathcal{O}(\sqrt{n})\)). No known sub-exponential algorithm exists for properly chosen prime-order elliptic curves.
+                </p>
+              </div>
+            </div>
+            <div class="assignment-workspace">
+              <label for="assign-note-8"><strong>Your Response / Observation:</strong></label>
+              <textarea class="form-control" id="assign-note-8" rows="2" placeholder="Record your notes or answer here..."></textarea>
+              <div class="workspace-footer">
+                <button class="btn btn-secondary btn-sm" onclick="app.saveAssignmentNote(8)">💾 Save Note</button>
+                <span class="save-indicator" id="save-status-8"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 9 -->
+          <div class="card assignment-card" id="q-card-9">
+            <div class="assignment-card-header">
+              <span class="assignment-q-badge">Q09</span>
+              <span class="assignment-category-tag">Error Analysis</span>
+            </div>
+            <h4 class="assignment-question">What happens if the calculated shared secrets of Alice and Bob do not match?</h4>
+            <div class="assignment-actions-row">
+              <button class="btn btn-outline btn-sm assignment-toggle-btn" onclick="app.toggleAssignmentHint(9)">
+                <span>💡 View Model Answer & Viva Hint</span>
+              </button>
+            </div>
+            <div class="assignment-hint-drawer" id="assignment-hint-9" style="display: none;">
+              <div class="hint-content">
+                <strong>Model Answer:</strong>
+                <p>
+                  If \(S_A \ne S_B\), key agreement has failed. This indicates one of the following root causes:
+                </p>
+                <ul class="clean-bullet-list">
+                  <li><strong>Active Man-in-the-Middle (MitM) Attack:</strong> An adversary intercepted and replaced the transmitted public keys with their own rogue points.</li>
+                  <li><strong>Transmission Corruption:</strong> Bit errors occurred in the public key coordinates across the network wire.</li>
+                  <li><strong>Invalid Curve / Small Subgroup Attack:</strong> A party used a point not lying on the curve or lying in a singular / different subgroup.</li>
+                  <li><strong>Software / Mathematical Bug:</strong> Incorrect modular arithmetic or improper scalar multiplication implementation.</li>
+                </ul>
+                <p>
+                  In all such cases, the communication session must be aborted immediately because neither party can establish a mutually intelligible symmetric ciphertext.
+                </p>
+              </div>
+            </div>
+            <div class="assignment-workspace">
+              <label for="assign-note-9"><strong>Your Response / Observation:</strong></label>
+              <textarea class="form-control" id="assign-note-9" rows="2" placeholder="Record your notes or answer here..."></textarea>
+              <div class="workspace-footer">
+                <button class="btn btn-secondary btn-sm" onclick="app.saveAssignmentNote(9)">💾 Save Note</button>
+                <span class="save-indicator" id="save-status-9"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 10 -->
+          <div class="card assignment-card" id="q-card-10">
+            <div class="assignment-card-header">
+              <span class="assignment-q-badge">Q10</span>
+              <span class="assignment-category-tag">Practical Laboratory Experiment</span>
+            </div>
+            <h4 class="assignment-question">Run the simulation with different valid private keys and observe the generated public keys and shared secret.</h4>
+            <div class="assignment-actions-row">
+              <button class="btn btn-primary btn-sm" onclick="app.navigateTo('simulation')">
+                <span>⚡ Go to Simulation to Test</span>
+              </button>
+              <button class="btn btn-outline btn-sm assignment-toggle-btn" onclick="app.toggleAssignmentHint(10)">
+                <span>💡 View Experimental Guide</span>
+              </button>
+            </div>
+            <div class="assignment-hint-drawer" id="assignment-hint-10" style="display: none;">
+              <div class="hint-content">
+                <strong>Experimental Guide & Observation Template:</strong>
+                <p>
+                  1. Navigate to <strong>Curve Setup</strong> or choose a preset in the <strong>Simulation</strong> page.<br>
+                  2. Try setting Alice's private key \(d_A = 4\) and Bob's private key \(d_B = 6\) on curve \(y^2 \equiv x^3 + 2x + 2 \pmod{17}\) with \(G = (5, 1)\).<br>
+                  3. Observe Alice's public key \(A = 4G\) and Bob's public key \(B = 6G\).<br>
+                  4. Verify that Alice's computation \(S_A = 4B\) and Bob's computation \(S_B = 6A\) yield the exact same coordinate pair \(S = (x_S, y_S)\).<br>
+                  5. Record your values below.
+                </p>
+              </div>
+            </div>
+            <div class="assignment-workspace">
+              <label for="assign-note-10"><strong>Your Recorded Experimental Observations:</strong></label>
+              <textarea class="form-control" id="assign-note-10" rows="3" placeholder="Record your chosen private keys, resulting public keys, and the agreed shared secret point..."></textarea>
+              <div class="workspace-footer">
+                <button class="btn btn-secondary btn-sm" onclick="app.saveAssignmentNote(10)">💾 Save Note</button>
+                <span class="save-indicator" id="save-status-10"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- ACADEMIC SECTION 07: REFERENCES -->
+      <!-- ========================================================= -->
+      <section class="view-panel" id="view-references">
+        <div class="view-header">
+          <div class="header-left">
+            <div class="section-tag-pill">Academic Section 07</div>
+            <h1 class="page-title">📑 References</h1>
+            <p class="page-subtitle">Authoritative Cryptographic Standards, Textbooks & Research Publications</p>
+          </div>
+        </div>
+
+        <div class="references-list-container">
+          <!-- Ref 1 -->
+          <div class="card reference-card">
+            <div class="reference-badge-col">
+              <span class="ref-num">01</span>
+            </div>
+            <div class="reference-content-col">
+              <div class="ref-header">
+                <span class="ref-type-pill pill-textbook">Standard Textbook</span>
+                <h4>Cryptography and Network Security: Principles and Practice</h4>
+              </div>
+              <p class="ref-authors"><strong>Author:</strong> William Stallings</p>
+              <p class="ref-meta">Pearson Education, 7th & 8th Editions. Comprehensive reference for undergraduate and graduate computer science curricula.</p>
+              <p class="ref-desc">
+                Chapters on Number Theory and Finite Fields (Chapter 2 & 4) and Elliptic Curve Arithmetic and Diffie-Hellman Key Exchange (Chapter 10). Detailed analysis of abelian group laws, Weierstrass curves, and public-key infrastructure.
+              </p>
+              <div class="ref-link-action">
+                <a href="https://www.pearson.com/en-us/subject-catalog/p/cryptography-and-network-security-principles-and-practice/P200000003337" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                  <span>🔗 Publisher / Syllabus Reference →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ref 2 -->
+          <div class="card reference-card">
+            <div class="reference-badge-col">
+              <span class="ref-num">02</span>
+            </div>
+            <div class="reference-content-col">
+              <div class="ref-header">
+                <span class="ref-type-pill pill-textbook">Academic Textbook</span>
+                <h4>Introduction to Modern Cryptography</h4>
+              </div>
+              <p class="ref-authors"><strong>Authors:</strong> Jonathan Katz and Yehuda Lindell</p>
+              <p class="ref-meta">CRC Press / Chapman & Hall, 3rd Edition (2020).</p>
+              <p class="ref-desc">
+                Rigorous mathematical treatment of public-key cryptography, Diffie-Hellman assumptions (CDH and DDH), group theory over elliptic curves, and formal security reductions against passive and active adversaries.
+              </p>
+              <div class="ref-link-action">
+                <a href="https://www.cs.umd.edu/~jkatz/imc.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                  <span>🔗 Course & Book Resource →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ref 3 -->
+          <div class="card reference-card">
+            <div class="reference-badge-col">
+              <span class="ref-num">03</span>
+            </div>
+            <div class="reference-content-col">
+              <div class="ref-header">
+                <span class="ref-type-pill pill-nist">NIST Standard</span>
+                <h4>NIST Special Publication 800-56A Revision 3</h4>
+              </div>
+              <p class="ref-authors"><strong>Organization:</strong> National Institute of Standards and Technology (NIST)</p>
+              <p class="ref-meta">Recommendation for Pair-Wise Key-Establishment Schemes Using Discrete Logarithm Cryptography.</p>
+              <p class="ref-desc">
+                Official federal guidelines specifying acceptable finite field configurations, elliptic curve parameter validation, Diffie-Hellman primitive calculations, and public key validation requirements for enterprise cryptosystems.
+              </p>
+              <div class="ref-link-action">
+                <a href="https://csrc.nist.gov/publications/detail/sp/800-56a/rev-3/final" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                  <span>🔗 View Official NIST SP 800-56A Rev. 3 →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ref 4 -->
+          <div class="card reference-card">
+            <div class="reference-badge-col">
+              <span class="ref-num">04</span>
+            </div>
+            <div class="reference-content-col">
+              <div class="ref-header">
+                <span class="ref-type-pill pill-nist">FIPS Publication</span>
+                <h4>NIST FIPS PUB 186-4 & FIPS 186-5: Digital Signature Standard (DSS)</h4>
+              </div>
+              <p class="ref-authors"><strong>Organization:</strong> National Institute of Standards and Technology (NIST)</p>
+              <p class="ref-meta">Federal Information Processing Standards Publication (FIPS 186-5).</p>
+              <p class="ref-desc">
+                Defines standard elliptic curves over prime fields (e.g., P-256, P-384, P-521), point addition formulas, domain parameters, and non-singularity checks used universally in TLS/SSL, SSH, and digital signature systems.
+              </p>
+              <div class="ref-link-action">
+                <a href="https://csrc.nist.gov/publications/detail/fips/186-5/final" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                  <span>🔗 View FIPS 186-5 Standard →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ref 5 -->
+          <div class="card reference-card">
+            <div class="reference-badge-col">
+              <span class="ref-num">05</span>
+            </div>
+            <div class="reference-content-col">
+              <div class="ref-header">
+                <span class="ref-type-pill pill-rfc">IETF RFC Standard</span>
+                <h4>RFC 6090: Fundamental Elliptic Curve Cryptography Algorithms</h4>
+              </div>
+              <p class="ref-authors"><strong>Authors:</strong> D. McGrew, K. Igoe, M. Salter (IETF)</p>
+              <p class="ref-meta">Internet Engineering Task Force (IETF) Informational RFC.</p>
+              <p class="ref-desc">
+                Clean algorithmic specification of core elliptic curve operations: point representation, point addition, point doubling, scalar multiplication via Double-and-Add, and ECDH key agreement primitives.
+              </p>
+              <div class="ref-link-action">
+                <a href="https://datatracker.ietf.org/doc/html/rfc6090" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                  <span>🔗 Read IETF RFC 6090 →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ref 6 -->
+          <div class="card reference-card">
+            <div class="reference-badge-col">
+              <span class="ref-num">06</span>
+            </div>
+            <div class="reference-content-col">
+              <div class="ref-header">
+                <span class="ref-type-pill pill-spec">Industry Standard</span>
+                <h4>SEC 1: Elliptic Curve Cryptography (Version 2.0)</h4>
+              </div>
+              <p class="ref-authors"><strong>Organization:</strong> Standards for Efficient Cryptography Group (SECG) / Certicom Research</p>
+              <p class="ref-meta">Standards for Efficient Cryptography (SEC 1 & SEC 2).</p>
+              <p class="ref-desc">
+                Comprehensive cryptographic architecture for point arithmetic over prime and binary fields, public key compression formats, and key exchange mathematical invariants.
+              </p>
+              <div class="ref-link-action">
+                <a href="https://www.secg.org/sec1-v2.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                  <span>🔗 Download SEC 1 Standard (PDF) →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ref 7 -->
+          <div class="card reference-card">
+            <div class="reference-badge-col">
+              <span class="ref-num">07</span>
+            </div>
+            <div class="reference-content-col">
+              <div class="ref-header">
+                <span class="ref-type-pill pill-textbook">Technical Reference</span>
+                <h4>Guide to Elliptic Curve Cryptography</h4>
+              </div>
+              <p class="ref-authors"><strong>Authors:</strong> Darrel Hankerson, Alfred J. Menezes, and Scott Vanstone</p>
+              <p class="ref-meta">Springer Science & Business Media (2004).</p>
+              <p class="ref-desc">
+                Standard engineering reference for implementing point arithmetic, fast scalar multiplication, modular inversions via extended Euclidean algorithm, and curve non-singularity proofs.
+              </p>
+              <div class="ref-link-action">
+                <a href="https://link.springer.com/book/10.1007/b97644" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                  <span>🔗 Springer Reference Page →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- ACADEMIC SECTION 08: FEEDBACK -->
+      <!-- ========================================================= -->
+      <section class="view-panel" id="view-feedback">
+        <div class="view-header">
+          <div class="header-left">
+            <div class="section-tag-pill">Academic Section 08</div>
+            <h1 class="page-title">⭐ Laboratory Feedback</h1>
+            <p class="page-subtitle">Experiment Evaluation, Student Observations & Suggestions</p>
+          </div>
+        </div>
+
+        <div class="feedback-layout-grid">
+          <!-- Left: Feedback Form -->
+          <div class="card feedback-form-card">
+            <div class="feedback-header">
+              <h3>Student & Faculty Feedback Form</h3>
+              <p class="feedback-subtext">Please share your evaluation of the ECC/ECDH simulation, visual clarity, and mathematical accuracy.</p>
+            </div>
+
+            <!-- Confirmation message banner -->
+            <div class="feedback-success-banner" id="feedback-success-banner" style="display: none;">
+              <div class="banner-icon">✓</div>
+              <div class="banner-body">
+                <h4>Thank you for your feedback!</h4>
+                <p>Your evaluation has been successfully recorded. Thank you for contributing to the improvement of our Cryptography Laboratory.</p>
+              </div>
+            </div>
+
+            <form id="feedback-form" onsubmit="return false;">
+              <div class="form-group">
+                <label for="feedback-name">Your Full Name <span class="text-orange">*</span></label>
+                <input type="text" id="feedback-name" class="form-control" placeholder="e.g. John Doe / Prof. Smith" required>
+              </div>
+
+              <div class="form-group">
+                <label for="feedback-email">College / Institutional Email <span class="text-orange">*</span></label>
+                <input type="email" id="feedback-email" class="form-control" placeholder="e.g. student@college.edu" required>
+              </div>
+
+              <div class="form-group">
+                <label>Overall Laboratory Rating <span class="text-orange">*</span></label>
+                <div class="star-rating-widget" id="star-rating-container" role="radiogroup" aria-label="Rating from 1 to 5 stars">
+                  <button type="button" class="star-btn" data-rating="1" aria-label="1 star">★</button>
+                  <button type="button" class="star-btn" data-rating="2" aria-label="2 stars">★</button>
+                  <button type="button" class="star-btn" data-rating="3" aria-label="3 stars">★</button>
+                  <button type="button" class="star-btn" data-rating="4" aria-label="4 stars">★</button>
+                  <button type="button" class="star-btn" data-rating="5" aria-label="5 stars">★</button>
+                </div>
+                <span class="rating-label-display" id="feedback-rating-label">Click stars to rate (1 to 5)</span>
+                <input type="hidden" id="feedback-rating-val" value="5">
+              </div>
+
+              <div class="form-group">
+                <label for="feedback-category">Feedback Category</label>
+                <select id="feedback-category" class="form-select">
+                  <option value="Simulation Usability">Simulation Usability & Animation Clarity</option>
+                  <option value="Mathematical Rigor">Mathematical Rigor & Formula Accuracy</option>
+                  <option value="Educational Value">Educational Value for CNS Course</option>
+                  <option value="UI & Responsiveness">User Interface & Responsive Design</option>
+                  <option value="General Suggestion">General Feedback / Bug Report</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="feedback-comments">Comments / Suggestions <span class="text-orange">*</span></label>
+                <textarea id="feedback-comments" class="form-control" rows="4" placeholder="Enter your observations, questions, or suggestions for improving the laboratory..." required></textarea>
+              </div>
+
+              <div class="form-actions feedback-buttons-row">
+                <button type="button" class="btn btn-primary btn-lg" id="btn-submit-feedback">
+                  <span>✓ Submit Feedback</span>
+                </button>
+                <button type="button" class="btn btn-outline" id="btn-clear-feedback">
+                  <span>✕ Clear</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right: Information & FAQ -->
+          <div class="feedback-info-column">
+            <div class="card feedback-info-card">
+              <h4>About This Laboratory</h4>
+              <p>
+                The <strong>ECC ECDH Cryptography Simulator</strong> is designed to support the Cryptography and Network Security laboratory curriculum.
+              </p>
+              <ul class="academic-feature-list">
+                <li><strong>Backend:</strong> Flask with pure Python modular arithmetic engine.</li>
+                <li><strong>Frontend:</strong> Responsive SPA architecture with HTML5 Canvas coordinate plotting.</li>
+                <li><strong>Mathematical Typesetting:</strong> MathJax 3 LaTeX rendering.</li>
+              </ul>
+            </div>
+
+            <div class="card feedback-info-card">
+              <h4>Frequently Asked Questions</h4>
+              <div class="faq-item">
+                <strong>Q: Are my private keys transmitted anywhere?</strong>
+                <p>No. Even in network communication tests, private keys are strictly local and never leave your browser device.</p>
+              </div>
+              <div class="faq-item">
+                <strong>Q: How do I test another curve?</strong>
+                <p>Visit <strong>Simulation</strong> and select a curve from the "Preset" dropdown, or open <strong>Lab Tools → Curve Setup</strong> to input custom \(a, b, p\).</p>
               </div>
             </div>
           </div>

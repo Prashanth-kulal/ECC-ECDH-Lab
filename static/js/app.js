@@ -24,7 +24,7 @@ const app = {
     bob_shared: null,
     matched: null,
     traces: null,
-    currentView: 'dashboard',
+    currentView: 'aim',
     vizStep: 1,
     vizMaxStep: 8,
     isPlaying: false,
@@ -43,6 +43,9 @@ const app = {
   // Initialization
   init() {
     this.bindEvents();
+    this.setupLabToolsToggle();
+    this.setupFeedbackForm();
+    this.setupAssignmentWorkspace();
     this.loadPresets();
     this.updateDynamicEquationDisplay();
     this.validateCurveOnLoad();
@@ -52,7 +55,7 @@ const app = {
 
   // Bind UI Events
   bindEvents() {
-    // Sidebar navigation
+    // Sidebar navigation (handles all primary items and collapsible sub-items)
     document.querySelectorAll('.nav-item').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const view = btn.getAttribute('data-view');
@@ -73,11 +76,11 @@ const app = {
     const dashStartBtn = document.getElementById('dash-start-sim-btn');
     if (dashStartBtn) {
       dashStartBtn.addEventListener('click', () => {
-        this.navigateTo('ecdh-exchange');
+        this.navigateTo('simulation');
       });
     }
 
-    // Presets dropdown
+    // Presets dropdown (Dashboard)
     const presetSelect = document.getElementById('dash-preset-select');
     if (presetSelect) {
       presetSelect.addEventListener('change', (e) => {
@@ -85,6 +88,25 @@ const app = {
         if (idx !== "") {
           this.applyPreset(parseInt(idx, 10));
         }
+      });
+    }
+
+    // Presets dropdown (Simulation Page Quick Bar)
+    const simPresetSelect = document.getElementById('sim-preset-select');
+    if (simPresetSelect) {
+      simPresetSelect.addEventListener('change', (e) => {
+        const idx = e.target.value;
+        if (idx !== "") {
+          this.applyPreset(parseInt(idx, 10));
+        }
+      });
+    }
+
+    // Simulation page recalculate button
+    const simRecalcBtn = document.getElementById('sim-recalc-btn');
+    if (simRecalcBtn) {
+      simRecalcBtn.addEventListener('click', () => {
+        this.handleRunFullSimulation(false);
       });
     }
 
@@ -255,16 +277,18 @@ const app = {
       const data = await res.json();
       if (data.success) {
         this.presets = data.presets;
-        const select = document.getElementById('dash-preset-select');
-        if (select) {
-          select.innerHTML = '<option value="">-- Choose Sample Curve --</option>';
-          data.presets.forEach((p, idx) => {
-            const opt = document.createElement('option');
-            opt.value = idx;
-            opt.textContent = `${p.name} (p=${p.p})`;
-            select.appendChild(opt);
-          });
-        }
+        ['dash-preset-select', 'sim-preset-select'].forEach(id => {
+          const select = document.getElementById(id);
+          if (select) {
+            select.innerHTML = '<option value="">-- Choose Sample Curve --</option>';
+            data.presets.forEach((p, idx) => {
+              const opt = document.createElement('option');
+              opt.value = idx;
+              opt.textContent = `${p.name} (p=${p.p})`;
+              select.appendChild(opt);
+            });
+          }
+        });
       }
     } catch (e) {
       console.warn("Could not load presets from server:", e);
@@ -288,24 +312,186 @@ const app = {
     this.showToast(`Loaded preset: ${p.name}`, 'info');
   },
 
-  // Navigation between the 5 Views
+  // Setup Collapsible Lab Tools Navigation
+  setupLabToolsToggle() {
+    const toggleBtn = document.getElementById('lab-tools-toggle');
+    const content = document.getElementById('lab-tools-content');
+    const chevron = document.getElementById('lab-tools-chevron');
+    if (!toggleBtn || !content) return;
+
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        content.style.display = 'none';
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        toggleBtn.classList.remove('expanded');
+        if (chevron) chevron.textContent = '▾';
+      } else {
+        content.style.display = 'block';
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        toggleBtn.classList.add('expanded');
+        if (chevron) chevron.textContent = '▴';
+      }
+    });
+  },
+
+  // Auto-expand Lab Tools collapsible
+  expandLabTools() {
+    const toggleBtn = document.getElementById('lab-tools-toggle');
+    const content = document.getElementById('lab-tools-content');
+    const chevron = document.getElementById('lab-tools-chevron');
+    if (toggleBtn && content) {
+      content.style.display = 'block';
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      toggleBtn.classList.add('expanded');
+      if (chevron) chevron.textContent = '▴';
+    }
+  },
+
+  // Setup Assignment workspace notes from localStorage
+  setupAssignmentWorkspace() {
+    for (let i = 1; i <= 10; i++) {
+      const saved = localStorage.getItem(`ecc_assignment_note_${i}`);
+      if (saved) {
+        const textarea = document.getElementById(`assign-note-${i}`);
+        if (textarea) textarea.value = saved;
+      }
+    }
+  },
+
+  // Toggle Assignment Model Answer & Viva Hint
+  toggleAssignmentHint(qNum) {
+    const drawer = document.getElementById(`assignment-hint-${qNum}`);
+    if (!drawer) return;
+    const isHidden = (drawer.style.display === 'none' || drawer.style.display === '');
+    drawer.style.display = isHidden ? 'block' : 'none';
+    if (isHidden) {
+      this.retypeset(drawer);
+    }
+  },
+
+  // Save Assignment Student Note
+  saveAssignmentNote(qNum) {
+    const textarea = document.getElementById(`assign-note-${qNum}`);
+    const status = document.getElementById(`save-status-${qNum}`);
+    if (!textarea) return;
+    localStorage.setItem(`ecc_assignment_note_${qNum}`, textarea.value);
+    if (status) {
+      status.textContent = '✓ Note saved';
+      setTimeout(() => { status.textContent = ''; }, 2500);
+    }
+    this.showToast(`Saved note for Question ${qNum}`, 'success');
+  },
+
+  // Setup Feedback Form with interactive star rating
+  setupFeedbackForm() {
+    const starBtns = document.querySelectorAll('.star-btn');
+    const ratingVal = document.getElementById('feedback-rating-val');
+    const ratingLabel = document.getElementById('feedback-rating-label');
+    const ratingTexts = ['', '1 - Poor', '2 - Fair', '3 - Good', '4 - Very Good', '5 - Excellent'];
+
+    starBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const r = parseInt(btn.getAttribute('data-rating'), 10);
+        if (ratingVal) ratingVal.value = r;
+        if (ratingLabel) ratingLabel.textContent = ratingTexts[r] || `${r} Stars`;
+        starBtns.forEach(s => {
+          const sr = parseInt(s.getAttribute('data-rating'), 10);
+          if (sr <= r) {
+            s.classList.add('active');
+          } else {
+            s.classList.remove('active');
+          }
+        });
+      });
+    });
+
+    // Default 5 stars
+    starBtns.forEach(s => s.classList.add('active'));
+    if (ratingLabel) ratingLabel.textContent = '5 - Excellent';
+
+    // Submit Feedback button
+    const submitBtn = document.getElementById('btn-submit-feedback');
+    if (submitBtn) {
+      submitBtn.addEventListener('click', () => {
+        const name = document.getElementById('feedback-name')?.value.trim();
+        const email = document.getElementById('feedback-email')?.value.trim();
+        const comments = document.getElementById('feedback-comments')?.value.trim();
+
+        if (!name || !email || !comments) {
+          this.showToast('Please fill in your name, institutional email, and comments.', 'error');
+          return;
+        }
+
+        // Show friendly confirmation banner
+        const banner = document.getElementById('feedback-success-banner');
+        if (banner) {
+          banner.style.display = 'flex';
+          banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        this.showToast('Thank you for your feedback!', 'success');
+
+        // Reset form inputs
+        const nameEl = document.getElementById('feedback-name');
+        const emailEl = document.getElementById('feedback-email');
+        const commEl = document.getElementById('feedback-comments');
+        if (nameEl) nameEl.value = '';
+        if (emailEl) emailEl.value = '';
+        if (commEl) commEl.value = '';
+      });
+    }
+
+    // Clear Feedback button
+    const clearBtn = document.getElementById('btn-clear-feedback');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        const nameEl = document.getElementById('feedback-name');
+        const emailEl = document.getElementById('feedback-email');
+        const commEl = document.getElementById('feedback-comments');
+        if (nameEl) nameEl.value = '';
+        if (emailEl) emailEl.value = '';
+        if (commEl) commEl.value = '';
+        const banner = document.getElementById('feedback-success-banner');
+        if (banner) banner.style.display = 'none';
+        if (ratingVal) ratingVal.value = '5';
+        starBtns.forEach(s => s.classList.add('active'));
+        if (ratingLabel) ratingLabel.textContent = '5 - Excellent';
+        this.showToast('Feedback form cleared.', 'info');
+      });
+    }
+  },
+
+  // Navigation between the Academic & Lab Tools Views
   navigateTo(viewId) {
+    let targetPanelId = viewId;
+    if (viewId === 'visualization') {
+      targetPanelId = 'simulation';
+    }
+
     this.state.currentView = viewId;
 
-    // Update active nav button
+    // Update active nav button across primary navigation and lab tools
     document.querySelectorAll('.nav-item').forEach(btn => {
-      if (btn.getAttribute('data-view') === viewId) {
+      const bView = btn.getAttribute('data-view');
+      if (bView === viewId) {
         btn.classList.add('active');
       } else {
         btn.classList.remove('active');
       }
     });
 
+    // Auto-expand Lab Tools if navigating to a lab tool view
+    const labToolsViews = ['dashboard', 'concepts', 'curve-setup', 'ecdh-exchange', 'visualization'];
+    if (labToolsViews.includes(viewId)) {
+      this.expandLabTools();
+    }
+
     // Update view panels
     document.querySelectorAll('.view-panel').forEach(panel => {
       panel.classList.remove('active');
     });
-    const targetPanel = document.getElementById(`view-${viewId}`);
+    const targetPanel = document.getElementById(`view-${targetPanelId}`);
     if (targetPanel) {
       targetPanel.classList.add('active');
     }
@@ -313,13 +499,13 @@ const app = {
     // Close mobile sidebar if open
     document.getElementById('app-sidebar')?.classList.remove('open');
 
-    // If entering visualization or dashboard, redraw canvas
-    if (viewId === 'visualization') {
+    // If entering simulation or visualization, initialize/redraw
+    if (targetPanelId === 'simulation') {
       this.ensureSimulationData().then(() => {
         this.goToVizStep(this.state.vizStep || 1);
         setTimeout(() => this.drawCanvas(), 50);
       });
-    } else if (viewId === 'dashboard') {
+    } else if (targetPanelId === 'dashboard') {
       this.updateDashboardCards();
     }
 
@@ -342,6 +528,12 @@ const app = {
     if (activeCurveElem) activeCurveElem.textContent = eq;
     const activeGenElem = document.getElementById('ecdh-active-gen');
     if (activeGenElem) activeGenElem.textContent = `(${this.state.Gx}, ${this.state.Gy})`;
+
+    // Simulation Quick Bar indicator
+    const simActiveCurve = document.getElementById('sim-active-curve-text');
+    if (simActiveCurve) simActiveCurve.textContent = eq;
+    const simActiveGen = document.getElementById('sim-active-gen-text');
+    if (simActiveGen) simActiveGen.textContent = `(${this.state.Gx}, ${this.state.Gy})`;
 
     // Sidebar indicator
     const sidebarBadge = document.getElementById('sidebar-curve-badge');
