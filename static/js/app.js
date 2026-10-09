@@ -44,13 +44,12 @@ const app = {
   init() {
     this.bindEvents();
     this.setupLabToolsToggle();
-    this.setupFeedbackForm();
-    this.setupAssignmentWorkspace();
     this.loadPresets();
     this.updateDynamicEquationDisplay();
     this.validateCurveOnLoad();
     this.setupCanvas();
     this.fetchFullSimulation();
+    this.navigateTo('aim');
   },
 
   // Bind UI Events
@@ -348,119 +347,6 @@ const app = {
     }
   },
 
-  // Setup Assignment workspace notes from localStorage
-  setupAssignmentWorkspace() {
-    for (let i = 1; i <= 10; i++) {
-      const saved = localStorage.getItem(`ecc_assignment_note_${i}`);
-      if (saved) {
-        const textarea = document.getElementById(`assign-note-${i}`);
-        if (textarea) textarea.value = saved;
-      }
-    }
-  },
-
-  // Toggle Assignment Model Answer & Viva Hint
-  toggleAssignmentHint(qNum) {
-    const drawer = document.getElementById(`assignment-hint-${qNum}`);
-    if (!drawer) return;
-    const isHidden = (drawer.style.display === 'none' || drawer.style.display === '');
-    drawer.style.display = isHidden ? 'block' : 'none';
-    if (isHidden) {
-      this.retypeset(drawer);
-    }
-  },
-
-  // Save Assignment Student Note
-  saveAssignmentNote(qNum) {
-    const textarea = document.getElementById(`assign-note-${qNum}`);
-    const status = document.getElementById(`save-status-${qNum}`);
-    if (!textarea) return;
-    localStorage.setItem(`ecc_assignment_note_${qNum}`, textarea.value);
-    if (status) {
-      status.textContent = '✓ Note saved';
-      setTimeout(() => { status.textContent = ''; }, 2500);
-    }
-    this.showToast(`Saved note for Question ${qNum}`, 'success');
-  },
-
-  // Setup Feedback Form with interactive star rating
-  setupFeedbackForm() {
-    const starBtns = document.querySelectorAll('.star-btn');
-    const ratingVal = document.getElementById('feedback-rating-val');
-    const ratingLabel = document.getElementById('feedback-rating-label');
-    const ratingTexts = ['', '1 - Poor', '2 - Fair', '3 - Good', '4 - Very Good', '5 - Excellent'];
-
-    starBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const r = parseInt(btn.getAttribute('data-rating'), 10);
-        if (ratingVal) ratingVal.value = r;
-        if (ratingLabel) ratingLabel.textContent = ratingTexts[r] || `${r} Stars`;
-        starBtns.forEach(s => {
-          const sr = parseInt(s.getAttribute('data-rating'), 10);
-          if (sr <= r) {
-            s.classList.add('active');
-          } else {
-            s.classList.remove('active');
-          }
-        });
-      });
-    });
-
-    // Default 5 stars
-    starBtns.forEach(s => s.classList.add('active'));
-    if (ratingLabel) ratingLabel.textContent = '5 - Excellent';
-
-    // Submit Feedback button
-    const submitBtn = document.getElementById('btn-submit-feedback');
-    if (submitBtn) {
-      submitBtn.addEventListener('click', () => {
-        const name = document.getElementById('feedback-name')?.value.trim();
-        const email = document.getElementById('feedback-email')?.value.trim();
-        const comments = document.getElementById('feedback-comments')?.value.trim();
-
-        if (!name || !email || !comments) {
-          this.showToast('Please fill in your name, institutional email, and comments.', 'error');
-          return;
-        }
-
-        // Show friendly confirmation banner
-        const banner = document.getElementById('feedback-success-banner');
-        if (banner) {
-          banner.style.display = 'flex';
-          banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-
-        this.showToast('Thank you for your feedback!', 'success');
-
-        // Reset form inputs
-        const nameEl = document.getElementById('feedback-name');
-        const emailEl = document.getElementById('feedback-email');
-        const commEl = document.getElementById('feedback-comments');
-        if (nameEl) nameEl.value = '';
-        if (emailEl) emailEl.value = '';
-        if (commEl) commEl.value = '';
-      });
-    }
-
-    // Clear Feedback button
-    const clearBtn = document.getElementById('btn-clear-feedback');
-    if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
-        const nameEl = document.getElementById('feedback-name');
-        const emailEl = document.getElementById('feedback-email');
-        const commEl = document.getElementById('feedback-comments');
-        if (nameEl) nameEl.value = '';
-        if (emailEl) emailEl.value = '';
-        if (commEl) commEl.value = '';
-        const banner = document.getElementById('feedback-success-banner');
-        if (banner) banner.style.display = 'none';
-        if (ratingVal) ratingVal.value = '5';
-        starBtns.forEach(s => s.classList.add('active'));
-        if (ratingLabel) ratingLabel.textContent = '5 - Excellent';
-        this.showToast('Feedback form cleared.', 'info');
-      });
-    }
-  },
 
   // Navigation between the Academic & Lab Tools Views
   navigateTo(viewId) {
