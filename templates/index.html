@@ -66,7 +66,7 @@
             <button class="nav-item active" data-view="aim" id="nav-aim">
               <span class="nav-num">01</span>
               <span class="nav-icon">🎯</span>
-              <span class="nav-label">Aim</span>
+              <span class="nav-label">Aim &amp; Introduction</span>
             </button>
           </li>
           <li>
@@ -184,13 +184,13 @@
       <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
       <!-- ========================================================= -->
-      <!-- ACADEMIC SECTION 01: AIM -->
+      <!-- ACADEMIC SECTION 01: AIM & INTRODUCTION -->
       <!-- ========================================================= -->
       <section class="view-panel active" id="view-aim">
         <div class="view-header">
           <div class="header-left">
             <div class="section-tag-pill">Academic Section 01</div>
-            <h1 class="page-title">🎯 Aim</h1>
+            <h1 class="page-title">🎯 Aim &amp; Introduction</h1>
             <p class="page-subtitle">Laboratory Purpose and Scope of Experiment</p>
           </div>
           <div class="header-actions">
@@ -200,77 +200,26 @@
           </div>
         </div>
 
-        <!-- Academic Aim Statement Hero Card -->
+        <!-- Box 1: Introduction -->
         <div class="card aim-hero-card">
           <div class="aim-statement-header">
-            <span class="aim-badge">PRIMARY LABORATORY AIM</span>
-            <span class="aim-subject">Cryptography & Network Security Lab</span>
+            <span class="aim-badge">INTRODUCTION</span>
+            <span class="aim-subject">Cryptography &amp; Network Security Lab</span>
           </div>
-          <blockquote class="aim-quote-text">
-            "To study and demonstrate Elliptic Curve Cryptography (ECC) and the Elliptic Curve Diffie-Hellman (ECDH) key exchange mechanism through an interactive web-based simulation."
+          <p class="aim-intro-text">
+            Elliptic Curve Cryptography (ECC) is a public-key cryptography technique that uses mathematical operations on elliptic curves to support secure communication. Elliptic Curve Diffie-Hellman (ECDH) is a key exchange mechanism based on ECC that allows two participants to establish a common shared secret over a public channel without directly sharing their private keys. This laboratory experiment demonstrates the basic mathematical operations and step-by-step process involved in ECDH key exchange.
+          </p>
+        </div>
+
+        <!-- Box 2: Aim -->
+        <div class="card aim-hero-card">
+          <div class="aim-statement-header">
+            <span class="aim-badge">AIM</span>
+            <span class="aim-subject">Primary Laboratory Aim</span>
+          </div>
+          <blockquote class="aim-quote-text" style="margin-bottom: 0;">
+            To study and demonstrate Elliptic Curve Cryptography (ECC) and the ECDH key exchange mechanism through a web-based laboratory experiment and verify that both participants independently calculate the same shared secret.
           </blockquote>
-          <div class="aim-supporting-box">
-            <span class="supporting-icon">💡</span>
-            <p class="supporting-text">
-              The laboratory demonstrates how elliptic-curve point operations are used to generate public keys and establish a common shared secret between two communicating parties.
-            </p>
-          </div>
-        </div>
-
-        <!-- Academic Context & Capabilities Grid -->
-        <div class="academic-metadata-grid">
-          <div class="card academic-meta-card">
-            <div class="meta-card-header">
-              <span class="meta-icon">📚</span>
-              <h4>Experiment Information</h4>
-            </div>
-            <ul class="academic-feature-list">
-              <li><strong>Subject:</strong> Cryptography and Network Security (CNS)</li>
-              <li><strong>Experiment Title:</strong> Elliptic Curve Diffie-Hellman (ECDH) Protocol Simulation</li>
-              <li><strong>Domain:</strong> Public-Key Asymmetric Cryptography</li>
-              <li><strong>Algebraic Framework:</strong> Prime Finite Fields \(\mathbb{F}_p\) and Weierstrass Curves</li>
-              <li><strong>Core Security Assumption:</strong> Intractability of the Elliptic Curve Discrete Logarithm Problem (ECDLP)</li>
-            </ul>
-          </div>
-
-          <div class="card academic-meta-card">
-            <div class="meta-card-header">
-              <span class="meta-icon">🔬</span>
-              <h4>Laboratory Capabilities</h4>
-            </div>
-            <ul class="academic-feature-list">
-              <li><strong>Live Python Mathematical Backend:</strong> Real modular arithmetic for point addition, doubling, and scalar multiplication.</li>
-              <li><strong>Zero-Leakage Security Verification:</strong> Visual channel demonstrates that only public keys \(A\) and \(B\) cross the wire, while private scalars \(d_A\) and \(d_B\) never leave local storage.</li>
-              <li><strong>Dynamic Finite Field Visualization:</strong> High-resolution 2D discrete coordinate grid mapping curve points in \(\mathbb{F}_p \times \mathbb{F}_p\).</li>
-              <li><strong>Step-by-Step Educational Stepper:</strong> 8 guided stages illustrating curve non-singularity, key derivation, and agreement.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Quick Navigation Banner -->
-        <div class="card aim-quick-nav-card">
-          <h3>Experiment Workflow Navigation</h3>
-          <p>Explore the laboratory in chronological academic order or jump directly to the interactive simulation:</p>
-          <div class="btn-group-responsive">
-            <button class="btn btn-secondary" onclick="app.navigateTo('theory')">
-              📖 02. Theory
-            </button>
-            <button class="btn btn-secondary" onclick="app.navigateTo('objective')">
-              📌 03. Objective
-            </button>
-            <button class="btn btn-secondary" onclick="app.navigateTo('procedure')">
-              🔬 04. Procedure
-            </button>
-            <button class="btn btn-primary" onclick="app.navigateTo('simulation')">
-              ⚡ 05. Simulation
-            </button>
-            <button class="btn btn-secondary" onclick="app.navigateTo('result')">
-              📊 06. Result
-            </button>
-            <button class="btn btn-secondary" onclick="app.navigateTo('references')">
-              📑 07. References
-            </button>
-          </div>
         </div>
       </section>
 
@@ -504,7 +453,7 @@
           <div class="header-left">
             <div class="section-tag-pill">Academic Section 03</div>
             <h1 class="page-title">📌 Objective</h1>
-            <p class="page-subtitle">Laboratory Learning Objectives & Educational Outcomes</p>
+            <p class="page-subtitle">Laboratory Learning Objectives &amp; Educational Outcomes</p>
           </div>
           <div class="header-actions">
             <button class="btn btn-primary" onclick="app.navigateTo('procedure')">
@@ -513,109 +462,21 @@
           </div>
         </div>
 
-        <div class="objective-intro card">
-          <p>
-            The objective of this laboratory experiment is to provide an in-depth understanding of elliptic curve point operations and the Diffie-Hellman key agreement mechanism over finite fields:
-          </p>
-        </div>
-
-        <!-- 8 Objectives in Numbered Cards -->
-        <div class="objectives-list-container">
-          <!-- 1 -->
-          <div class="card objective-card">
-            <div class="obj-badge-col">
-              <span class="obj-num">01</span>
-            </div>
-            <div class="obj-content-col">
-              <h4>Elliptic Curves over Finite Fields</h4>
-              <p>To understand the basic mathematical concept of elliptic curves over finite fields.</p>
-              <span class="obj-category-tag">Field Arithmetic</span>
-            </div>
+        <!-- Single Container: Objectives -->
+        <div class="card aim-hero-card">
+          <div class="aim-statement-header">
+            <span class="aim-badge">LABORATORY OBJECTIVES</span>
+            <span class="aim-subject">Cryptography &amp; Network Security Lab</span>
           </div>
-
-          <!-- 2 -->
-          <div class="card objective-card">
-            <div class="obj-badge-col">
-              <span class="obj-num">02</span>
-            </div>
-            <div class="obj-content-col">
-              <h4>Point Addition and Point Doubling</h4>
-              <p>To study elliptic-curve point addition and point doubling.</p>
-              <span class="obj-category-tag">Point Operations</span>
-            </div>
-          </div>
-
-          <!-- 3 -->
-          <div class="card objective-card">
-            <div class="obj-badge-col">
-              <span class="obj-num">03</span>
-            </div>
-            <div class="obj-content-col">
-              <h4>Scalar Multiplication</h4>
-              <p>To understand scalar multiplication of elliptic-curve points.</p>
-              <span class="obj-category-tag">Scalar Multiplication</span>
-            </div>
-          </div>
-
-          <!-- 4 -->
-          <div class="card objective-card">
-            <div class="obj-badge-col">
-              <span class="obj-num">04</span>
-            </div>
-            <div class="obj-content-col">
-              <h4>Public Key Generation</h4>
-              <p>To understand the generation of public keys from private keys.</p>
-              <span class="obj-category-tag">Asymmetric Keys</span>
-            </div>
-          </div>
-
-          <!-- 5 -->
-          <div class="card objective-card">
-            <div class="obj-badge-col">
-              <span class="obj-num">05</span>
-            </div>
-            <div class="obj-content-col">
-              <h4>ECDH Key Exchange Demonstration</h4>
-              <p>To demonstrate the ECDH key exchange process.</p>
-              <span class="obj-category-tag">Key Agreement</span>
-            </div>
-          </div>
-
-          <!-- 6 -->
-          <div class="card objective-card">
-            <div class="obj-badge-col">
-              <span class="obj-num">06</span>
-            </div>
-            <div class="obj-content-col">
-              <h4>Shared Secret Verification</h4>
-              <p>To verify that Alice and Bob independently derive the same shared secret.</p>
-              <span class="obj-category-tag">Verification</span>
-            </div>
-          </div>
-
-          <!-- 7 -->
-          <div class="card objective-card">
-            <div class="obj-badge-col">
-              <span class="obj-num">07</span>
-            </div>
-            <div class="obj-content-col">
-              <h4>Interactive Process Visualization</h4>
-              <p>To visualize the complete key-exchange process using an interactive simulation.</p>
-              <span class="obj-category-tag">Visualization</span>
-            </div>
-          </div>
-
-          <!-- 8 -->
-          <div class="card objective-card highlight-obj-card">
-            <div class="obj-badge-col">
-              <span class="obj-num">08</span>
-            </div>
-            <div class="obj-content-col">
-              <h4>Zero-Transmission Security Rule</h4>
-              <p>To understand why private keys must never be transmitted during ECDH.</p>
-              <span class="obj-category-tag tag-security">Security Principle</span>
-            </div>
-          </div>
+          <ol class="objectives-list">
+            <li>To understand the fundamentals of Elliptic Curve Cryptography.</li>
+            <li>To study the elliptic curve equation over a finite field.</li>
+            <li>To understand point addition and point doubling.</li>
+            <li>To learn scalar multiplication and public-key generation.</li>
+            <li>To understand the ECDH key exchange process.</li>
+            <li>To calculate a common shared secret independently.</li>
+            <li>To verify that both participants obtain the same shared secret.</li>
+          </ol>
         </div>
       </section>
 
@@ -1438,8 +1299,8 @@ while k > 0:
             </div>
             
             <div class="stepper-controls">
-              <button class="btn btn-outline btn-sm" id="btn-viz-prev" title="Previous Step">
-                ◀ Previous
+              <button class="btn btn-outline" id="btn-viz-prev" title="Previous Step">
+                ◀ Previous Step
               </button>
               <button class="btn btn-secondary btn-sm" id="btn-viz-play">
                 ▶ Play Simulation
@@ -1447,7 +1308,7 @@ while k > 0:
               <button class="btn btn-outline btn-sm" id="btn-viz-pause" style="display: none;">
                 ⏸ Pause
               </button>
-              <button class="btn btn-primary btn-sm" id="btn-viz-next" title="Next Step">
+              <button class="btn btn-primary" id="btn-viz-next" title="Next Step">
                 Next Step ▶
               </button>
               <button class="btn btn-outline btn-sm" id="btn-viz-restart" title="Restart to Step 1">
@@ -1785,9 +1646,11 @@ while k > 0:
         </div>
 
         <!-- ========================================================= -->
-        <!-- 8-STAGE DETAILED EXPLANATION SLIDES -->
+        <!-- 2-COLUMN SIMULATION VIEW: STEP EXPLANATION (LEFT) & CALCULATIONS (RIGHT) -->
         <!-- ========================================================= -->
-        <div class="viz-step-display card" id="viz-active-stage-card">
+        <div class="viz-dual-column">
+          <!-- LEFT: 8-Stage Detailed Explanation Slides -->
+          <div class="viz-step-display card" id="viz-active-stage-card">
           <!-- Slide 1: Input -->
           <div class="stage-slide" id="stage-slide-1">
             <div class="stage-header">
@@ -1997,79 +1860,8 @@ while k > 0:
           </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- BOTTOM STEPPER CONTROLS & NAVIGATION -->
-        <!-- ========================================================= -->
-        <div class="card viz-bottom-controls-card">
-          <div class="bottom-stage-info">
-            <span class="bottom-step-badge" id="viz-bottom-step-badge">Step 1 of 8</span>
-            <span class="bottom-step-title" id="viz-bottom-step-title">Input Parameters</span>
-          </div>
-          <div class="stepper-controls bottom-stepper-buttons">
-            <button class="btn btn-outline btn-sm" id="btn-viz-prev-bottom" title="Previous Step">
-              ◀ Previous
-            </button>
-            <button class="btn btn-secondary btn-sm" id="btn-viz-play-bottom">
-              ▶ Play Simulation
-            </button>
-            <button class="btn btn-outline btn-sm" id="btn-viz-pause-bottom" style="display: none;">
-              ⏸ Pause
-            </button>
-            <button class="btn btn-primary btn-sm" id="btn-viz-next-bottom" title="Next Step">
-              Next Step ▶
-            </button>
-            <button class="btn btn-outline btn-sm" id="btn-viz-restart-bottom" title="Restart to Step 1">
-              ↻ Restart
-            </button>
-          </div>
-        </div>
-
-        <!-- ========================================================= -->
-        <!-- 2-COLUMN: COORDINATE GRID VISUALIZATION & MATHEMATICAL TRACE -->
-        <!-- ========================================================= -->
-        <div class="viz-dual-column">
-          <!-- LEFT: ECC Point Visualization on Coordinate Grid -->
-          <div class="card grid-viz-card">
-            <div class="card-header">
-              <div>
-                <h3>ECC Finite Field Coordinate Grid (\(\mathbb{F}_p \times \mathbb{F}_p\))</h3>
-                <span class="hint-text">Discrete points \((x, y)\) satisfying \(y^2 \equiv x^3 + ax + b \pmod{p}\)</span>
-              </div>
-            </div>
-
-            <!-- Canvas Container -->
-            <div class="canvas-wrapper">
-              <canvas id="ecc-canvas" width="600" height="600"></canvas>
-              <div id="canvas-tooltip" class="canvas-tooltip"></div>
-            </div>
-
-            <!-- Coordinate Grid Legend -->
-            <div class="grid-legend">
-              <div class="legend-item">
-                <span class="legend-dot dot-curve-point"></span>
-                <span>Curve Point \((x, y)\)</span>
-              </div>
-              <div class="legend-item">
-                <span class="legend-dot dot-generator"></span>
-                <span id="legend-gen-text">Generator G (5, 1)</span>
-              </div>
-              <div class="legend-item">
-                <span class="legend-dot dot-alice"></span>
-                <span id="legend-alice-text">Alice Public (10, 6)</span>
-              </div>
-              <div class="legend-item">
-                <span class="legend-dot dot-bob"></span>
-                <span id="legend-bob-text">Bob Public (0, 6)</span>
-              </div>
-              <div class="legend-item">
-                <span class="legend-dot dot-shared"></span>
-                <span id="legend-shared-text">Shared Secret (6, 3)</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- RIGHT: Concrete Mathematical Calculations with Substituted Values -->
-          <div class="card math-calc-card">
+        <!-- RIGHT: Concrete Mathematical Calculations with Substituted Values -->
+        <div class="card math-calc-card">
             <div class="card-header">
               <div>
                 <h3>WHAT'S HAPPENING MATHEMATICALLY?</h3>
