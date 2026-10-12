@@ -241,204 +241,127 @@
         </div>
 
         <div class="theory-sections-container">
-          <!-- Subsection A: Elliptic Curve Cryptography -->
+          <!-- 1. Basic Concepts Card -->
           <div class="card theory-card">
             <div class="theory-header">
-              <span class="theory-badge">SUBSECTION A</span>
-              <h3>A. Elliptic Curve Cryptography</h3>
+              <span class="theory-badge">DEFINITIONS</span>
+              <h3>1. Basic Concepts</h3>
             </div>
             <div class="theory-body">
-              <p>
-                <strong>Elliptic Curve Cryptography (ECC)</strong> is a public-key cryptographic technique based on mathematical operations over points on an elliptic curve defined over a finite field.
-              </p>
-              
-              <div class="formula-callout-box">
-                <span class="formula-label">General Weierstrass Equation over Prime Finite Field \(\mathbb{F}_p\):</span>
-                <div class="formula-display-large">
-                  \[y^2 \equiv x^3 + ax + b \pmod{p}\]
-                </div>
-              </div>
-
-              <div class="theory-key-points">
-                <h4>Curve Parameters & Components:</h4>
-                <ul class="clean-bullet-list">
-                  <li><strong>\(a\) and \(b\):</strong> Curve parameters (coefficients) that define the specific elliptic curve equation.</li>
-                  <li><strong>\(p\):</strong> The prime integer defining the finite field \(\mathbb{F}_p = \{0, 1, 2, \dots, p-1\}\) over which all arithmetic is performed modulo \(p\).</li>
-                  <li><strong>Points on the Curve:</strong> Pairs of coordinates \((x, y)\) satisfying the modular equation belong to the curve, along with the special identity element known as the <em>Point at Infinity</em> (\(\mathcal{O}\)).</li>
-                  <li><strong>Generator / Base Point (\(G\)):</strong> A publicly known generator/base point \(G = (G_x, G_y)\) selected on the curve to generate a large cyclic subgroup of points for cryptographic operations.</li>
-                  <li><strong>Non-Singularity Condition:</strong> To ensure the curve is smooth with well-defined tangent lines at every point, the discriminant must satisfy:
-                    \[\Delta = 4a^3 + 27b^2 \not\equiv 0 \pmod{p}\]
-                  </li>
-                </ul>
-              </div>
+              <ul class="clean-bullet-list">
+                <li><strong>ECC (Elliptic Curve Cryptography):</strong> A public-key cryptography technique based on elliptic curve mathematics.</li>
+                <li><strong>ECDH (Elliptic Curve Diffie-Hellman):</strong> A method that allows two participants to calculate the same shared secret without directly sharing their private keys.</li>
+                <li><strong>Elliptic Curve:</strong> A mathematical equation that defines the valid points used in ECC.</li>
+                <li><strong>Finite Field:</strong> A mathematical system with a limited set of values where modulo arithmetic is performed.</li>
+                <li><strong>Generator Point (G):</strong> A selected point used as the starting point for public-key calculations.</li>
+                <li><strong>Private Key (k):</strong> A secret integer kept by each participant.</li>
+                <li><strong>Public Key (Q):</strong> A point calculated using the private key and generator point.</li>
+                <li><strong>Point Addition:</strong> Combines two different points on the curve to obtain another point.</li>
+                <li><strong>Point Doubling:</strong> Adds a point to itself to obtain another point.</li>
+                <li><strong>Scalar Multiplication:</strong> Multiplies a point by an integer using point addition and point doubling.</li>
+                <li><strong>Shared Secret:</strong> A common point independently calculated by both participants.</li>
+                <li><strong>ECDLP (Elliptic Curve Discrete Logarithm Problem):</strong> Recovering the private scalar from the generator point and public key is computationally difficult with suitable real-world parameters.</li>
+              </ul>
             </div>
           </div>
 
-          <!-- Subsection B: Point Addition -->
-          <div class="card theory-card">
+          <!-- 2. Important Formulas Card -->
+          <div class="card theory-card" style="border-top-color: var(--orange-accent);">
             <div class="theory-header">
-              <span class="theory-badge">SUBSECTION B</span>
-              <h3>B. Point Addition & Point Doubling</h3>
+              <span class="theory-badge" style="color: var(--emerald-dark); background: var(--bg-emerald-soft); border-color: rgba(5, 150, 105, 0.25);">EQUATIONS</span>
+              <h3>2. Important Formulas</h3>
             </div>
             <div class="theory-body">
-              <p>
-                Two points on an elliptic curve can be combined algebraically to produce another point on the curve. This forms an abelian group structure:
-              </p>
-              <div class="formula-box-emerald">
-                \[P + Q = R\]
-              </div>
-              
-              <div class="theory-subgrid-2">
-                <!-- Point Addition -->
-                <div class="theory-subcard">
-                  <h4>1. Point Addition (\(P \ne Q\))</h4>
-                  <p>When adding two distinct points \(P = (x_1, y_1)\) and \(Q = (x_2, y_2)\) where \(x_1 \ne x_2\), the slope \(m\) of the line through \(P\) and \(Q\) is:</p>
-                  <div class="formula-box-light">
-                    \[m = \frac{y_2 - y_1}{x_2 - x_1} \pmod{p}\]
-                  </div>
-                  <p>The resulting point coordinates \(R = (x_3, y_3)\) are computed as:</p>
-                  <div class="formula-box-light">
-                    \[x_3 = (m^2 - x_1 - x_2) \pmod{p}\]
-                    \[y_3 = (m(x_1 - x_3) - y_1) \pmod{p}\]
-                  </div>
-                </div>
+              <div class="theory-subgrid-formulas" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
 
-                <!-- Point Doubling -->
-                <div class="theory-subcard">
-                  <h4>2. Point Doubling (\(P + P = 2P\))</h4>
-                  <p>When adding a point to itself (\(P = Q\)), the slope \(m\) is the tangent to the curve at \((x_1, y_1)\):</p>
-                  <div class="formula-box-orange">
-                    \[m = \frac{3x_1^2 + a}{2y_1} \pmod{p}\]
-                  </div>
-                  <p>The resulting doubled point coordinates \(2P = (x_3, y_3)\) are:</p>
-                  <div class="formula-box-orange">
-                    \[x_3 = (m^2 - 2x_1) \pmod{p}\]
-                    \[y_3 = (m(x_1 - x_3) - y_1) \pmod{p}\]
-                  </div>
-                </div>
-              </div>
-
-              <div class="theory-note-box">
-                <strong>Point at Infinity (\(\mathcal{O}\)):</strong> The additive identity element satisfying \(P + \mathcal{O} = P\) and \(P + (-P) = \mathcal{O}\) for all curve points \(P\).
-              </div>
-            </div>
-          </div>
-
-          <!-- Subsection C: Scalar Multiplication -->
-          <div class="card theory-card">
-            <div class="theory-header">
-              <span class="theory-badge">SUBSECTION C</span>
-              <h3>C. Scalar Multiplication & Discrete Logarithm Problem</h3>
-            </div>
-            <div class="theory-body">
-              <p>
-                Scalar multiplication combines a point \(G\) with an integer scalar \(k\) by repeated addition:
-              </p>
-              <div class="formula-box-emerald">
-                \[kG = \underbrace{G + G + G + \dots + G}_{k \text{ times}}\]
-              </div>
-
-              <div class="theory-split-layout">
-                <div class="split-col">
-                  <h4>Efficiency of Computation</h4>
-                  <p>
-                    Scalar multiplication is computed in \(\mathcal{O}(\log_2 k)\) operations using the <strong>Double-and-Add Algorithm</strong> (the binary expansion of \(k\)). This makes computing public keys \(kG\) extremely fast even for large private keys.
-                  </p>
-                </div>
-
-                <div class="split-col">
-                  <h4>Elliptic Curve Discrete Logarithm Problem (ECDLP)</h4>
-                  <p>
-                    While scalar multiplication \(kG\) is easy to compute, reversing it—determining the scalar \(k\) given base point \(G\) and public point \(P = kG\)—is computationally infeasible for appropriately chosen parameters. This one-way asymmetry is the <strong>Elliptic Curve Discrete Logarithm Problem (ECDLP)</strong> and serves as the security foundation of ECC.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Subsection D: ECDH -->
-          <div class="card theory-card">
-            <div class="theory-header">
-              <span class="theory-badge">SUBSECTION D</span>
-              <h3>D. Elliptic Curve Diffie-Hellman (ECDH) Key Exchange</h3>
-            </div>
-            <div class="theory-body">
-              <p>
-                The ECDH protocol allows two communicating parties (Alice and Bob) to independently compute a shared cryptographic secret:
-              </p>
-
-              <div class="ecdh-protocol-grid">
-                <div class="ecdh-party-box party-alice-box">
-                  <div class="party-box-header">
-                    <span class="party-icon">👩‍💻</span>
-                    <h4>Alice</h4>
-                  </div>
-                  <p>Alice selects private key <strong>\(a\)</strong> (secret).</p>
-                  <p>Alice calculates public key:</p>
-                  <div class="formula-box-emerald">
-                    \[A = aG\]
-                  </div>
-                  <p>Alice receives Bob's public key \(B\) and computes:</p>
-                  <div class="formula-box-emerald">
-                    \[S = aB\]
-                  </div>
-                </div>
-
-                <div class="ecdh-channel-center">
-                  <div class="channel-arrow-box">
-                    <span class="channel-badge">PUBLIC NETWORK CHANNEL</span>
-                    <div class="channel-vector">
-                      <span>Alice transmits Public Key \(A \longrightarrow\) Bob</span>
+                <!-- Formula 1: Elliptic Curve Equation -->
+                <div class="theory-subcard" style="border-top: 3px solid var(--emerald-primary); display: flex; flex-direction: column; justify-content: space-between;">
+                  <div>
+                    <h4 style="margin-bottom: 12px;">Formula 1: Elliptic Curve Equation</h4>
+                    <div class="formula-box-light" style="margin-bottom: 14px;">
+                      \[y^2\equiv x^3+ax+b\pmod p\]
                     </div>
-                    <div class="channel-vector">
-                      <span>Alice \(\longleftarrow\) Bob transmits Public Key \(B\)</span>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.55;">
+                      <strong>Symbols:</strong> \(x,y\) are point coordinates; \(a,b\) are curve parameters; \(p\) is the prime modulus.
+                    </p>
+                  </div>
+                  <div class="theory-note-box" style="margin-top: 0; border-left-color: var(--emerald-primary);">
+                    <strong>Meaning:</strong> Defines the valid points on the elliptic curve.
+                  </div>
+                </div>
+
+                <!-- Formula 2: Point Addition -->
+                <div class="theory-subcard" style="border-top: 3px solid var(--blue-primary); display: flex; flex-direction: column; justify-content: space-between;">
+                  <div>
+                    <h4 style="margin-bottom: 8px;">Formula 2: Point Addition</h4>
+                    <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 10px;">For two different points \(P=(x_1,y_1)\) and \(Q=(x_2,y_2)\):</p>
+                    <div class="formula-box-light" style="margin-bottom: 14px;">
+                      \[m=\frac{y_2-y_1}{x_2-x_1}\pmod p\]
+                      \[x_3=m^2-x_1-x_2\pmod p\]
+                      \[y_3=m(x_1-x_3)-y_1\pmod p\]
                     </div>
-                    <div class="channel-safe-tag">
-                      Only Public Keys \(A\) and \(B\) cross the channel!
+                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.55;">
+                      <strong>Symbols:</strong> \(m\) is the slope; \(x_1,y_1,x_2,y_2\) are input coordinates; \(x_3,y_3\) are output coordinates.
+                    </p>
+                  </div>
+                  <div class="theory-note-box" style="margin-top: 0; border-left-color: var(--blue-primary);">
+                    <strong>Meaning:</strong> Combines two different curve points to calculate a new point.
+                  </div>
+                </div>
+
+                <!-- Formula 3: Point Doubling -->
+                <div class="theory-subcard" style="border-top: 3px solid var(--orange-accent); display: flex; flex-direction: column; justify-content: space-between;">
+                  <div>
+                    <h4 style="margin-bottom: 8px;">Formula 3: Point Doubling</h4>
+                    <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 10px;">For a point \(P=(x_1,y_1)\):</p>
+                    <div class="formula-box-light" style="margin-bottom: 14px;">
+                      \[m=\frac{3x_1^2+a}{2y_1}\pmod p\]
+                      \[x_3=m^2-2x_1\pmod p\]
+                      \[y_3=m(x_1-x_3)-y_1\pmod p\]
                     </div>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.55;">
+                      <strong>Symbols:</strong> \(m\) is the tangent slope; \(a\) is a curve parameter; \(x_1,y_1\) are input coordinates; \(x_3,y_3\) are output coordinates.
+                    </p>
+                  </div>
+                  <div class="theory-note-box" style="margin-top: 0; border-left-color: var(--orange-accent);">
+                    <strong>Meaning:</strong> Adds a point to itself to calculate a new point.
                   </div>
                 </div>
 
-                <div class="ecdh-party-box party-bob-box">
-                  <div class="party-box-header">
-                    <span class="party-icon">👨‍💻</span>
-                    <h4>Bob</h4>
+                <!-- Formula 4: Scalar Multiplication and Public-Key Generation -->
+                <div class="theory-subcard" style="border-top: 3px solid var(--emerald-primary); display: flex; flex-direction: column; justify-content: space-between;">
+                  <div>
+                    <h4 style="margin-bottom: 12px;">Formula 4: Scalar Multiplication and Public-Key Generation</h4>
+                    <div class="formula-box-light" style="margin-bottom: 14px;">
+                      \[Q=kG\]
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.55;">
+                      <strong>Symbols:</strong> \(Q\) is the public key; \(k\) is the private-key scalar; \(G\) is the generator point.
+                    </p>
                   </div>
-                  <p>Bob selects private key <strong>\(b\)</strong> (secret).</p>
-                  <p>Bob calculates public key:</p>
-                  <div class="formula-box-orange">
-                    \[B = bG\]
-                  </div>
-                  <p>Bob receives Alice's public key \(A\) and computes:</p>
-                  <div class="formula-box-orange">
-                    \[S = bA\]
+                  <div class="theory-note-box" style="margin-top: 0; border-left-color: var(--emerald-primary);">
+                    <strong>Meaning:</strong> Calculates a public key using the private key and generator point through point addition and doubling.
                   </div>
                 </div>
-              </div>
 
-              <!-- Shared Secret Identity Proof -->
-              <div class="math-proof-banner">
-                <h4>Derivation of the Shared Secret:</h4>
-                <div class="proof-equation">
-                  \[S = aB = a(bG) = b(aG) = bA = abG\]
+                <!-- Formula 5: ECDH Shared Secret -->
+                <div class="theory-subcard" style="border-top: 3px solid var(--orange-accent); display: flex; flex-direction: column; justify-content: space-between;">
+                  <div>
+                    <h4 style="margin-bottom: 12px;">Formula 5: ECDH Shared Secret</h4>
+                    <div class="formula-box-light" style="margin-bottom: 14px;">
+                      \[A=aG,\qquad B=bG\]
+                      \[S_A=aB,\qquad S_B=bA\]
+                      \[S_A=S_B=abG\]
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.55;">
+                      <strong>Symbols:</strong> \(a,b\) are Alice's and Bob's private keys; \(A,B\) are their public keys; \(G\) is the generator point; \(S_A,S_B\) are the shared secrets.
+                    </p>
+                  </div>
+                  <div class="theory-note-box" style="margin-top: 0; border-left-color: var(--orange-accent);">
+                    <strong>Meaning:</strong> Alice and Bob independently calculate the same shared secret.
+                  </div>
                 </div>
-                <p>
-                  Thus both parties obtain the same shared secret point \(S\) independently on their local machines.
-                </p>
-              </div>
 
-              <!-- Critical Security Rule -->
-              <div class="security-card-highlight">
-                <div class="sec-highlight-icon">🛡️</div>
-                <div class="sec-highlight-body">
-                  <h4>CRITICAL SECURITY INVARIANT:</h4>
-                  <p class="sec-highlight-text">
-                    <strong>PRIVATE KEYS NEVER TRAVEL THROUGH THE NETWORK.</strong>
-                  </p>
-                  <p>
-                    Only public keys \(A\) and \(B\) are exchanged. An eavesdropper intercepting the transmission cannot determine \(a\) or \(b\) due to the discrete logarithm problem, and therefore cannot derive the shared secret \(S = abG\).
-                  </p>
-                </div>
               </div>
             </div>
           </div>
@@ -1943,65 +1866,36 @@ while k > 0:
           </div>
         </div>
 
-        <!-- Laboratory Conclusion Hero Card -->
+        <!-- Conclusion Card -->
         <div class="card verification-result-banner success" style="margin-bottom: 24px;">
           <div class="banner-icon-large" style="color: var(--emerald-primary);">🎓</div>
           <div class="banner-details">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-              <span class="badge-tag" style="background: var(--emerald-primary); color: white;">Laboratory Conclusion</span>
-              <h3 style="margin: 0; color: var(--emerald-dark); font-size: 1.25rem;">Overall Experiment Summary</h3>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+              <span class="badge-tag" style="background: var(--emerald-primary); color: white;">Conclusion</span>
+              <h3 style="margin: 0; color: var(--emerald-dark); font-size: 1.25rem;">Conclusion</h3>
             </div>
-            <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text-main); margin-bottom: 0;">
-              This lab successfully demonstrates the concepts of Elliptic Curve Cryptography (ECC) and the Elliptic Curve Diffie-Hellman (ECDH) key exchange mechanism. Through interactive simulations, graph visualization, and mathematical calculations, users can understand curve validation, point operations, public key generation, and shared secret calculation. The lab demonstrates that Alice and Bob can independently calculate the same shared secret without directly sharing their private keys. Thus, the lab helps users understand the working principle of ECC and ECDH in a simple and interactive way.
-            </p>
+            <ul class="clean-bullet-list" style="margin: 0;">
+              <li>ECC is a public-key cryptography technique that uses elliptic curve mathematics.</li>
+              <li>ECDH allows two participants to establish the same shared secret without directly exchanging their private keys.</li>
+              <li>Public keys are generated using private keys and a common generator point.</li>
+              <li>Both participants calculate the same shared secret using their own private keys and each other's public keys.</li>
+              <li>The shared secret can be used with an appropriate key-derivation process to obtain a symmetric encryption key.</li>
+            </ul>
           </div>
         </div>
 
-        <!-- Four Working Principles Demonstrated -->
-        <div class="card" style="padding: 22px 24px; margin-bottom: 24px;">
-          <h3 style="margin-top: 0; margin-bottom: 16px; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
-            <span>🔬</span> Key Concepts Demonstrated in this Laboratory
-          </h3>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
-            <div style="background: var(--bg-subtle); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 14px 16px;">
-              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                <span style="font-size: 1.1rem;">⚙️</span>
-                <strong style="color: var(--text-main); font-size: 0.95rem;">1. Curve Validation</strong>
-              </div>
-              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5;">
-                Checked discriminant non-singularity (\(\Delta \ne 0\)) and mapped all valid discrete affine coordinates in finite field \(\mathbb{F}_p\).
-              </p>
+        <!-- Limitation Card -->
+        <div class="card" style="padding: 22px 24px; margin-bottom: 24px; border-left: 6px solid var(--orange-accent); background: var(--bg-accent-soft);">
+          <div class="banner-details">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+              <span class="badge-tag" style="background: var(--orange-accent); color: white;">Limitation</span>
+              <h3 style="margin: 0; color: var(--orange-dark); font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">
+                <span>⚠️</span> Limitations
+              </h3>
             </div>
-
-            <div style="background: var(--bg-subtle); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 14px 16px;">
-              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                <span style="font-size: 1.1rem;">➕</span>
-                <strong style="color: var(--text-main); font-size: 0.95rem;">2. Point Operations</strong>
-              </div>
-              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5;">
-                Computed modular chord-and-tangent point addition (\(P + Q\)) and point doubling (\(2P\)) with modular inverse division.
-              </p>
-            </div>
-
-            <div style="background: var(--bg-subtle); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 14px 16px;">
-              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                <span style="font-size: 1.1rem;">🔑</span>
-                <strong style="color: var(--text-main); font-size: 0.95rem;">3. Public Key Derivation</strong>
-              </div>
-              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5;">
-                Performed Double-and-Add scalar multiplication to compute public keys \(A = d_A \cdot G\) and \(B = d_B \cdot G\).
-              </p>
-            </div>
-
-            <div style="background: var(--bg-subtle); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 14px 16px;">
-              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-                <span style="font-size: 1.1rem;">🤝</span>
-                <strong style="color: var(--text-main); font-size: 0.95rem;">4. Shared Secret Agreement</strong>
-              </div>
-              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5;">
-                Derived matching shared secret \(S = d_A \cdot B = d_B \cdot A\) confirming abelian group commutativity and zero key leakage.
-              </p>
-            </div>
+            <p style="font-size: 0.98rem; line-height: 1.65; color: var(--text-main); margin: 0;">
+              <strong>Man-in-the-Middle Attack:</strong> ECDH alone does not verify participant identities, so an attacker may intercept and replace public keys unless suitable authentication is used.
+            </p>
           </div>
         </div>
 
