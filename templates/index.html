@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ECC ECDH LAB - Elliptic Curve Cryptography Simulator</title>
-  <meta name="description" content="Academic simulator for Elliptic Curve Cryptography (ECC) and Diffie-Hellman Key Exchange (ECDH) over finite fields.">
+  <meta name="description"
+    content="Academic simulator for Elliptic Curve Cryptography (ECC) and Diffie-Hellman Key Exchange (ECDH) over finite fields.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="/static/css/style.css">
   <!-- MathJax 3: Configure BEFORE loading the script -->
   <script>
@@ -16,7 +20,7 @@
         inlineMath: [['$', '$'], ['\\(', '\\)']],
         displayMath: [['$$', '$$'], ['\\[', '\\]']],
         processEscapes: true,
-        packages: {'[+]': ['ams']}
+        packages: { '[+]': ['ams'] }
       },
       options: {
         skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
@@ -30,6 +34,22 @@
   </script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
+```html
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']]
+    },
+    startup: {
+      typeset: true
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+```
+
 <body>
 
   <!-- Top Mobile Bar -->
@@ -116,7 +136,8 @@
         <!-- Collapsible Lab Tools Section (Preserved Original Features) -->
         <div class="sidebar-section-divider"></div>
         <div class="sidebar-collapsible-wrapper">
-          <button class="sidebar-collapsible-toggle" id="lab-tools-toggle" aria-expanded="false" aria-controls="lab-tools-content">
+          <button class="sidebar-collapsible-toggle" id="lab-tools-toggle" aria-expanded="false"
+            aria-controls="lab-tools-content">
             <div class="toggle-left">
               <span class="toggle-icon">🛠️</span>
               <span class="toggle-title">Lab Tools</span>
@@ -179,7 +200,6 @@
 
     <!-- Main Content Area on Right -->
     <main class="main-content" id="main-content">
-
       <!-- Toast Alert Notification Area -->
       <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
@@ -187,6 +207,37 @@
       <!-- ACADEMIC SECTION 01: AIM & INTRODUCTION -->
       <!-- ========================================================= -->
       <section class="view-panel active" id="view-aim">
+        <!-- Main Project Title -->
+        <div style="
+    background: linear-gradient(135deg, #ecfdf5, #fff7ed);
+    border-left: 6px solid #059669;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 0 0 28px 0;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+  ">
+          <h1 style="
+      margin: 0;
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 800;
+      line-height: 1.4;
+      color: #064e3b;
+      letter-spacing: -0.5px;
+    ">
+            Implementation of Elliptic Curve Cryptography (ECC) Key Exchange
+          </h1>
+
+          <p style="
+      margin: 8px 0 0;
+      font-size: 14px;
+      color: #64748b;
+      font-weight: 500;
+    ">
+            Cryptography &amp; Network Security Laboratory
+          </p>
+        </div>
+
+        <!-- Existing Aim page content continues here -->
         <div class="view-header">
           <div class="header-left">
             <div class="section-tag-pill">Academic Section 01</div>
@@ -207,7 +258,11 @@
             <span class="aim-subject">Cryptography &amp; Network Security Lab</span>
           </div>
           <p class="aim-intro-text">
-            Elliptic Curve Cryptography (ECC) is a public-key cryptography technique that uses mathematical operations on elliptic curves to support secure communication. Elliptic Curve Diffie-Hellman (ECDH) is a key exchange mechanism based on ECC that allows two participants to establish a common shared secret over a public channel without directly sharing their private keys. This laboratory experiment demonstrates the basic mathematical operations and step-by-step process involved in ECDH key exchange.
+            Elliptic Curve Cryptography (ECC) is a public-key cryptography technique that uses mathematical operations
+            on elliptic curves to support secure communication. Elliptic Curve Diffie-Hellman (ECDH) is a key exchange
+            mechanism based on ECC that allows two participants to establish a common shared secret over a public
+            channel without directly sharing their private keys. This laboratory experiment demonstrates the basic
+            mathematical operations and step-by-step process involved in ECDH key exchange.
           </p>
         </div>
 
@@ -218,7 +273,9 @@
             <span class="aim-subject">Primary Laboratory Aim</span>
           </div>
           <blockquote class="aim-quote-text" style="margin-bottom: 0;">
-            To study and demonstrate Elliptic Curve Cryptography (ECC) and the ECDH key exchange mechanism through a web-based laboratory experiment and verify that both participants independently calculate the same shared secret.
+            To study and demonstrate Elliptic Curve Cryptography (ECC) and the ECDH key exchange mechanism through a
+            web-based laboratory experiment and verify that both participants independently calculate the same shared
+            secret.
           </blockquote>
         </div>
       </section>
@@ -249,18 +306,27 @@
             </div>
             <div class="theory-body">
               <ul class="clean-bullet-list">
-                <li><strong>ECC (Elliptic Curve Cryptography):</strong> A public-key cryptography technique based on elliptic curve mathematics.</li>
-                <li><strong>ECDH (Elliptic Curve Diffie-Hellman):</strong> A method that allows two participants to calculate the same shared secret without directly sharing their private keys.</li>
-                <li><strong>Elliptic Curve:</strong> A mathematical equation that defines the valid points used in ECC.</li>
-                <li><strong>Finite Field:</strong> A mathematical system with a limited set of values where modulo arithmetic is performed.</li>
-                <li><strong>Generator Point (G):</strong> A selected point used as the starting point for public-key calculations.</li>
+                <li><strong>ECC (Elliptic Curve Cryptography):</strong> A public-key cryptography technique based on
+                  elliptic curve mathematics.</li>
+                <li><strong>ECDH (Elliptic Curve Diffie-Hellman):</strong> A method that allows two participants to
+                  calculate the same shared secret without directly sharing their private keys.</li>
+                <li><strong>Elliptic Curve:</strong> A mathematical equation that defines the valid points used in ECC.
+                </li>
+                <li><strong>Finite Field:</strong> A mathematical system with a limited set of values where modulo
+                  arithmetic is performed.</li>
+                <li><strong>Generator Point (G):</strong> A selected point used as the starting point for public-key
+                  calculations.</li>
                 <li><strong>Private Key (k):</strong> A secret integer kept by each participant.</li>
                 <li><strong>Public Key (Q):</strong> A point calculated using the private key and generator point.</li>
-                <li><strong>Point Addition:</strong> Combines two different points on the curve to obtain another point.</li>
+                <li><strong>Point Addition:</strong> Combines two different points on the curve to obtain another point.
+                </li>
                 <li><strong>Point Doubling:</strong> Adds a point to itself to obtain another point.</li>
-                <li><strong>Scalar Multiplication:</strong> Multiplies a point by an integer using point addition and point doubling.</li>
+                <li><strong>Scalar Multiplication:</strong> Multiplies a point by an integer using point addition and
+                  point doubling.</li>
                 <li><strong>Shared Secret:</strong> A common point independently calculated by both participants.</li>
-                <li><strong>ECDLP (Elliptic Curve Discrete Logarithm Problem):</strong> Recovering the private scalar from the generator point and public key is computationally difficult with suitable real-world parameters.</li>
+                <li><strong>ECDLP (Elliptic Curve Discrete Logarithm Problem):</strong> Recovering the private scalar
+                  from the generator point and public key is computationally difficult with suitable real-world
+                  parameters.</li>
               </ul>
             </div>
           </div>
@@ -268,21 +334,25 @@
           <!-- 2. Important Formulas Card -->
           <div class="card theory-card" style="border-top-color: var(--orange-accent);">
             <div class="theory-header">
-              <span class="theory-badge" style="color: var(--emerald-dark); background: var(--bg-emerald-soft); border-color: rgba(5, 150, 105, 0.25);">EQUATIONS</span>
+              <span class="theory-badge"
+                style="color: var(--emerald-dark); background: var(--bg-emerald-soft); border-color: rgba(5, 150, 105, 0.25);">EQUATIONS</span>
               <h3>2. Important Formulas</h3>
             </div>
             <div class="theory-body">
-              <div class="theory-subgrid-formulas" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+              <div class="theory-subgrid-formulas"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
 
                 <!-- Formula 1: Elliptic Curve Equation -->
-                <div class="theory-subcard" style="border-top: 3px solid var(--emerald-primary); display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="theory-subcard"
+                  style="border-top: 3px solid var(--emerald-primary); display: flex; flex-direction: column; justify-content: space-between;">
                   <div>
                     <h4 style="margin-bottom: 12px;">Formula 1: Elliptic Curve Equation</h4>
                     <div class="formula-box-light" style="margin-bottom: 14px;">
                       \[y^2\equiv x^3+ax+b\pmod p\]
                     </div>
                     <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.55;">
-                      <strong>Symbols:</strong> \(x,y\) are point coordinates; \(a,b\) are curve parameters; \(p\) is the prime modulus.
+                      <strong>Symbols:</strong> \(x,y\) are point coordinates; \(a,b\) are curve parameters; \(p\) is
+                      the prime modulus.
                     </p>
                   </div>
                   <div class="theory-note-box" style="margin-top: 0; border-left-color: var(--emerald-primary);">
@@ -291,17 +361,20 @@
                 </div>
 
                 <!-- Formula 2: Point Addition -->
-                <div class="theory-subcard" style="border-top: 3px solid var(--blue-primary); display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="theory-subcard"
+                  style="border-top: 3px solid var(--blue-primary); display: flex; flex-direction: column; justify-content: space-between;">
                   <div>
                     <h4 style="margin-bottom: 8px;">Formula 2: Point Addition</h4>
-                    <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 10px;">For two different points \(P=(x_1,y_1)\) and \(Q=(x_2,y_2)\):</p>
+                    <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 10px;">For two different
+                      points \(P=(x_1,y_1)\) and \(Q=(x_2,y_2)\):</p>
                     <div class="formula-box-light" style="margin-bottom: 14px;">
                       \[m=\frac{y_2-y_1}{x_2-x_1}\pmod p\]
                       \[x_3=m^2-x_1-x_2\pmod p\]
                       \[y_3=m(x_1-x_3)-y_1\pmod p\]
                     </div>
                     <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.55;">
-                      <strong>Symbols:</strong> \(m\) is the slope; \(x_1,y_1,x_2,y_2\) are input coordinates; \(x_3,y_3\) are output coordinates.
+                      <strong>Symbols:</strong> \(m\) is the slope; \(x_1,y_1,x_2,y_2\) are input coordinates;
+                      \(x_3,y_3\) are output coordinates.
                     </p>
                   </div>
                   <div class="theory-note-box" style="margin-top: 0; border-left-color: var(--blue-primary);">
@@ -310,17 +383,20 @@
                 </div>
 
                 <!-- Formula 3: Point Doubling -->
-                <div class="theory-subcard" style="border-top: 3px solid var(--orange-accent); display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="theory-subcard"
+                  style="border-top: 3px solid var(--orange-accent); display: flex; flex-direction: column; justify-content: space-between;">
                   <div>
                     <h4 style="margin-bottom: 8px;">Formula 3: Point Doubling</h4>
-                    <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 10px;">For a point \(P=(x_1,y_1)\):</p>
+                    <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 10px;">For a point
+                      \(P=(x_1,y_1)\):</p>
                     <div class="formula-box-light" style="margin-bottom: 14px;">
                       \[m=\frac{3x_1^2+a}{2y_1}\pmod p\]
                       \[x_3=m^2-2x_1\pmod p\]
                       \[y_3=m(x_1-x_3)-y_1\pmod p\]
                     </div>
                     <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.55;">
-                      <strong>Symbols:</strong> \(m\) is the tangent slope; \(a\) is a curve parameter; \(x_1,y_1\) are input coordinates; \(x_3,y_3\) are output coordinates.
+                      <strong>Symbols:</strong> \(m\) is the tangent slope; \(a\) is a curve parameter; \(x_1,y_1\) are
+                      input coordinates; \(x_3,y_3\) are output coordinates.
                     </p>
                   </div>
                   <div class="theory-note-box" style="margin-top: 0; border-left-color: var(--orange-accent);">
@@ -329,23 +405,27 @@
                 </div>
 
                 <!-- Formula 4: Scalar Multiplication and Public-Key Generation -->
-                <div class="theory-subcard" style="border-top: 3px solid var(--emerald-primary); display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="theory-subcard"
+                  style="border-top: 3px solid var(--emerald-primary); display: flex; flex-direction: column; justify-content: space-between;">
                   <div>
                     <h4 style="margin-bottom: 12px;">Formula 4: Scalar Multiplication and Public-Key Generation</h4>
                     <div class="formula-box-light" style="margin-bottom: 14px;">
                       \[Q=kG\]
                     </div>
                     <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.55;">
-                      <strong>Symbols:</strong> \(Q\) is the public key; \(k\) is the private-key scalar; \(G\) is the generator point.
+                      <strong>Symbols:</strong> \(Q\) is the public key; \(k\) is the private-key scalar; \(G\) is the
+                      generator point.
                     </p>
                   </div>
                   <div class="theory-note-box" style="margin-top: 0; border-left-color: var(--emerald-primary);">
-                    <strong>Meaning:</strong> Calculates a public key using the private key and generator point through point addition and doubling.
+                    <strong>Meaning:</strong> Calculates a public key using the private key and generator point through
+                    point addition and doubling.
                   </div>
                 </div>
 
                 <!-- Formula 5: ECDH Shared Secret -->
-                <div class="theory-subcard" style="border-top: 3px solid var(--orange-accent); display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="theory-subcard"
+                  style="border-top: 3px solid var(--orange-accent); display: flex; flex-direction: column; justify-content: space-between;">
                   <div>
                     <h4 style="margin-bottom: 12px;">Formula 5: ECDH Shared Secret</h4>
                     <div class="formula-box-light" style="margin-bottom: 14px;">
@@ -354,7 +434,8 @@
                       \[S_A=S_B=abG\]
                     </div>
                     <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.55;">
-                      <strong>Symbols:</strong> \(a,b\) are Alice's and Bob's private keys; \(A,B\) are their public keys; \(G\) is the generator point; \(S_A,S_B\) are the shared secrets.
+                      <strong>Symbols:</strong> \(a,b\) are Alice's and Bob's private keys; \(A,B\) are their public
+                      keys; \(G\) is the generator point; \(S_A,S_B\) are the shared secrets.
                     </p>
                   </div>
                   <div class="theory-note-box" style="margin-top: 0; border-left-color: var(--orange-accent);">
@@ -529,7 +610,8 @@
               <p>Alice and Bob transmit their public keys \(A\) and \(B\) across the communication channel.</p>
               <div class="critical-notice-box">
                 <span class="crit-icon">⚠️</span>
-                <strong>IMPORTANT:</strong> Only public keys are exchanged. Private keys remain with their respective users.
+                <strong>IMPORTANT:</strong> Only public keys are exchanged. Private keys remain with their respective
+                users.
               </div>
             </div>
           </div>
@@ -591,7 +673,8 @@
 
         <div class="card procedure-cta-card">
           <h3>Execute this Procedure in the Simulation</h3>
-          <p>Follow every step in the 8-stage interactive laboratory simulator with animated packet dispatch and live mathematical traces:</p>
+          <p>Follow every step in the 8-stage interactive laboratory simulator with animated packet dispatch and live
+            mathematical traces:</p>
           <button class="btn btn-primary btn-lg" onclick="app.navigateTo('simulation')">
             <span>🚀 Open Interactive Simulation →</span>
           </button>
@@ -618,9 +701,11 @@
           <div class="banner-content">
             <h3>Interactive Cryptographic Simulator</h3>
             <p>
-              This laboratory implements genuine <strong>Weierstrass Elliptic Curves</strong> over the finite field 
-              $\mathbb{F}_p$ and demonstrates the <strong>Elliptic Curve Diffie-Hellman (ECDH)</strong> key agreement protocol.
-              Enter custom parameters, inspect finite field point addition and doubling, plot the discrete point group, and trace key exchange step-by-step.
+              This laboratory implements genuine <strong>Weierstrass Elliptic Curves</strong> over the finite field
+              $\mathbb{F}_p$ and demonstrates the <strong>Elliptic Curve Diffie-Hellman (ECDH)</strong> key agreement
+              protocol.
+              Enter custom parameters, inspect finite field point addition and doubling, plot the discrete point group,
+              and trace key exchange step-by-step.
             </p>
           </div>
           <div class="quick-preset-container">
@@ -632,7 +717,7 @@
         </div>
 
         <h2 class="section-title">Current Simulation Status</h2>
-        
+
         <div class="summary-cards-grid">
           <!-- Card 1: Curve Equation -->
           <div class="metric-card">
@@ -709,7 +794,8 @@
 
         <div class="dash-quick-actions card">
           <h3>Quick Navigation</h3>
-          <p>Follow the standard cryptographic workflow to configure parameters, perform key exchange, and visualize the mathematics:</p>
+          <p>Follow the standard cryptographic workflow to configure parameters, perform key exchange, and visualize the
+            mathematics:</p>
           <div class="btn-group-responsive">
             <button class="btn btn-secondary" onclick="app.navigateTo('curve-setup')">
               ⚙️ Configure Curve & Generator
@@ -746,12 +832,16 @@
               <h3>What is Elliptic Curve Cryptography (ECC)?</h3>
             </div>
             <p>
-              ECC is an asymmetric public-key cryptosystem based on the algebraic structure of elliptic curves over finite fields. 
-              Its primary security relies on the <strong>Elliptic Curve Discrete Logarithm Problem (ECDLP)</strong>: given a base point \(G\)
-              and a public point \(P = k \cdot G\), it is computationally infeasible to determine the secret scalar \(k\).
+              ECC is an asymmetric public-key cryptosystem based on the algebraic structure of elliptic curves over
+              finite fields.
+              Its primary security relies on the <strong>Elliptic Curve Discrete Logarithm Problem (ECDLP)</strong>:
+              given a base point \(G\)
+              and a public point \(P = k \cdot G\), it is computationally infeasible to determine the secret scalar
+              \(k\).
             </p>
             <div class="concept-highlight">
-              <strong>Key Advantage:</strong> Equivalent security to RSA with significantly smaller keys (e.g. 256-bit ECC \(\approx\) 3072-bit RSA).
+              <strong>Key Advantage:</strong> Equivalent security to RSA with significantly smaller keys (e.g. 256-bit
+              ECC \(\approx\) 3072-bit RSA).
             </div>
           </div>
 
@@ -762,7 +852,8 @@
               <h3>The Elliptic Curve Equation</h3>
             </div>
             <p>
-              In our simulator, we use the standard <strong>Weierstrass Equation</strong> over a prime finite field \(\mathbb{F}_p\):
+              In our simulator, we use the standard <strong>Weierstrass Equation</strong> over a prime finite field
+              \(\mathbb{F}_p\):
             </p>
             <div class="formula-box-emerald">
               \[y^2 \equiv x^3 + ax + b \pmod{p}\]
@@ -782,10 +873,12 @@
               <h3>What is a Finite Field (\(\mathbb{F}_p\))?</h3>
             </div>
             <p>
-              Instead of smooth, continuous real numbers \(\mathbb{R}\), finite field cryptography uses modular arithmetic over integers modulo a prime \(p\): \(\{0, 1, 2, \dots, p-1\}\).
+              Instead of smooth, continuous real numbers \(\mathbb{R}\), finite field cryptography uses modular
+              arithmetic over integers modulo a prime \(p\): \(\{0, 1, 2, \dots, p-1\}\).
             </p>
             <p>
-              Division in \(\mathbb{F}_p\) is accomplished by computing the <strong>modular multiplicative inverse</strong> using Fermat's Little Theorem or the Extended Euclidean Algorithm:
+              Division in \(\mathbb{F}_p\) is accomplished by computing the <strong>modular multiplicative
+                inverse</strong> using Fermat's Little Theorem or the Extended Euclidean Algorithm:
             </p>
             <div class="formula-box-light">
               \[\frac{1}{d} \equiv d^{-1} \equiv d^{p-2} \pmod{p}\]
@@ -802,7 +895,8 @@
               A point \(P = (x, y)\) is a valid point if its coordinates satisfy \((y^2 - (x^3 + ax + b)) \bmod p = 0\).
             </p>
             <p>
-              The curve also includes a special identity element called the <strong>Point at Infinity (\(\mathcal{O}\))</strong>, which acts like zero in regular addition:
+              The curve also includes a special identity element called the <strong>Point at Infinity
+                (\(\mathcal{O}\))</strong>, which acts like zero in regular addition:
             </p>
             <div class="formula-box-light">
               \[P + \mathcal{O} = P \quad \text{and} \quad P + (-P) = \mathcal{O}\]
@@ -851,10 +945,11 @@
               Scalar multiplication computes \(k \cdot P = \underbrace{P + P + \dots + P}_{k \text{ times}}\).
             </p>
             <p>
-              Using the <strong>Double-and-Add Algorithm</strong> (binary method), scalar multiplication runs in logarithmic \(O(\log k)\) steps instead of linear time:
+              Using the <strong>Double-and-Add Algorithm</strong> (binary method), scalar multiplication runs in
+              logarithmic \(O(\log k)\) steps instead of linear time:
             </p>
             <div class="code-preview-box">
-<pre><code>result = None
+              <pre><code>result = None
 while k > 0:
     if k % 2 == 1:
         result = point_add(result, P)
@@ -870,7 +965,8 @@ while k > 0:
               <h3>Elliptic Curve Diffie-Hellman (ECDH) Protocol</h3>
             </div>
             <p>
-              ECDH allows two parties (Alice and Bob) to establish a shared cryptographic key over an insecure public channel without transmitting the secret:
+              ECDH allows two parties (Alice and Bob) to establish a shared cryptographic key over an insecure public
+              channel without transmitting the secret:
             </p>
 
             <div class="ecdh-concept-flow">
@@ -1155,7 +1251,8 @@ while k > 0:
           <div class="banner-icon-large" id="ecdh-result-icon">⚖️</div>
           <div class="banner-details">
             <h3 id="ecdh-result-title">Awaiting Key Exchange</h3>
-            <p id="ecdh-result-desc">Click "Generate Public Keys" and "Compute Shared Secrets" to execute the real Python ECDH protocol.</p>
+            <p id="ecdh-result-desc">Click "Generate Public Keys" and "Compute Shared Secrets" to execute the real
+              Python ECDH protocol.</p>
           </div>
           <div class="banner-action" id="ecdh-viz-cta-container" style="display: none;">
             <button class="btn btn-accent btn-lg" onclick="app.navigateTo('visualization')">
@@ -1173,7 +1270,8 @@ while k > 0:
           <div class="header-left">
             <div class="section-tag-pill">Academic Section 05</div>
             <h1 class="page-title">⚡ Interactive ECDH Simulation</h1>
-            <p class="page-subtitle">Full 8-Stage Cryptographic Protocol Execution, Communication Channel & Finite Field Coordinate Grid</p>
+            <p class="page-subtitle">Full 8-Stage Cryptographic Protocol Execution, Communication Channel & Finite Field
+              Coordinate Grid</p>
           </div>
           <div class="header-actions">
             <button class="btn btn-outline" onclick="app.navigateTo('procedure')">
@@ -1220,7 +1318,7 @@ while k > 0:
               <span class="step-badge" id="viz-step-counter">Step 1 of 8</span>
               <h3 id="viz-step-title">Input Parameters</h3>
             </div>
-            
+
             <div class="stepper-controls">
               <button class="btn btn-outline" id="btn-viz-prev" title="Previous Step">
                 ◀ Previous Step
@@ -1304,7 +1402,8 @@ while k > 0:
             </div>
             <div class="security-rule-pill">
               <span class="rule-icon">🔒</span>
-              <span class="rule-text"><strong>Security Invariant:</strong> Private keys never leave local devices. Only public points are exchanged.</span>
+              <span class="rule-text"><strong>Security Invariant:</strong> Private keys never leave local devices. Only
+                public points are exchanged.</span>
             </div>
           </div>
 
@@ -1313,13 +1412,17 @@ while k > 0:
             <div class="sim-participant-pod alice-pod" id="alice-sim-pod">
               <div class="pod-header">
                 <div class="avatar-wrapper avatar-alice">
-                  <svg class="participant-avatar" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Alice Avatar">
-                    <circle cx="32" cy="32" r="30" fill="#ecfdf5" stroke="#059669" stroke-width="2.5"/>
-                    <circle cx="32" cy="24" r="10.5" fill="#059669"/>
-                    <path d="M16 52C16 43.1634 23.1634 37 32 37C40.8366 37 48 43.1634 48 52" stroke="#059669" stroke-width="2.5" stroke-linecap="round" fill="#10b981" fill-opacity="0.3"/>
-                    <path d="M21 23C21 16.9249 25.9249 13 32 13C38.0751 13 43 16.9249 43 23V25C43 25 41 27 32 27C23 27 21 25 21 25V23Z" fill="#047857"/>
-                    <circle cx="28" cy="23" r="1.5" fill="#ffffff"/>
-                    <circle cx="36" cy="23" r="1.5" fill="#ffffff"/>
+                  <svg class="participant-avatar" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-label="Alice Avatar">
+                    <circle cx="32" cy="32" r="30" fill="#ecfdf5" stroke="#059669" stroke-width="2.5" />
+                    <circle cx="32" cy="24" r="10.5" fill="#059669" />
+                    <path d="M16 52C16 43.1634 23.1634 37 32 37C40.8366 37 48 43.1634 48 52" stroke="#059669"
+                      stroke-width="2.5" stroke-linecap="round" fill="#10b981" fill-opacity="0.3" />
+                    <path
+                      d="M21 23C21 16.9249 25.9249 13 32 13C38.0751 13 43 16.9249 43 23V25C43 25 41 27 32 27C23 27 21 25 21 25V23Z"
+                      fill="#047857" />
+                    <circle cx="28" cy="23" r="1.5" fill="#ffffff" />
+                    <circle cx="36" cy="23" r="1.5" fill="#ffffff" />
                   </svg>
                   <span class="online-indicator" id="alice-online-dot"></span>
                 </div>
@@ -1488,7 +1591,8 @@ while k > 0:
               <div class="security-bottom-notice">
                 <span class="notice-icon">🛡️</span>
                 <span class="notice-text">
-                  <strong>Zero Knowledge of Secrets:</strong> An eavesdropper intercepting A and B cannot deduce d_A or d_B due to the Elliptic Curve Discrete Logarithm Problem (ECDLP).
+                  <strong>Zero Knowledge of Secrets:</strong> An eavesdropper intercepting A and B cannot deduce d_A or
+                  d_B due to the Elliptic Curve Discrete Logarithm Problem (ECDLP).
                 </span>
               </div>
             </div>
@@ -1497,13 +1601,16 @@ while k > 0:
             <div class="sim-participant-pod bob-pod" id="bob-sim-pod">
               <div class="pod-header">
                 <div class="avatar-wrapper avatar-bob">
-                  <svg class="participant-avatar" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Bob Avatar">
-                    <circle cx="32" cy="32" r="30" fill="#fff7ed" stroke="#ea580c" stroke-width="2.5"/>
-                    <circle cx="32" cy="24" r="10.5" fill="#ea580c"/>
-                    <path d="M16 52C16 43.1634 23.1634 37 32 37C40.8366 37 48 43.1634 48 52" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" fill="#f97316" fill-opacity="0.3"/>
-                    <path d="M22 20C22 15 26 12 32 12C38 12 42 15 42 20C42 22 40 23 32 23C24 23 22 22 22 20Z" fill="#c2410c"/>
-                    <circle cx="28" cy="23" r="1.5" fill="#ffffff"/>
-                    <circle cx="36" cy="23" r="1.5" fill="#ffffff"/>
+                  <svg class="participant-avatar" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-label="Bob Avatar">
+                    <circle cx="32" cy="32" r="30" fill="#fff7ed" stroke="#ea580c" stroke-width="2.5" />
+                    <circle cx="32" cy="24" r="10.5" fill="#ea580c" />
+                    <path d="M16 52C16 43.1634 23.1634 37 32 37C40.8366 37 48 43.1634 48 52" stroke="#ea580c"
+                      stroke-width="2.5" stroke-linecap="round" fill="#f97316" fill-opacity="0.3" />
+                    <path d="M22 20C22 15 26 12 32 12C38 12 42 15 42 20C42 22 40 23 32 23C24 23 22 22 22 20Z"
+                      fill="#c2410c" />
+                    <circle cx="28" cy="23" r="1.5" fill="#ffffff" />
+                    <circle cx="36" cy="23" r="1.5" fill="#ffffff" />
                   </svg>
                   <span class="online-indicator" id="bob-online-dot"></span>
                 </div>
@@ -1574,217 +1681,233 @@ while k > 0:
         <div class="viz-dual-column">
           <!-- LEFT: 8-Stage Detailed Explanation Slides -->
           <div class="viz-step-display card" id="viz-active-stage-card">
-          <!-- Slide 1: Input -->
-          <div class="stage-slide" id="stage-slide-1">
-            <div class="stage-header">
-              <h4>Stage 01: Initial Parameter Configuration</h4>
-              <p>The active elliptic curve, prime field, base generator point, and local private keys loaded from current application state.</p>
-            </div>
-            <div class="stage-grid-2">
-              <div class="stage-info-box">
-                <h5>Finite Field & Curve Equation</h5>
-                <ul class="clean-list">
-                  <li>Parameter <strong>a</strong> = <span class="math-val" id="stage1-a">2</span></li>
-                  <li>Parameter <strong>b</strong> = <span class="math-val" id="stage1-b">2</span></li>
-                  <li>Prime Modulus <strong>p</strong> = <span class="math-val" id="stage1-p">17</span></li>
-                  <li>Active Equation: <strong class="math-font text-emerald" id="stage1-eq">y² ≡ x³ + 2x + 2 (mod 17)</strong></li>
-                </ul>
+            <!-- Slide 1: Input -->
+            <div class="stage-slide" id="stage-slide-1">
+              <div class="stage-header">
+                <h4>Stage 01: Initial Parameter Configuration</h4>
+                <p>The active elliptic curve, prime field, base generator point, and local private keys loaded from
+                  current application state.</p>
               </div>
-              <div class="stage-info-box">
-                <h5>Generator Point & Private Keys</h5>
-                <ul class="clean-list">
-                  <li>Base Generator <strong>G</strong> = <span class="math-val" id="stage1-g">(5, 1)</span></li>
-                  <li>Alice Private Key <strong>d_A</strong> = <span class="math-val text-emerald" id="stage1-da">3</span> (kept strictly secret)</li>
-                  <li>Bob Private Key <strong>d_B</strong> = <span class="math-val text-orange" id="stage1-db">7</span> (kept strictly secret)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 2: Curve Validation -->
-          <div class="stage-slide" id="stage-slide-2" style="display: none;">
-            <div class="stage-header">
-              <h4>Stage 02: Curve Validation & Non-Singularity Check</h4>
-              <p>Validating prime modulus \(p\) and guaranteeing non-singularity condition \(\Delta = (4a^3 + 27b^2) \bmod p \ne 0\).</p>
-            </div>
-            <div class="stage-callout stage-success" id="stage2-callout">
-              <div class="callout-icon">✓</div>
-              <div class="callout-body">
-                <h5 id="stage2-status-title">Prime Field & Non-Singular Curve Confirmed</h5>
-                <p id="stage2-status-desc">
-                  The discriminant satisfies \(\Delta \ne 0\). The curve has no self-intersections or cusps, ensuring well-defined group law addition everywhere.
-                </p>
-                <div class="formula-box-light" id="stage2-formula-detail">
-                  4a³ + 27b² ≡ 4(2)³ + 27(2)² = 32 + 108 = 140 ≡ 4 (mod 17) ≠ 0
+              <div class="stage-grid-2">
+                <div class="stage-info-box">
+                  <h5>Finite Field & Curve Equation</h5>
+                  <ul class="clean-list">
+                    <li>Parameter <strong>a</strong> = <span class="math-val" id="stage1-a">2</span></li>
+                    <li>Parameter <strong>b</strong> = <span class="math-val" id="stage1-b">2</span></li>
+                    <li>Prime Modulus <strong>p</strong> = <span class="math-val" id="stage1-p">17</span></li>
+                    <li>Active Equation: <strong class="math-font text-emerald" id="stage1-eq">y² ≡ x³ + 2x + 2 (mod
+                        17)</strong></li>
+                  </ul>
                 </div>
-                <div class="validation-checklist">
-                  <span class="check-item">✓ <strong>Prime field:</strong> \(p = \text{prime}\)</span>
-                  <span class="check-item">✓ <strong>Valid curve:</strong> Weierstrass form</span>
-                  <span class="check-item">✓ <strong>Non-singular curve:</strong> \(\Delta \not\equiv 0 \pmod p\)</span>
+                <div class="stage-info-box">
+                  <h5>Generator Point & Private Keys</h5>
+                  <ul class="clean-list">
+                    <li>Base Generator <strong>G</strong> = <span class="math-val" id="stage1-g">(5, 1)</span></li>
+                    <li>Alice Private Key <strong>d_A</strong> = <span class="math-val text-emerald"
+                        id="stage1-da">3</span> (kept strictly secret)</li>
+                    <li>Bob Private Key <strong>d_B</strong> = <span class="math-val text-orange"
+                        id="stage1-db">7</span> (kept strictly secret)</li>
+                  </ul>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Slide 3: Generator -->
-          <div class="stage-slide" id="stage-slide-3" style="display: none;">
-            <div class="stage-header">
-              <h4>Stage 03: Base Generator Point Verification</h4>
-              <p>Verifying that generator point \(G = (G_x, G_y)\) satisfies \(y^2 \equiv x^3 + ax + b \pmod{p}\) on the curve.</p>
-            </div>
-            <div class="stage-callout stage-success" id="stage3-callout">
-              <div class="callout-icon">🎯</div>
-              <div class="callout-body">
-                <h5 id="stage3-title">Generator Point G Verified on Curve</h5>
-                <div class="formula-box-light" id="stage3-substitution">
-                  LHS: 1² = 1 mod 17<br>
-                  RHS: 5³ + 2(5) + 2 = 125 + 10 + 2 = 137 ≡ 1 mod 17<br>
-                  <strong>LHS ≡ RHS (1 ≡ 1 mod 17) — Generator Point is VALID!</strong>
-                </div>
-                <p class="stage-sub-note">
-                  Point \(G\) is highlighted with an emerald pulse on the finite field coordinate grid below.
-                </p>
+            <!-- Slide 2: Curve Validation -->
+            <div class="stage-slide" id="stage-slide-2" style="display: none;">
+              <div class="stage-header">
+                <h4>Stage 02: Curve Validation & Non-Singularity Check</h4>
+                <p>Validating prime modulus \(p\) and guaranteeing non-singularity condition \(\Delta = (4a^3 + 27b^2)
+                  \bmod p \ne 0\).</p>
               </div>
-            </div>
-          </div>
-
-          <!-- Slide 4: Alice Public Key -->
-          <div class="stage-slide" id="stage-slide-4" style="display: none;">
-            <div class="stage-header">
-              <h4>Stage 04: Alice Computes Public Key (\(A = d_A \times G\))</h4>
-              <p>Alice performs scalar multiplication using the Double-and-Add algorithm starting from base point \(G\).</p>
-            </div>
-            <div class="scalar-calc-summary">
-              <div class="calc-highlight-card">
-                <span>Alice Private Scalar:</span> <strong>d_A = <span id="stage4-da">3</span></strong>
-                <span class="separator">|</span>
-                <span>Base Point:</span> <strong>G = <span id="stage4-g">(5, 1)</span></strong>
-                <span class="separator">|</span>
-                <span>Calculated Public Key:</span> <strong class="text-blue">A = <span id="stage4-pub">(10, 6)</span></strong>
-              </div>
-            </div>
-            <div class="trace-steps-container" id="stage4-trace-container">
-              <!-- Rendered via JS from real backend trace -->
-            </div>
-          </div>
-
-          <!-- Slide 5: Bob Public Key -->
-          <div class="stage-slide" id="stage-slide-5" style="display: none;">
-            <div class="stage-header">
-              <h4>Stage 05: Bob Computes Public Key (\(B = d_B \times G\))</h4>
-              <p>Bob independently executes scalar multiplication using the Double-and-Add algorithm starting from base point \(G\).</p>
-            </div>
-            <div class="scalar-calc-summary">
-              <div class="calc-highlight-card">
-                <span>Bob Private Scalar:</span> <strong>d_B = <span id="stage5-db">7</span></strong>
-                <span class="separator">|</span>
-                <span>Base Point:</span> <strong>G = <span id="stage5-g">(5, 1)</span></strong>
-                <span class="separator">|</span>
-                <span>Calculated Public Key:</span> <strong class="text-orange">B = <span id="stage5-pub">(0, 6)</span></strong>
-              </div>
-            </div>
-            <div class="trace-steps-container" id="stage5-trace-container">
-              <!-- Rendered via JS from real backend trace -->
-            </div>
-          </div>
-
-          <!-- Slide 6: Public Key Exchange -->
-          <div class="stage-slide" id="stage-slide-6" style="display: none;">
-            <div class="stage-header">
-              <h4>Stage 06: Public Key Transmission Over Insecure Channel</h4>
-              <p>Alice and Bob transmit only their derived public coordinates. Private keys remain strictly on local machines.</p>
-            </div>
-            <div class="exchange-explanation-grid">
-              <div class="exchange-direction-card card-alice-send">
-                <h5>1. Alice Dispatches Key A to Bob</h5>
-                <p>Packet: <code>🔐 PUBLIC KEY A = <span id="stage6-packet-a">(10, 6)</span></code></p>
-                <span class="badge-packet-status" id="stage6-status-a">Delivered to Bob's device</span>
-              </div>
-              <div class="exchange-direction-card card-bob-send">
-                <h5>2. Bob Dispatches Key B to Alice</h5>
-                <p>Packet: <code>🔐 PUBLIC KEY B = <span id="stage6-packet-b">(0, 6)</span></code></p>
-                <span class="badge-packet-status" id="stage6-status-b">Delivered to Alice's device</span>
-              </div>
-            </div>
-            <div class="security-visual-banner">
-              <div class="sec-banner-icon">🔒</div>
-              <div class="sec-banner-text">
-                <strong>CRITICAL SECURITY PROPERTY:</strong> Private keys \(d_A\) and \(d_B\) NEVER travel over the wire. An adversary intercepting \(A\) and \(B\) cannot derive \(d_A\) or \(d_B\) due to the intractability of the Elliptic Curve Discrete Logarithm Problem.
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 7: Shared Secret -->
-          <div class="stage-slide" id="stage-slide-7" style="display: none;">
-            <div class="stage-header">
-              <h4>Stage 07: Independent Derivation of Shared Secret</h4>
-              <p>Each party multiplies their private scalar by the received peer public point: \(S_A = d_A \times B\) and \(S_B = d_B \times A\).</p>
-            </div>
-            <div class="parallel-derivation-grid">
-              <div class="derivation-box alice-derivation">
-                <h5>👩‍💻 Alice's Computation</h5>
-                <p>Local Private Scalar: \(d_A\) = <span id="stage7-alice-priv">3</span></p>
-                <p>Received Bob Public Point: \(B\) = <span id="stage7-bob-pub">(0, 6)</span></p>
-                <div class="derivation-math" id="stage7-alice-formula">
-                  \(S_A = d_A \times B = 3 \times (0, 6)\)
-                </div>
-                <div class="secret-output text-emerald">
-                  Alice Derived Point: <strong id="stage7-alice-res">(6, 3)</strong>
-                </div>
-              </div>
-
-              <div class="derivation-box bob-derivation">
-                <h5>👨‍💻 Bob's Computation</h5>
-                <p>Local Private Scalar: \(d_B\) = <span id="stage7-bob-priv">7</span></p>
-                <p>Received Alice Public Point: \(A\) = <span id="stage7-alice-pub">(10, 6)</span></p>
-                <div class="derivation-math" id="stage7-bob-formula">
-                  \(S_B = d_B \times A = 7 \times (10, 6)\)
-                </div>
-                <div class="secret-output text-orange">
-                  Bob Derived Point: <strong id="stage7-bob-res">(6, 3)</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 8: Verification -->
-          <div class="stage-slide" id="stage-slide-8" style="display: none;">
-            <div class="stage-header">
-              <h4>Stage 08: Cryptographic Verification & Agreement</h4>
-              <p>Confirming that both independently derived points coincide: \(S_A \equiv S_B\).</p>
-            </div>
-            <div class="stage-callout stage-match" id="stage8-match-callout">
-              <div class="callout-icon" id="stage8-icon">✓</div>
-              <div class="callout-body">
-                <h3 id="stage8-match-title">KEY EXCHANGE SUCCESSFUL</h3>
-                <p id="stage8-match-desc">
-                  Both parties arrived at the exact same shared secret point on the curve.
-                </p>
-                <div class="shared-match-comparison">
-                  <div class="match-item">
-                    <span>Alice's Secret (S_A):</span>
-                    <strong class="math-font text-emerald" id="stage8-alice-val">(6, 3)</strong>
+              <div class="stage-callout stage-success" id="stage2-callout">
+                <div class="callout-icon">✓</div>
+                <div class="callout-body">
+                  <h5 id="stage2-status-title">Prime Field & Non-Singular Curve Confirmed</h5>
+                  <p id="stage2-status-desc">
+                    The discriminant satisfies \(\Delta \ne 0\). The curve has no self-intersections or cusps, ensuring
+                    well-defined group law addition everywhere.
+                  </p>
+                  <div class="formula-box-light" id="stage2-formula-detail">
+                    4a³ + 27b² ≡ 4(2)³ + 27(2)² = 32 + 108 = 140 ≡ 4 (mod 17) ≠ 0
                   </div>
-                  <div class="match-operator">==</div>
-                  <div class="match-item">
-                    <span>Bob's Secret (S_B):</span>
-                    <strong class="math-font text-orange" id="stage8-bob-val">(6, 3)</strong>
+                  <div class="validation-checklist">
+                    <span class="check-item">✓ <strong>Prime field:</strong> \(p = \text{prime}\)</span>
+                    <span class="check-item">✓ <strong>Valid curve:</strong> Weierstrass form</span>
+                    <span class="check-item">✓ <strong>Non-singular curve:</strong> \(\Delta \not\equiv 0 \pmod
+                      p\)</span>
                   </div>
                 </div>
-                <div class="shared-point-final" id="stage8-final-point-box">
-                  Agreed Shared Secret Point: <strong>(6, 3)</strong>
+              </div>
+            </div>
+
+            <!-- Slide 3: Generator -->
+            <div class="stage-slide" id="stage-slide-3" style="display: none;">
+              <div class="stage-header">
+                <h4>Stage 03: Base Generator Point Verification</h4>
+                <p>Verifying that generator point \(G = (G_x, G_y)\) satisfies \(y^2 \equiv x^3 + ax + b \pmod{p}\) on
+                  the curve.</p>
+              </div>
+              <div class="stage-callout stage-success" id="stage3-callout">
+                <div class="callout-icon">🎯</div>
+                <div class="callout-body">
+                  <h5 id="stage3-title">Generator Point G Verified on Curve</h5>
+                  <div class="formula-box-light" id="stage3-substitution">
+                    LHS: 1² = 1 mod 17<br>
+                    RHS: 5³ + 2(5) + 2 = 125 + 10 + 2 = 137 ≡ 1 mod 17<br>
+                    <strong>LHS ≡ RHS (1 ≡ 1 mod 17) — Generator Point is VALID!</strong>
+                  </div>
+                  <p class="stage-sub-note">
+                    Point \(G\) is highlighted with an emerald pulse on the finite field coordinate grid below.
+                  </p>
                 </div>
-                <div class="math-proof-box">
-                  <span>Mathematical Guarantee:</span>
-                  <code>S_A = d_A × (d_B × G) = (d_A · d_B) × G = (d_B · d_A) × G = d_B × (d_A × G) = S_B</code>
+              </div>
+            </div>
+
+            <!-- Slide 4: Alice Public Key -->
+            <div class="stage-slide" id="stage-slide-4" style="display: none;">
+              <div class="stage-header">
+                <h4>Stage 04: Alice Computes Public Key (\(A = d_A \times G\))</h4>
+                <p>Alice performs scalar multiplication using the Double-and-Add algorithm starting from base point
+                  \(G\).</p>
+              </div>
+              <div class="scalar-calc-summary">
+                <div class="calc-highlight-card">
+                  <span>Alice Private Scalar:</span> <strong>d_A = <span id="stage4-da">3</span></strong>
+                  <span class="separator">|</span>
+                  <span>Base Point:</span> <strong>G = <span id="stage4-g">(5, 1)</span></strong>
+                  <span class="separator">|</span>
+                  <span>Calculated Public Key:</span> <strong class="text-blue">A = <span id="stage4-pub">(10,
+                      6)</span></strong>
+                </div>
+              </div>
+              <div class="trace-steps-container" id="stage4-trace-container">
+                <!-- Rendered via JS from real backend trace -->
+              </div>
+            </div>
+
+            <!-- Slide 5: Bob Public Key -->
+            <div class="stage-slide" id="stage-slide-5" style="display: none;">
+              <div class="stage-header">
+                <h4>Stage 05: Bob Computes Public Key (\(B = d_B \times G\))</h4>
+                <p>Bob independently executes scalar multiplication using the Double-and-Add algorithm starting from
+                  base point \(G\).</p>
+              </div>
+              <div class="scalar-calc-summary">
+                <div class="calc-highlight-card">
+                  <span>Bob Private Scalar:</span> <strong>d_B = <span id="stage5-db">7</span></strong>
+                  <span class="separator">|</span>
+                  <span>Base Point:</span> <strong>G = <span id="stage5-g">(5, 1)</span></strong>
+                  <span class="separator">|</span>
+                  <span>Calculated Public Key:</span> <strong class="text-orange">B = <span id="stage5-pub">(0,
+                      6)</span></strong>
+                </div>
+              </div>
+              <div class="trace-steps-container" id="stage5-trace-container">
+                <!-- Rendered via JS from real backend trace -->
+              </div>
+            </div>
+
+            <!-- Slide 6: Public Key Exchange -->
+            <div class="stage-slide" id="stage-slide-6" style="display: none;">
+              <div class="stage-header">
+                <h4>Stage 06: Public Key Transmission Over Insecure Channel</h4>
+                <p>Alice and Bob transmit only their derived public coordinates. Private keys remain strictly on local
+                  machines.</p>
+              </div>
+              <div class="exchange-explanation-grid">
+                <div class="exchange-direction-card card-alice-send">
+                  <h5>1. Alice Dispatches Key A to Bob</h5>
+                  <p>Packet: <code>🔐 PUBLIC KEY A = <span id="stage6-packet-a">(10, 6)</span></code></p>
+                  <span class="badge-packet-status" id="stage6-status-a">Delivered to Bob's device</span>
+                </div>
+                <div class="exchange-direction-card card-bob-send">
+                  <h5>2. Bob Dispatches Key B to Alice</h5>
+                  <p>Packet: <code>🔐 PUBLIC KEY B = <span id="stage6-packet-b">(0, 6)</span></code></p>
+                  <span class="badge-packet-status" id="stage6-status-b">Delivered to Alice's device</span>
+                </div>
+              </div>
+              <div class="security-visual-banner">
+                <div class="sec-banner-icon">🔒</div>
+                <div class="sec-banner-text">
+                  <strong>CRITICAL SECURITY PROPERTY:</strong> Private keys \(d_A\) and \(d_B\) NEVER travel over the
+                  wire. An adversary intercepting \(A\) and \(B\) cannot derive \(d_A\) or \(d_B\) due to the
+                  intractability of the Elliptic Curve Discrete Logarithm Problem.
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 7: Shared Secret -->
+            <div class="stage-slide" id="stage-slide-7" style="display: none;">
+              <div class="stage-header">
+                <h4>Stage 07: Independent Derivation of Shared Secret</h4>
+                <p>Each party multiplies their private scalar by the received peer public point: \(S_A = d_A \times B\)
+                  and \(S_B = d_B \times A\).</p>
+              </div>
+              <div class="parallel-derivation-grid">
+                <div class="derivation-box alice-derivation">
+                  <h5>👩‍💻 Alice's Computation</h5>
+                  <p>Local Private Scalar: \(d_A\) = <span id="stage7-alice-priv">3</span></p>
+                  <p>Received Bob Public Point: \(B\) = <span id="stage7-bob-pub">(0, 6)</span></p>
+                  <div class="derivation-math" id="stage7-alice-formula">
+                    \(S_A = d_A \times B = 3 \times (0, 6)\)
+                  </div>
+                  <div class="secret-output text-emerald">
+                    Alice Derived Point: <strong id="stage7-alice-res">(6, 3)</strong>
+                  </div>
+                </div>
+
+                <div class="derivation-box bob-derivation">
+                  <h5>👨‍💻 Bob's Computation</h5>
+                  <p>Local Private Scalar: \(d_B\) = <span id="stage7-bob-priv">7</span></p>
+                  <p>Received Alice Public Point: \(A\) = <span id="stage7-alice-pub">(10, 6)</span></p>
+                  <div class="derivation-math" id="stage7-bob-formula">
+                    \(S_B = d_B \times A = 7 \times (10, 6)\)
+                  </div>
+                  <div class="secret-output text-orange">
+                    Bob Derived Point: <strong id="stage7-bob-res">(6, 3)</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 8: Verification -->
+            <div class="stage-slide" id="stage-slide-8" style="display: none;">
+              <div class="stage-header">
+                <h4>Stage 08: Cryptographic Verification & Agreement</h4>
+                <p>Confirming that both independently derived points coincide: \(S_A \equiv S_B\).</p>
+              </div>
+              <div class="stage-callout stage-match" id="stage8-match-callout">
+                <div class="callout-icon" id="stage8-icon">✓</div>
+                <div class="callout-body">
+                  <h3 id="stage8-match-title">KEY EXCHANGE SUCCESSFUL</h3>
+                  <p id="stage8-match-desc">
+                    Both parties arrived at the exact same shared secret point on the curve.
+                  </p>
+                  <div class="shared-match-comparison">
+                    <div class="match-item">
+                      <span>Alice's Secret (S_A):</span>
+                      <strong class="math-font text-emerald" id="stage8-alice-val">(6, 3)</strong>
+                    </div>
+                    <div class="match-operator">==</div>
+                    <div class="match-item">
+                      <span>Bob's Secret (S_B):</span>
+                      <strong class="math-font text-orange" id="stage8-bob-val">(6, 3)</strong>
+                    </div>
+                  </div>
+                  <div class="shared-point-final" id="stage8-final-point-box">
+                    Agreed Shared Secret Point: <strong>(6, 3)</strong>
+                  </div>
+                  <div class="math-proof-box">
+                    <span>Mathematical Guarantee:</span>
+                    <code>S_A = d_A × (d_B × G) = (d_A · d_B) × G = (d_B · d_A) × G = d_B × (d_A × G) = S_B</code>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- RIGHT: Concrete Mathematical Calculations with Substituted Values -->
-        <div class="card math-calc-card">
+          <!-- RIGHT: Concrete Mathematical Calculations with Substituted Values -->
+          <div class="card math-calc-card">
             <div class="card-header">
               <div>
                 <h3>WHAT'S HAPPENING MATHEMATICALLY?</h3>
@@ -1876,46 +1999,55 @@ while k > 0:
             </div>
             <ul class="clean-bullet-list" style="margin: 0;">
               <li>ECC is a public-key cryptography technique that uses elliptic curve mathematics.</li>
-              <li>ECDH allows two participants to establish the same shared secret without directly exchanging their private keys.</li>
+              <li>ECDH allows two participants to establish the same shared secret without directly exchanging their
+                private keys.</li>
               <li>Public keys are generated using private keys and a common generator point.</li>
-              <li>Both participants calculate the same shared secret using their own private keys and each other's public keys.</li>
-              <li>The shared secret can be used with an appropriate key-derivation process to obtain a symmetric encryption key.</li>
+              <li>Both participants calculate the same shared secret using their own private keys and each other's
+                public keys.</li>
+              <li>The shared secret can be used with an appropriate key-derivation process to obtain a symmetric
+                encryption key.</li>
             </ul>
           </div>
         </div>
 
         <!-- Limitation Card -->
-        <div class="card" style="padding: 22px 24px; margin-bottom: 24px; border-left: 6px solid var(--orange-accent); background: var(--bg-accent-soft);">
+        <div class="card"
+          style="padding: 22px 24px; margin-bottom: 24px; border-left: 6px solid var(--orange-accent); background: var(--bg-accent-soft);">
           <div class="banner-details">
             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
               <span class="badge-tag" style="background: var(--orange-accent); color: white;">Limitation</span>
-              <h3 style="margin: 0; color: var(--orange-dark); font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">
+              <h3
+                style="margin: 0; color: var(--orange-dark); font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">
                 <span>⚠️</span> Limitations
               </h3>
             </div>
             <p style="font-size: 0.98rem; line-height: 1.65; color: var(--text-main); margin: 0;">
-              <strong>Man-in-the-Middle Attack:</strong> ECDH alone does not verify participant identities, so an attacker may intercept and replace public keys unless suitable authentication is used.
+              <strong>Man-in-the-Middle Attack:</strong> ECDH alone does not verify participant identities, so an
+              attacker may intercept and replace public keys unless suitable authentication is used.
             </p>
           </div>
         </div>
 
         <!-- Verified Numerical Results Overview -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 24px;">
-          
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 24px;">
+
           <!-- Alice Output Card -->
           <div class="card party-card" style="border-top: 4px solid var(--emerald-primary);">
             <div class="party-badge">
               <span class="party-avatar">👩‍💻</span>
               <div class="party-info">
                 <h3 style="margin: 0;">Alice</h3>
-                <span class="badge-tag" style="background: rgba(16, 185, 129, 0.15); color: var(--emerald-dark);">Participant A</span>
+                <span class="badge-tag"
+                  style="background: rgba(16, 185, 129, 0.15); color: var(--emerald-dark);">Participant A</span>
               </div>
             </div>
             <div style="display: flex; flex-direction: column; gap: 12px;">
               <div class="computed-key-box" style="margin-top: 0;">
                 <div class="computed-key-label">Private Key (\(d_A\))</div>
                 <div class="computed-key-val math-font" style="font-size: 1.25rem;">3</div>
-                <span style="font-size: 0.75rem; color: var(--text-muted);">Confidential scalar (never transmitted)</span>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Confidential scalar (never
+                  transmitted)</span>
               </div>
               <div class="computed-key-box">
                 <div class="computed-key-label">Generated Public Key (\(A = d_A \cdot G\))</div>
@@ -1936,14 +2068,16 @@ while k > 0:
               <span class="party-avatar">👨‍💻</span>
               <div class="party-info">
                 <h3 style="margin: 0;">Bob</h3>
-                <span class="badge-tag" style="background: rgba(249, 115, 22, 0.15); color: var(--orange-dark);">Participant B</span>
+                <span class="badge-tag"
+                  style="background: rgba(249, 115, 22, 0.15); color: var(--orange-dark);">Participant B</span>
               </div>
             </div>
             <div style="display: flex; flex-direction: column; gap: 12px;">
               <div class="computed-key-box" style="margin-top: 0;">
                 <div class="computed-key-label">Private Key (\(d_B\))</div>
                 <div class="computed-key-val math-font" style="font-size: 1.25rem;">7</div>
-                <span style="font-size: 0.75rem; color: var(--text-muted);">Confidential scalar (never transmitted)</span>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Confidential scalar (never
+                  transmitted)</span>
               </div>
               <div class="computed-key-box">
                 <div class="computed-key-label">Generated Public Key (\(B = d_B \cdot G\))</div>
@@ -1959,28 +2093,33 @@ while k > 0:
           </div>
 
           <!-- Shared Agreement Verification Card -->
-          <div class="card" style="padding: 24px; border-top: 4px solid var(--primary-accent); display: flex; flex-direction: column; justify-content: space-between;">
+          <div class="card"
+            style="padding: 24px; border-top: 4px solid var(--primary-accent); display: flex; flex-direction: column; justify-content: space-between;">
             <div>
               <div class="party-badge">
                 <span class="party-avatar">🤝</span>
                 <div class="party-info">
                   <h3 style="margin: 0;">Agreement</h3>
-                  <span class="badge-tag" style="background: rgba(59, 130, 246, 0.15); color: var(--blue-primary);">Identical Match</span>
+                  <span class="badge-tag"
+                    style="background: rgba(59, 130, 246, 0.15); color: var(--blue-primary);">Identical Match</span>
                 </div>
               </div>
               <div class="computed-key-box shared-secret-box" style="margin-top: 0; padding: 16px;">
                 <div class="computed-key-label">Agreed Shared Secret Point (S)</div>
-                <div class="computed-key-val math-font text-emerald" style="font-size: 1.6rem; margin: 4px 0;">(6, 3)</div>
+                <div class="computed-key-val math-font text-emerald" style="font-size: 1.6rem; margin: 4px 0;">(6, 3)
+                </div>
                 <span style="font-size: 0.85rem; color: var(--emerald-dark); font-weight: 600;">
                   ✓ \(S_A = S_B = (6, 3)\)
                 </span>
               </div>
               <div style="margin-top: 14px; font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
-                Both parties compute the exact same coordinate point on \(y^2 \equiv x^3 + 2x + 2 \pmod{17}\) with zero private key transmission.
+                Both parties compute the exact same coordinate point on \(y^2 \equiv x^3 + 2x + 2 \pmod{17}\) with zero
+                private key transmission.
               </div>
             </div>
             <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border-light);">
-              <span class="badge-tag" style="background: var(--bg-emerald-soft); color: var(--emerald-dark); font-size: 0.82rem; padding: 6px 12px; display: inline-block;">
+              <span class="badge-tag"
+                style="background: var(--bg-emerald-soft); color: var(--emerald-dark); font-size: 0.82rem; padding: 6px 12px; display: inline-block;">
                 Security: Zero Private Key Leakage
               </span>
             </div>
@@ -1989,7 +2128,8 @@ while k > 0:
         </div>
 
         <!-- Sequential Section Navigation Footer -->
-        <div class="card" style="padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <div class="card"
+          style="padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
           <button class="btn btn-secondary" onclick="app.navigateTo('simulation')">
             <span>← Back to 05. Simulation</span>
           </button>
@@ -2023,12 +2163,16 @@ while k > 0:
                 <h4>Cryptography and Network Security: Principles and Practice</h4>
               </div>
               <p class="ref-authors"><strong>Author:</strong> William Stallings</p>
-              <p class="ref-meta">Pearson Education, 7th & 8th Editions. Comprehensive reference for undergraduate and graduate computer science curricula.</p>
+              <p class="ref-meta">Pearson Education, 7th & 8th Editions. Comprehensive reference for undergraduate and
+                graduate computer science curricula.</p>
               <p class="ref-desc">
-                Chapters on Number Theory and Finite Fields (Chapter 2 & 4) and Elliptic Curve Arithmetic and Diffie-Hellman Key Exchange (Chapter 10). Detailed analysis of abelian group laws, Weierstrass curves, and public-key infrastructure.
+                Chapters on Number Theory and Finite Fields (Chapter 2 & 4) and Elliptic Curve Arithmetic and
+                Diffie-Hellman Key Exchange (Chapter 10). Detailed analysis of abelian group laws, Weierstrass curves,
+                and public-key infrastructure.
               </p>
               <div class="ref-link-action">
-                <a href="https://www.pearson.com/en-us/subject-catalog/p/cryptography-and-network-security-principles-and-practice/P200000003337" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                <a href="https://www.pearson.com/en-us/subject-catalog/p/cryptography-and-network-security-principles-and-practice/P200000003337"
+                  target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
                   <span>🔗 Publisher / Syllabus Reference →</span>
                 </a>
               </div>
@@ -2048,10 +2192,13 @@ while k > 0:
               <p class="ref-authors"><strong>Authors:</strong> Jonathan Katz and Yehuda Lindell</p>
               <p class="ref-meta">CRC Press / Chapman & Hall, 3rd Edition (2020).</p>
               <p class="ref-desc">
-                Rigorous mathematical treatment of public-key cryptography, Diffie-Hellman assumptions (CDH and DDH), group theory over elliptic curves, and formal security reductions against passive and active adversaries.
+                Rigorous mathematical treatment of public-key cryptography, Diffie-Hellman assumptions (CDH and DDH),
+                group theory over elliptic curves, and formal security reductions against passive and active
+                adversaries.
               </p>
               <div class="ref-link-action">
-                <a href="https://www.cs.umd.edu/~jkatz/imc.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                <a href="https://www.cs.umd.edu/~jkatz/imc.html" target="_blank" rel="noopener noreferrer"
+                  class="btn btn-outline btn-sm">
                   <span>🔗 Course & Book Resource →</span>
                 </a>
               </div>
@@ -2068,13 +2215,18 @@ while k > 0:
                 <span class="ref-type-pill pill-nist">NIST Standard</span>
                 <h4>NIST Special Publication 800-56A Revision 3</h4>
               </div>
-              <p class="ref-authors"><strong>Organization:</strong> National Institute of Standards and Technology (NIST)</p>
-              <p class="ref-meta">Recommendation for Pair-Wise Key-Establishment Schemes Using Discrete Logarithm Cryptography.</p>
+              <p class="ref-authors"><strong>Organization:</strong> National Institute of Standards and Technology
+                (NIST)</p>
+              <p class="ref-meta">Recommendation for Pair-Wise Key-Establishment Schemes Using Discrete Logarithm
+                Cryptography.</p>
               <p class="ref-desc">
-                Official federal guidelines specifying acceptable finite field configurations, elliptic curve parameter validation, Diffie-Hellman primitive calculations, and public key validation requirements for enterprise cryptosystems.
+                Official federal guidelines specifying acceptable finite field configurations, elliptic curve parameter
+                validation, Diffie-Hellman primitive calculations, and public key validation requirements for enterprise
+                cryptosystems.
               </p>
               <div class="ref-link-action">
-                <a href="https://csrc.nist.gov/publications/detail/sp/800-56a/rev-3/final" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                <a href="https://csrc.nist.gov/publications/detail/sp/800-56a/rev-3/final" target="_blank"
+                  rel="noopener noreferrer" class="btn btn-outline btn-sm">
                   <span>🔗 View Official NIST SP 800-56A Rev. 3 →</span>
                 </a>
               </div>
@@ -2091,13 +2243,17 @@ while k > 0:
                 <span class="ref-type-pill pill-nist">FIPS Publication</span>
                 <h4>NIST FIPS PUB 186-4 & FIPS 186-5: Digital Signature Standard (DSS)</h4>
               </div>
-              <p class="ref-authors"><strong>Organization:</strong> National Institute of Standards and Technology (NIST)</p>
+              <p class="ref-authors"><strong>Organization:</strong> National Institute of Standards and Technology
+                (NIST)</p>
               <p class="ref-meta">Federal Information Processing Standards Publication (FIPS 186-5).</p>
               <p class="ref-desc">
-                Defines standard elliptic curves over prime fields (e.g., P-256, P-384, P-521), point addition formulas, domain parameters, and non-singularity checks used universally in TLS/SSL, SSH, and digital signature systems.
+                Defines standard elliptic curves over prime fields (e.g., P-256, P-384, P-521), point addition formulas,
+                domain parameters, and non-singularity checks used universally in TLS/SSL, SSH, and digital signature
+                systems.
               </p>
               <div class="ref-link-action">
-                <a href="https://csrc.nist.gov/publications/detail/fips/186-5/final" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                <a href="https://csrc.nist.gov/publications/detail/fips/186-5/final" target="_blank"
+                  rel="noopener noreferrer" class="btn btn-outline btn-sm">
                   <span>🔗 View FIPS 186-5 Standard →</span>
                 </a>
               </div>
@@ -2117,10 +2273,12 @@ while k > 0:
               <p class="ref-authors"><strong>Authors:</strong> D. McGrew, K. Igoe, M. Salter (IETF)</p>
               <p class="ref-meta">Internet Engineering Task Force (IETF) Informational RFC.</p>
               <p class="ref-desc">
-                Clean algorithmic specification of core elliptic curve operations: point representation, point addition, point doubling, scalar multiplication via Double-and-Add, and ECDH key agreement primitives.
+                Clean algorithmic specification of core elliptic curve operations: point representation, point addition,
+                point doubling, scalar multiplication via Double-and-Add, and ECDH key agreement primitives.
               </p>
               <div class="ref-link-action">
-                <a href="https://datatracker.ietf.org/doc/html/rfc6090" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                <a href="https://datatracker.ietf.org/doc/html/rfc6090" target="_blank" rel="noopener noreferrer"
+                  class="btn btn-outline btn-sm">
                   <span>🔗 Read IETF RFC 6090 →</span>
                 </a>
               </div>
@@ -2137,13 +2295,16 @@ while k > 0:
                 <span class="ref-type-pill pill-spec">Industry Standard</span>
                 <h4>SEC 1: Elliptic Curve Cryptography (Version 2.0)</h4>
               </div>
-              <p class="ref-authors"><strong>Organization:</strong> Standards for Efficient Cryptography Group (SECG) / Certicom Research</p>
+              <p class="ref-authors"><strong>Organization:</strong> Standards for Efficient Cryptography Group (SECG) /
+                Certicom Research</p>
               <p class="ref-meta">Standards for Efficient Cryptography (SEC 1 & SEC 2).</p>
               <p class="ref-desc">
-                Comprehensive cryptographic architecture for point arithmetic over prime and binary fields, public key compression formats, and key exchange mathematical invariants.
+                Comprehensive cryptographic architecture for point arithmetic over prime and binary fields, public key
+                compression formats, and key exchange mathematical invariants.
               </p>
               <div class="ref-link-action">
-                <a href="https://www.secg.org/sec1-v2.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                <a href="https://www.secg.org/sec1-v2.pdf" target="_blank" rel="noopener noreferrer"
+                  class="btn btn-outline btn-sm">
                   <span>🔗 Download SEC 1 Standard (PDF) →</span>
                 </a>
               </div>
@@ -2160,13 +2321,16 @@ while k > 0:
                 <span class="ref-type-pill pill-textbook">Technical Reference</span>
                 <h4>Guide to Elliptic Curve Cryptography</h4>
               </div>
-              <p class="ref-authors"><strong>Authors:</strong> Darrel Hankerson, Alfred J. Menezes, and Scott Vanstone</p>
+              <p class="ref-authors"><strong>Authors:</strong> Darrel Hankerson, Alfred J. Menezes, and Scott Vanstone
+              </p>
               <p class="ref-meta">Springer Science & Business Media (2004).</p>
               <p class="ref-desc">
-                Standard engineering reference for implementing point arithmetic, fast scalar multiplication, modular inversions via extended Euclidean algorithm, and curve non-singularity proofs.
+                Standard engineering reference for implementing point arithmetic, fast scalar multiplication, modular
+                inversions via extended Euclidean algorithm, and curve non-singularity proofs.
               </p>
               <div class="ref-link-action">
-                <a href="https://link.springer.com/book/10.1007/b97644" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                <a href="https://link.springer.com/book/10.1007/b97644" target="_blank" rel="noopener noreferrer"
+                  class="btn btn-outline btn-sm">
                   <span>🔗 Springer Reference Page →</span>
                 </a>
               </div>
@@ -2183,14 +2347,14 @@ while k > 0:
   <!-- MathJax re-typeset helper: exposed globally for app.js -->
   <script>
     // Called by app.js after dynamic DOM mutations containing math
-    window.retypesetMath = function(element) {
+    window.retypesetMath = function (element) {
       if (window.MathJax && window.MathJax.typesetPromise) {
         if (element) {
-          MathJax.typesetPromise([element]).catch(function(err) {
+          MathJax.typesetPromise([element]).catch(function (err) {
             console.warn('MathJax typeset error:', err);
           });
         } else {
-          MathJax.typesetPromise().catch(function(err) {
+          MathJax.typesetPromise().catch(function (err) {
             console.warn('MathJax typeset error:', err);
           });
         }
@@ -2198,4 +2362,5 @@ while k > 0:
     };
   </script>
 </body>
+
 </html>
